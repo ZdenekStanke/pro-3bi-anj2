@@ -1,4 +1,4 @@
-package cz.spsmb.b3i.w06.Customer;
+package cz.spsmb.b3i.w06.customer;
 
 public class Zakaznik {
     //proměnná třídy, resp. statická proměnná

@@ -1,4 +1,4 @@
-package cz.spsmb.b3i.w06.Customer;
+package cz.spsmb.b3i.w06.customer;
 
 public class ZakaznikMain {
     public static void main(String[] args) {
