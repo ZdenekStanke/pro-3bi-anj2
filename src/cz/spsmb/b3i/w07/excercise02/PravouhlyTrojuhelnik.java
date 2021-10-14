@@ -9,22 +9,28 @@ package cz.spsmb.b3i.w07.excercise02;
 public class PravouhlyTrojuhelnik {
     private double stranaA;
     private double stranaB;
+    private double stranaC;
 
-    public PravouhlyTrojuhelnik(double odvesnaA, double odvesnaB) {
-        this.stranaA = odvesnaA;
-        this.stranaB = odvesnaB;
+    public PravouhlyTrojuhelnik(double stranaA, double stranaB, double stranaC) {
+        this.stranaA = stranaA;
+        this.stranaB = stranaB;
+        this.stranaC = stranaC;
     }
+
     public double delkaPrepony() {
-        return Math.sqrt((stranaA * stranaA) + (stranaB * stranaB));
+        stranaC = Math.sqrt((this.stranaA * this.stranaA) + (this.stranaB * this.stranaB));;
+        return stranaC;
     }
 
-    public PravouhlyTrojuhelnik(double odvesnaA) {
-        this(odvesnaA,odvesnaA);
+    public PravouhlyTrojuhelnik(double stranaA) {
+        this(stranaA, stranaA, stranaA);
     }
+
+
     public double obsah() {
-        return (stranaA * stranaA)/2;
+        double vyska = Math.sqrt((stranaA*stranaA) - ((stranaA / 2) * (stranaA / 2)));
+        return ((stranaA * vyska) / 2);
     }
-
 }
 
 
