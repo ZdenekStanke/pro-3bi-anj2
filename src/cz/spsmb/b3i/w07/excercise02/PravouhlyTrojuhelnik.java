@@ -11,26 +11,38 @@ public class PravouhlyTrojuhelnik {
     private double stranaB;
     private double stranaC;
 
-    public PravouhlyTrojuhelnik(double stranaA, double stranaB, double stranaC) {
+    public PravouhlyTrojuhelnik(double stranaA, double stranaB) {
         this.stranaA = stranaA;
         this.stranaB = stranaB;
+        setStranaC(delkaPrepony());
+    }
+
+
+    public PravouhlyTrojuhelnik() {
+        setStranaC(Math.sqrt(this.stranaA * this.stranaA) + ((this.stranaB) * (this.stranaB)));
+    }
+
+
+    public void setStranaC(double stranaC) {
         this.stranaC = stranaC;
     }
 
+
     public double delkaPrepony() {
-        stranaC = Math.sqrt((this.stranaA * this.stranaA) + (this.stranaB * this.stranaB));;
-        return stranaC;
+        return Math.sqrt((this.stranaA * this.stranaA) + (this.stranaB * this.stranaB));
     }
-
-    public PravouhlyTrojuhelnik(double stranaA) {
-        this(stranaA, stranaA, stranaA);
-    }
-
 
     public double obsah() {
-        double vyska = Math.sqrt((stranaA*stranaA) - ((stranaA / 2) * (stranaA / 2)));
-        return ((stranaA * vyska) / 2);
+        double pom = (stranaC / 2);
+        return ((stranaC * pom) / 2);
     }
+
+    public double obsahPravouhleho() {
+       double pom = ((stranaC / 4));
+        return ((stranaC * pom) / 2);
+    }
+
+
 }
 
 
