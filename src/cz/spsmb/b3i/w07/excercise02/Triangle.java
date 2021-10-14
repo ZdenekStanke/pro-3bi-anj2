@@ -6,6 +6,9 @@ package cz.spsmb.b3i.w07.excercise02;
 //Modifikujte třídu trojúhelník tak, aby konstruktor ošetřil případy,
 // kdy zadávané strany netvoří trojúhelník (tj. součet dvou stran je menší, než
 // třetí strana). V tomto případě konstruktor nastaví všechny strany na nulu
+
+
+
 public class Triangle {
     private int stranaA;
     private int stranaB;
@@ -19,6 +22,16 @@ public class Triangle {
             this.stranaB=0;
             this.stranaC=0;
         }
+    }
+    //Přetěžte konstruktor Triangle(int jednaStrana), který bude vytvářet rovnostranné trojúhelníky
+    public Triangle(int jednaStrana){
+        /*jedna možnost
+        this.stranaA=jednaStrana;
+        this.stranaB=jednaStrana;
+        this.stranaC=jednaStrana;
+        */
+        //druhá, efektivnější možnost - volám předchozí konstruktor pomocí this()
+        this(jednaStrana, jednaStrana, jednaStrana);
     }
     private boolean isTriangle(){
         return this.stranaA+this.stranaB > this.stranaC &&
