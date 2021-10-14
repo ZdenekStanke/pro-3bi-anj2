@@ -14,6 +14,19 @@ public class Triangle {
         this.stranaA=stranaA;
         this.stranaB=stranaB;
         this.stranaC=stranaC;
+        if(!isTriangle()){
+            this.stranaA=0;
+            this.stranaB=0;
+            this.stranaC=0;
+        }
+    }
+    private boolean isTriangle(){
+        return this.stranaA+this.stranaB > this.stranaC &&
+            this.stranaB+this.stranaC > this.stranaA &&
+            this.stranaC+this.stranaA > this.stranaB;
+    }
+    public int getStranaA() {
+        return this.stranaA;
     }
     public double obvod(){
         return this.stranaA+this.stranaB+this.stranaC;//impicitni konverze na double
@@ -22,4 +35,5 @@ public class Triangle {
         //plati Pythagorova veta
         return (this.stranaA*this.stranaA+this.stranaB*this.stranaB) == this.stranaC*this.stranaC;
     }
+
 }
