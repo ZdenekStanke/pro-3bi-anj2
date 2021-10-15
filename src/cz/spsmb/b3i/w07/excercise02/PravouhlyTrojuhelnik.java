@@ -14,15 +14,17 @@ public class PravouhlyTrojuhelnik {
     public PravouhlyTrojuhelnik(double stranaA, double stranaB) {
         this.stranaA = stranaA;
         this.stranaB = stranaB;
+        //není důvod používat setter v konstruktoru, lepší this.stranaC = delkaPrepony()
         setStranaC(delkaPrepony());
     }
 
 
     public PravouhlyTrojuhelnik() {
+        //tohle je zbytečná duplikace kódu. Lepší zavolat předchozí konstruktor pomocí this(1,1);
         setStranaC(Math.sqrt(this.stranaA * this.stranaA) + ((this.stranaB) * (this.stranaB)));
     }
 
-
+    //není důvod tu mít tuto metodu
     public void setStranaC(double stranaC) {
         this.stranaC = stranaC;
     }
@@ -32,6 +34,8 @@ public class PravouhlyTrojuhelnik {
         return Math.sqrt((this.stranaA * this.stranaA) + (this.stranaB * this.stranaB));
     }
 
+    //jaký je rozdíl mezi těmito metodami? Proč jsou dvě? Třída se jmenuje Pravouhly Trojuhelnik,
+    //tudíž počítám obsah = this.stranaA*this.stranaB/2
     public double obsah() {
         double pom = (stranaC / 2);
         return ((stranaC * pom) / 2);
