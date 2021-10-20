@@ -6,5 +6,8 @@ public class ExcMain {
         System.out.format("Trojuhelnik ma obvod %2.2f, strana a je %d a %s pravouhly%n", t.obvod(),
                 t.getStranaA(),
                 t.jePravouhly()?"je":"neni");
+        PravouhlyTrojuhelnik pt = new PravouhlyTrojuhelnik();
+        System.out.format("obsah pravouhle trojuhelniku je %f", pt.obsah() );
+
     }
 }
