@@ -115,6 +115,31 @@ public class Strings_ {
         String radka = "123 45 6 789";
         String[] podretezce = radka.split(" ");
         System.out.println(Arrays.toString(podretezce));
+        System.out.println(Arrays.toString("123;1235;87;263;654".split(";")));
+        //problém, pokud oddělovačů je vícero za sebou:
+        System.out.println(Arrays.toString("123  1235 87  263 654".split(" ")));
+
+        //Regulární výrazy - úvod
+        //plné použití regulárních výrazů - viz balík java.util.regex.*
+        //Množinu znaků, která mě zajímá dávám do []
+        //mimo tyto závorky platí
+        //. -- jakýkoliv znak
+        //+ -- jedno, či více opakování předchozího znaku
+        //* -- žádné, či libovolné opakování předchozího znaku
+        //? -- žádné, či jedno opakování předchozího znaku
+        // \p{Alpha} -- malá a velká písmena, dá se zapsat i jako [A-Za-z]
+        // \p{Digit} -- číslice, dá se zapsat i jako [0-9]
+        // \p{Alnum} -- malá a velká písmena a číslice, dá se zapsat i jako [0-9A-Za-z]
+        // \p{Space} -- bílé znaky (mezera, tab, \r, \n, nová stránka)
+        System.out.println(Arrays.toString("123  1235 87  263 654".split(" +")));
+
+        System.out.println(Arrays.toString("jedna; dvě, tři/čtyři".split("[; ,/]+")));
+
+        String aaa2 = "123as56aAd654asd6345";
+        System.out.println(Arrays.toString(aaa2.split("\\p{Alpha}+")));
+        System.out.println(Arrays.toString(aaa2.split("[A-Za-z]+")));
+        String aaa3 = "987;123*+456-444";
+        System.out.println(Arrays.toString(aaa3.split("[;*-]+")));
 
 
     }
