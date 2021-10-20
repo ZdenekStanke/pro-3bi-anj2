@@ -8,7 +8,7 @@ public class PrimitivniGUI {
 
     PrimitivniGUI(Frame ramecek){
         //nastavíme Layou anonymní instancí třídy FlowLayout
-        ramecek.setLayout(new FlowLayout());
+        ramecek.setLayout(new BorderLayout());
         //vytvoříme instanci třídy Button
         this.ahojBT = new Button("Ahoj");
         //přidáme tlačítko do rozložení (layoutu) v rámečku
@@ -18,7 +18,7 @@ public class PrimitivniGUI {
         //přidáme návěští (popisek) do rozložení (layoutu) v rámečku
         ramecek.add(lab);
         //nastavíme velikost rámečku
-        ramecek.setSize(170,65);
+        ramecek.setSize(270,165);
     }
 
     public static void main(String[] args) {
