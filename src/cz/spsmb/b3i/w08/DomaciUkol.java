@@ -1,11 +1,14 @@
 package cz.spsmb.b3i.w08;
 
 public class DomaciUkol {
-    /***
-     * Každý sem napište metodu třídy dle zadání
-     Černý
-     public static int obsahObdelnika(int stranaA, int stranaB)
 
+    // Každý sem napište metodu třídy dle zadání
+    //Černý
+    public static int obsahObdelnika(int stranaA, int stranaB) {
+        return stranaA * stranaB;
+    }
+
+    /***
      Haken
      public static int obsahPravouhlehoTrojuhelnika(int odvesnaA, int odvesnaB)
 
