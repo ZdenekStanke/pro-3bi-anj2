@@ -29,5 +29,29 @@ public class StringBuffer_ {
         System.out.format("b1 délka:%d, kapacita:%d%n", b1.length(), b1.capacity());//18 34
         System.out.format("b2 délka:%d, kapacita:%d%n", b2.length(), b2.capacity());//0 202
         System.out.format("b3 délka:%d, kapacita:%d%n", b3.length(), b3.capacity());//3 20
+        //Změny celého řetězce
+        StringBuffer b = new StringBuffer("Ahoj");
+        System.out.println(b);
+        b.reverse();
+        System.out.println(b);
+        //Změny části řetězce
+        b = new StringBuffer("Ahoj ");
+        b.append("lidi");
+        System.out.println(b);
+        b.append(8);
+        System.out.println(b);//Ahoj lidi8
+        //vyříznutí části řetězce - poč index, konc. index - nepatří tam
+        b.delete(5,9);//Ahoj 8
+        System.out.println(b);
+        //Mazání jednotlivých znaků
+        b.deleteCharAt(0);//hoj 8
+        System.out.println(b);
+        //Vkládání čehokoliv do řetězce (nejen Stringů)
+        b.insert(0, 3.14);//3.14hoj 8
+        System.out.println(b);
+        b.insert(1, "HOJ");//3HOJ.14hoj 8
+        System.out.println(b);
+        //Nahrazení jednoho podřetězce jiným
+        //b.
     }
 }
