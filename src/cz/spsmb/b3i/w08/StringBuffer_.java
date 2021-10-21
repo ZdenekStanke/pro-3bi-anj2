@@ -51,7 +51,20 @@ public class StringBuffer_ {
         System.out.println(b);
         b.insert(1, "HOJ");//3HOJ.14hoj 8
         System.out.println(b);
-        //Nahrazení jednoho podřetězce jiným
-        //b.
+        //Nahrazení jednoho podřetězce jiným replace(počIdx, konIdx, String)
+        b.replace(0,5,"3,");//3,14hoj 8
+        System.out.println(b);
+        //Získání jednotlivého znaku
+        System.out.println(b.charAt(0));//3
+        //Změna znaku
+        b.setCharAt(1,'!');//3!14hoj 8
+        System.out.println(b);
+        //Konverze na String
+        StringBuffer b10 = new StringBuffer("Ahoj");
+        String s1, s2, s3;
+        s1 = b10.toString();//Ahoj
+        s2 = b10.substring(1);//hoj
+        s3 = b10.substring(1,3);//ho
+        System.out.format("s1:%s, s2:%s, s3:%s%n", s1, s2, s3);
     }
 }
