@@ -1,0 +1,37 @@
+Index: cz/spsmb/b3i/w07/excercise02/Triangle.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package cz.spsmb.b3i.w07.excercise02;\r\n//Napište třídu trojúhelník, která bude poskytovat metody double\r\n//obvod(), a boolean jePravouhly(). Členské proměnné budou celá čísla\r\n//stranaA, stranaB, stranaC\r\n\r\n//Modifikujte třídu trojúhelník tak, aby konstruktor ošetřil případy,\r\n// kdy zadávané strany netvoří trojúhelník (tj. součet dvou stran je menší, než\r\n// třetí strana). V tomto případě konstruktor nastaví všechny strany na nulu\r\npublic class Triangle {\r\n    private int stranaA;\r\n    private int stranaB;\r\n    private int stranaC;\r\n    public Triangle(int stranaA, int stranaB, int stranaC){\r\n        this.stranaA=stranaA;\r\n        this.stranaB=stranaB;\r\n        this.stranaC=stranaC;\r\n    }\r\n    public double obvod(){\r\n        return this.stranaA+this.stranaB+this.stranaC;//impicitni konverze na double\r\n    }\r\n    public boolean jePravouhly(){\r\n        //plati Pythagorova veta\r\n        return (this.stranaA*this.stranaA+this.stranaB*this.stranaB) == this.stranaC*this.stranaC;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cz/spsmb/b3i/w07/excercise02/Triangle.java b/cz/spsmb/b3i/w07/excercise02/Triangle.java
+--- a/cz/spsmb/b3i/w07/excercise02/Triangle.java	
++++ b/cz/spsmb/b3i/w07/excercise02/Triangle.java	
+@@ -14,6 +14,16 @@
+         this.stranaA=stranaA;
+         this.stranaB=stranaB;
+         this.stranaC=stranaC;
++        if(!isTriangle()){
++            this.stranaA=0;
++            this.stranaB=0;
++            this.stranaC=0;
++        }
++    }
++    private boolean isTriangle(){
++        return this.stranaA+this.stranaB > this.stranaC &&
++                this.stranaB+this.stranaC > this.stranaA &&
++                this.stranaC+this.stranaA > this.stranaB;
+     }
+     public double obvod(){
+         return this.stranaA+this.stranaB+this.stranaC;//impicitni konverze na double
+@@ -21,5 +31,9 @@
+     public boolean jePravouhly(){
+         //plati Pythagorova veta
+         return (this.stranaA*this.stranaA+this.stranaB*this.stranaB) == this.stranaC*this.stranaC;
++
++    }
++    public int getStranaA() {
++        return this.stranaA;
+     }
+ }

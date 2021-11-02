@@ -1,0 +1,32 @@
+Index: cz/spsmb/b3i/w08/Cviceni/GeneratorSlov.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package cz.spsmb.b3i.w08.Cviceni;\r\n//Existují slova, která se čtou zleva doprava i zprava doleva stejně\r\n// (např. radar).\r\n//Napište program, který bude tato slova generovat z jejich\r\n// první poloviny zadané\r\n// z klávesnice.\r\npublic class GeneratorSlov {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cz/spsmb/b3i/w08/Cviceni/GeneratorSlov.java b/cz/spsmb/b3i/w08/Cviceni/GeneratorSlov.java
+--- a/cz/spsmb/b3i/w08/Cviceni/GeneratorSlov.java	
++++ b/cz/spsmb/b3i/w08/Cviceni/GeneratorSlov.java	
+@@ -1,8 +1,20 @@
+ package cz.spsmb.b3i.w08.Cviceni;
++
++import java.util.Scanner;
++
+ //Existují slova, která se čtou zleva doprava i zprava doleva stejně
+ // (např. radar).
+ //Napište program, který bude tato slova generovat z jejich
+ // první poloviny zadané
+ // z klávesnice.
+ public class GeneratorSlov {
+-}
++    public static void main(String[] args) {
++        Scanner sc = new Scanner(System.in);
++        StringBuffer halfPalindrom = new StringBuffer(sc.nextLine());
++        StringBuffer palindrom = new StringBuffer();
++        palindrom.append(halfPalindrom);
++        palindrom.append(halfPalindrom.reverse().deleteCharAt(0));
++        System.out.println(palindrom);
++    }
++    }
++

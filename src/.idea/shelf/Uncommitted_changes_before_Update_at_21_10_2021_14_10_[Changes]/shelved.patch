@@ -1,0 +1,49 @@
+Index: cz/spsmb/b3i/w07/excercise02/PravouhlyTrojuhelnik.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package cz.spsmb.b3i.w07.excercise02;\r\n\r\n//vytvořte třídu PravouhlyTrojuhelnik, kdy se jako parametry konstruktoru budou\r\n//zadávat pouze odvěsny a přepona se dopočítá. Třída bude poskytovat metodu\r\n//double delkaPrepony()\r\n\r\n//Přetěžte konstruktor PravouhlyTrojuhelnik, který vytvoří rovnoramenný trojúhelník\r\n//s odvěsnami délky1. Třída bude poskytovat metodu double obsah()\r\npublic class PravouhlyTrojuhelnik {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cz/spsmb/b3i/w07/excercise02/PravouhlyTrojuhelnik.java b/cz/spsmb/b3i/w07/excercise02/PravouhlyTrojuhelnik.java
+--- a/cz/spsmb/b3i/w07/excercise02/PravouhlyTrojuhelnik.java	
++++ b/cz/spsmb/b3i/w07/excercise02/PravouhlyTrojuhelnik.java	
+@@ -7,4 +7,11 @@
+ //Přetěžte konstruktor PravouhlyTrojuhelnik, který vytvoří rovnoramenný trojúhelník
+ //s odvěsnami délky1. Třída bude poskytovat metodu double obsah()
+ public class PravouhlyTrojuhelnik {
++
++//    private class Triangle {
++//        private int stranaA;
++//        private int stranaB;
++//       public double = delkaOdvesny;
++//
++//    }
+ }
+Index: cz/spsmb/b3i/w07/excercise02/ExcMain.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package cz.spsmb.b3i.w07.excercise02;\r\n\r\npublic class ExcMain {\r\n    public static void main(String[] args) {\r\n        Triangle t = new Triangle(1,3,5);\r\n        System.out.format(\"Trojuhelnik ma obvod %2.2f, strana a je %d a %s pravouhly%n\", t.obvod(),\r\n                t.getStranaA(),\r\n                t.jePravouhly()?\"je\":\"neni\");\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cz/spsmb/b3i/w07/excercise02/ExcMain.java b/cz/spsmb/b3i/w07/excercise02/ExcMain.java
+--- a/cz/spsmb/b3i/w07/excercise02/ExcMain.java	
++++ b/cz/spsmb/b3i/w07/excercise02/ExcMain.java	
+@@ -1,10 +1,13 @@
+ package cz.spsmb.b3i.w07.excercise02;
+ 
++
+ public class ExcMain {
+     public static void main(String[] args) {
+-        Triangle t = new Triangle(1,3,5);
+-        System.out.format("Trojuhelnik ma obvod %2.2f, strana a je %d a %s pravouhly%n", t.obvod(),
+-                t.getStranaA(),
++       Triangle t = new Triangle(5,5,5);
++        System.out.format("Trojuhelnik ma obvod %2.2f a %s pravouhly%n", t.obvod(),
++        t.getStranaA(),
+                 t.jePravouhly()?"je":"neni");
++
++
+     }
+ }

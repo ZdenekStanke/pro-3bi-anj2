@@ -4,9 +4,9 @@ public class DomaciUkol {
 
     // Každý sem napište metodu třídy dle zadání
     //Černý
-    public static int obsahObdelnika(int stranaA, int stranaB) {
-        return stranaA * stranaB;
-    }
+//    public static int obsahObdelnika(int stranaA, int stranaB) {
+//        return stranaA * stranaB;
+//    }
 
 
 //     Haken
@@ -27,9 +27,9 @@ public class DomaciUkol {
 
 //     Kraušner
 //     public static double obvodKruhu(double polomer)
-     public static double obvodKruhu(double polomer){
-         return 2*3.14*polomer;
-     }
+//     public static double obvodKruhu(double polomer){
+//         return 2*3.14*polomer;
+//     }
 
 //     Krouský
 //     public static int povrchKrychle(int hranaA)
@@ -50,10 +50,10 @@ public class DomaciUkol {
 //     Stanke
 //     Výpočet fibbonaciho posloupnosti
 //     private static int fibonacci(int n)
-        private static  int fibonacci(int n){
-            if (n<=1) return n;
-            else return fibonacci(n-2)+fibonacci(n-1);
-        }
+//        private static  int fibonacci(int n){
+//            if (n<=1) return n;
+//            else return fibonacci(n-2)+fibonacci(n-1);
+//        }
 //     Šípek
 //     public static double povrchKoule(double polomer)
 /*    public class Main {
@@ -77,5 +77,12 @@ public class DomaciUkol {
 
 //     Žárský
 //     public static long mocnina(int cislo, byte mocnitel)
+
+    public static long mocnina(int cislo, byte mocnitel){
+        int a;
+        a= (int) Math.pow(cislo, mocnitel);
+        return a;
+
+    }
 
 }
