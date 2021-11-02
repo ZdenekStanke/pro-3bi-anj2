@@ -8,50 +8,67 @@ public class DomaciUkol {
         return stranaA * stranaB;
     }
 
-    /***
-     Haken
-     public static int obsahPravouhlehoTrojuhelnika(int odvesnaA, int odvesnaB)
 
-     Chomanič
-     public static int obvodObdelnika(int stranaA, int stranaB)
+//     Haken
+//     public static int obsahPravouhlehoTrojuhelnika(int odvesnaA, int odvesnaB)
 
-     Janošík
-     může si vybrat svou úlohu
+//     Chomanič
+//     public static int obvodObdelnika(int stranaA, int stranaB)
+
+//     Janošík
+//     může si vybrat svou úlohu
 
 
-     Karban
-     public static double obsahKruhu(double polomer)
+//     Karban
+//     public static double obsahKruhu(double polomer)
 
-     Kraušner
-     public static double obvodKruhu(double polomer)
+//     Kraušner
+//     public static double obvodKruhu(double polomer)
+     public static double obvodKruhu(double polomer){
+         return 2*3.14*polomer;
+     }
 
-     Krouský
-     public static int povrchKrychle(int hranaA)
+//     Krouský
+//     public static int povrchKrychle(int hranaA)
 
-     Matoušek
-     public static int objemKrychle(int hranaA)
+//     Matoušek
+//     public static int objemKrychle(int hranaA)
 
-     Merhaut
-     public static int obvodPravouhlehoTrojuhelnika(int odvesnaA, int odvesnaB)
+//     Merhaut
+//     public static int obvodPravouhlehoTrojuhelnika(int odvesnaA, int odvesnaB)
 
-     Skalický
-     public static long faktorial(byte n)
+//     Skalický
+//     public static long faktorial(byte n)
 
-     Stanke
-     Výpočet fibbonaciho posloupnosti
-     private static int fibonacci(int n)
+//     Stanke
+//     Výpočet fibbonaciho posloupnosti
+//     private static int fibonacci(int n)
+        private static  int fibonacci(int n){
+            if (n<=1) return n;
+            else return fibonacci(n-2)+fibonacci(n-1);
+        }
+//     Šípek
+//     public static double povrchKoule(double polomer)
+/*    public class Main {
+        private static double polomer;
+        public Main (double polomer){
+            this.polomer = polomer;
+        }
+        public static double obsah(){
+            return  4*Math.PI*polomer*polomer;
+        }
+        public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Zadej polomer: ");
+            Double d = sc.nextDouble();
+            Main obsah = new Main (d);
+            System.out.format("Povrch koule je: %.3f m²", obsah.obsah());
+        }
+    }*/
+//     Zajíček
+//     public static double objemKoule(double polomer)
 
-     Šípek
-     public static double povrchKoule(double polomer)
+//     Žárský
+//     public static long mocnina(int cislo, byte mocnitel)
 
-     Zajíček
-     public static double objemKoule(double polomer)
-
-     Žárský
-     public static long mocnina(int cislo, byte mocnitel)
-     ***/
-    private static  int fibonacci(int n){
-        if (n<=1) return n;
-        else return fibonacci(n-2)+fibonacci(n-1);
-    }
 }
