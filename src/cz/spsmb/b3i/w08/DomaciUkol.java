@@ -37,6 +37,10 @@ public class DomaciUkol {
 //     Merhaut
 //     public static int obvodPravouhlehoTrojuhelnika(int odvesnaA, int odvesnaB)
 
+    public static int obvodPravouhlehoTrojuhelnika(int odvesnaA, int odvesnaB){
+      return (int) Math.sqrt(Math.pow(odvesnaA, 2)+Math.pow(odvesnaB, 2)+odvesnaA+odvesnaB);
+    }
+
 //     Skalický
 //     public static long faktorial(byte n)
 
