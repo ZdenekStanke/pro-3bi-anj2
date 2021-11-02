@@ -14,6 +14,9 @@ public class DomaciUkol {
 
 //     Chomanič
 //     public static int obvodObdelnika(int stranaA, int stranaB)
+    public static int obvodObdelnika(int stranaA, int stranaB){
+        return ((stranaA+stranaB)*2);
+    }
 
 //     Janošík
 //     může si vybrat svou úlohu
