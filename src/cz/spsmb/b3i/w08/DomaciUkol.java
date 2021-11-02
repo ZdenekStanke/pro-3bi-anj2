@@ -39,6 +39,10 @@ public class DomaciUkol {
 
 //     Matoušek
 //     public static int objemKrychle(int hranaA)
+     
+    public static int objem (){
+        return hranaA*hranaA*hranaA;
+    }
 
 //     Merhaut
 //     public static int obvodPravouhlehoTrojuhelnika(int odvesnaA, int odvesnaB)
