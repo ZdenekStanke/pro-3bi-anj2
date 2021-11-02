@@ -13,7 +13,6 @@ public class DomaciUkol {
 //     public static int obsahPravouhlehoTrojuhelnika(int odvesnaA, int odvesnaB)
         public static int obsahPravouhlehoTrojuhelnika(int odvesnaA, int odvesnaB) {
             return odvesnaA * odvesnaB / 2;
-
         }
 //     Chomanič
 //     public static int obvodObdelnika(int stranaA, int stranaB)
