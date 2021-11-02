@@ -11,6 +11,9 @@ public class DomaciUkol {
 
 //     Haken
 //     public static int obsahPravouhlehoTrojuhelnika(int odvesnaA, int odvesnaB)
+    public static int obsahPravouhlehoTrojuhelnika(int odvesnaA, int odvesnaB) {
+        return odvesnaA * odvesnaB / 2;
+    }
 
 //     Chomanič
 //     public static int obvodObdelnika(int stranaA, int stranaB)
@@ -77,5 +80,10 @@ public class DomaciUkol {
 
 //     Žárský
 //     public static long mocnina(int cislo, byte mocnitel)
+    public static long mocnina(int cislo, byte mocnitel){
+        int a;
+        a= (int) Math.pow(cislo, mocnitel);
+        return a;
+    }
 
 }
