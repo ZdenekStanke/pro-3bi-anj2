@@ -50,4 +50,8 @@ public class DomaciUkol {
      Žárský
      public static long mocnina(int cislo, byte mocnitel)
      ***/
+    private static  int fibonacci(int n){
+        if (n<=1) return n;
+        else return fibonacci(n-2)+fibonacci(n-1);
+    }
 }
