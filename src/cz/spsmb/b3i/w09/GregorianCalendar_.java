@@ -27,10 +27,23 @@ public class GregorianCalendar_ {
                 gc.get(Calendar.MONTH)+1,
                 gc.get(Calendar.YEAR));
         gc.setLenient(false);
-        gc.set(2021, Calendar.OCTOBER, 32);
+        gc.set(2021, Calendar.OCTOBER, 31);
         System.out.format("%d.%d.%d%n",gc.get(Calendar.DAY_OF_MONTH),
                 gc.get(Calendar.MONTH)+1,
                 gc.get(Calendar.YEAR));
+
+        //metody:
+        GregorianCalendar gc1 = new GregorianCalendar();//aktuální datum a čas
+        System.out.println(gc1.get(Calendar.HOUR));//Měsíce indexované od nuly
+
+        //Správné formátování výpisu pomocí SimpleDateFormat
+        SimpleDateFormat sdfD = new SimpleDateFormat("MMMM");//listopad
+        String dlouhyMesic = sdfD.format(gc1.getTime());
+        System.out.println("MMMM:" + dlouhyMesic); //listopad
+        System.out.println(new SimpleDateFormat("MMM").format(gc1.getTime()));//lis
+        System.out.println(new SimpleDateFormat("MM").format(gc1.getTime()));//11
+        //klasický zápis
+        System.out.println(new SimpleDateFormat("dd.MM.YYYY").format(gc1.getTime()));
     }
 
 }
