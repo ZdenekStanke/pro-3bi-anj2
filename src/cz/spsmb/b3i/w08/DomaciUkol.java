@@ -77,6 +77,10 @@ public class DomaciUkol {
     }*/
 //     Zajíček
 //     public static double objemKoule(double polomer)
+    
+    public static double obsah() {
+        return (1.333 * Math.PI * (polomer * polomer * polomer)); //V = 4/3*PI*r³
+    }
 
 //     Žárský
 //     public static long mocnina(int cislo, byte mocnitel)
