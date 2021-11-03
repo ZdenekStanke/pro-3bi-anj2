@@ -79,22 +79,9 @@ public class DomaciUkol {
         }
 //     Šípek
 //     public static double povrchKoule(double polomer)
-/*    public class Main {
-        private static double polomer;
-        public Main (double polomer){
-            this.polomer = polomer;
-        }
-        public static double obsah(){
+        public static double povrchKoule(double polomer){
             return  4*Math.PI*polomer*polomer;
         }
-        public static void main(String[] args) {
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Zadej polomer: ");
-            Double d = sc.nextDouble();
-            Main obsah = new Main (d);
-            System.out.format("Povrch koule je: %.3f m²", obsah.obsah());
-        }
-    }*/
 //     Zajíček
 //     public static double objemKoule(double polomer)
     public static double objemKoule(double polomer) {
