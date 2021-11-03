@@ -2,7 +2,7 @@ package cz.spsmb.b3i.w09;
 
 public class MereniDobyBehu {
     public static void main(String[] args) {
-        //currentTimeMillis vrací počet milisekund od 1.1.1970
+        //currentTimeMillis() vrací počet milisekund od 1.1.1970
         //význam při hledání doby běhu programu
         //System.nanoTime(); - vrátí počet nanosekund od specfické události
         //(zapnutí počítače)
