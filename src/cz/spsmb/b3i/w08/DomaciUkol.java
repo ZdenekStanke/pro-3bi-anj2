@@ -56,7 +56,7 @@ public class DomaciUkol {
     }
 //     Skalický
 //     public static long faktorial(byte n)
-        public static int faktorialRekurzivne(byte n){
+        public static long faktorialRekurzivne(byte n){
             int vysledek;
             if(n == 1)
                 return 1;
