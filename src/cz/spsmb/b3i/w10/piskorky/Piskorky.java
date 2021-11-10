@@ -130,12 +130,35 @@ public class Piskorky implements ActionListener {
                 this.isHorizontalWin(i, j, N),
                 this.isDiagonalWin(i, j, N),
                 this.isReverseDiagonalWin(i, j, N));
-        /*
-        for (int k = 0; k < j; k++) {
-            if(this.isHorizontalWin(i,k,2)){
-                System.out.println("OK");
+
+        /*K = sloupec */        for (int k = 0; k < this.rozmerHraciPlochy; k++) {
+            if(this.isHorizontalWin(i,k,N)){
+                System.out.println("OK horizontal");
             }
-        }*/
+        }
+        /*K = radek */       for (int k = 0; k < this.rozmerHraciPlochy; k++) {
+            if(this.isVerticalWin(k, j, N)){
+                System.out.println("OK vertical");
+            }
+
+        }
+//        for (int radek1 = 0; radek1 < this.rozmerHraciPlochy; radek1++) {
+//            for (int sloupec1 = 0; sloupec1 < this.rozmerHraciPlochy; sloupec1++) {
+//                if(this.isVerticalWin(radek1, sloupec1, N)){
+//                    System.out.println("Win vertical");
+//                } else if (this.isHorizontalWin(radek1, sloupec1, N)){
+//                    System.out.println("Win horizontal");
+//                } else if (this.isDiagonalWin(radek1, sloupec1, N)){
+//                    System.out.println("Win diagonal");
+//                } else if (this.isReverseDiagonalWin(radek1, sloupec1, N)){
+//                    System.out.println("Win reverseDiagonal");
+//                }
+//            }
+//        }
+
+
+
+
         stisknuteTlacitko.removeActionListener(this);
     }
     private boolean isVerticalWin(int radek, int sloupec, int n){
@@ -207,7 +230,15 @@ public class Piskorky implements ActionListener {
         return true;
     }
 
+
+
+
+
+
+
+
+
     public static void main(String[] args) {
-        Piskorky p = new Piskorky(7);
+        Piskorky p = new Piskorky(3);
     }
 }
