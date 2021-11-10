@@ -131,40 +131,16 @@ public class Piskorky implements ActionListener {
                 this.isDiagonalWin(i, j, N),
                 this.isReverseDiagonalWin(i, j, N));
 
-        /*K = sloupec */
-        for (int k = 0; k < this.rozmerHraciPlochy; k++) {
+        /*K = sloupec */        for (int k = 0; k < this.rozmerHraciPlochy; k++) {
             if(this.isHorizontalWin(i,k,N)){
                 System.out.println("OK horizontal");
             }
         }
-        /*K = radek */
-        for (int k = 0; k < this.rozmerHraciPlochy; k++) {
+        /*K = radek */       for (int k = 0; k < this.rozmerHraciPlochy; k++) {
             if(this.isVerticalWin(k, j, N)){
                 System.out.println("OK vertical");
             }
-        }
-        int y = i;
-        int x = j;
-        //pozor, potřeba použít operátor úplného vyhodnocení
-        while (--y > 0 & --x > 0 );
-        //System.out.format("x:%d, y:%d%n", x,y);
-        for (; y < this.rozmerHraciPlochy && x < this.rozmerHraciPlochy; y++, x++) {
-            if(this.isReverseDiagonalWin(y, x, N)) {
-                System.out.println("ReverseDiagonal");
-                return;
-            }
-        }
-        y = i;
-        x = j;
-        if(y != this.rozmerHraciPlochy) {
-            while (++y < this.rozmerHraciPlochy & --x > 0) ;
-        }
-        System.out.format("x:%d, y:%d%n", x,y);
-        for (; y > 0 && x < this.rozmerHraciPlochy; y--, x++) {
-            if(this.isDiagonalWin(y, x, N)) {
-                System.out.println("Diagonal");
-                return;
-            }
+
         }
 //        for (int radek1 = 0; radek1 < this.rozmerHraciPlochy; radek1++) {
 //            for (int sloupec1 = 0; sloupec1 < this.rozmerHraciPlochy; sloupec1++) {
@@ -253,6 +229,14 @@ public class Piskorky implements ActionListener {
         }
         return true;
     }
+
+
+
+
+
+
+
+
 
     public static void main(String[] args) {
         Piskorky p = new Piskorky(3);
