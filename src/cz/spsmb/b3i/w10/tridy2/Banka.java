@@ -4,6 +4,7 @@ package cz.spsmb.b3i.w10.tridy2;
 //vytvořte pole účtů, které náhodně inicializujete. Vypište celkovou hotovost v bance.
 
 import java.util.Arrays;
+import java.util.GregorianCalendar;
 import java.util.Random;
 
 public class Banka {
@@ -16,7 +17,17 @@ public class Banka {
         this.ucty = new BankovniUcet[N_UCTU];
         //vytvoříme instance třídy BankovniUcet a přidáme je do pole účtů
         for (int i = 0; i < this.ucty.length ; i++) {
-            this.ucty[i] = new BankovniUcet(rnd.nextInt(10000),i);
+            this.ucty[i] = new BankovniUcet(rnd.nextInt(10000),
+                    new Klient(rnd.nextBoolean()?"Franta":"Pepa",
+                            String.format("prijmeni%02d",i),
+                            String.format("Havlickova %d",400+rnd.nextInt(i+1)),
+                            new GregorianCalendar(
+                                    2000,
+                                    rnd.nextInt(12),
+                                    rnd.nextInt(28)+1
+                            )
+                    )
+            );
         }
     }
 

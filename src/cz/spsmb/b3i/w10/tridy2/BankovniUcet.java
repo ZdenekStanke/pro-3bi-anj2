@@ -5,15 +5,17 @@ public class BankovniUcet {
     private static int aktualniCisloUctu;
     private int zustatek;
     private int cisloUctu;
-    private int klientskeCislo;
+    //private int klientskeCislo;
+    private Klient klient;
 
-    public BankovniUcet(int zustatek, int klientskeCislo) {
+    public BankovniUcet(int zustatek, Klient klient) {
         //zde nepoužívat this. Sice to možné je, ale vzhledem k tomu, že jde o proměnnou třídy
         //bylo by to nepřehledné
         BankovniUcet.aktualniCisloUctu++;
         this.zustatek = zustatek;
         this.cisloUctu = BankovniUcet.aktualniCisloUctu;
-        this.klientskeCislo = klientskeCislo;
+        this.klient = klient;
+        //this.klientskeCislo = klientskeCislo;
     }
     public int getZustatek() {
         return zustatek;
@@ -39,7 +41,7 @@ public class BankovniUcet {
         return "BankovniUcet{" +
                 "zustatek=" + zustatek +
                 ", cisloUctu=" + cisloUctu +
-                ", klientskeCislo=" + klientskeCislo +
+                ", klient=" + klient +
                 '}';
     }
 }
