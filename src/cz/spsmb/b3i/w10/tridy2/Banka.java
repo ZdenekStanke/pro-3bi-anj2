@@ -24,11 +24,20 @@ public class Banka {
         return ucty;
     }
 
+    public int getCelkovaHotovost(){
+        int out=0;
+        for (BankovniUcet bu: this.getUcty()) {
+            out += bu.getZustatek();
+        }
+        return out;
+    }
+
     public static void main(String[] args) {
         Banka b = new Banka();
         for (BankovniUcet bu:b.getUcty()) {
             System.out.println(bu);
         }
+        System.out.println("Zustatek v bance je " +b.getCelkovaHotovost());
         //Arrays.toString(b.getUcty());
     }
 }

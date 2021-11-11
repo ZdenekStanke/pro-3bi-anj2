@@ -33,4 +33,13 @@ public class BankovniUcet {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "BankovniUcet{" +
+                "zustatek=" + zustatek +
+                ", cisloUctu=" + cisloUctu +
+                ", klientskeCislo=" + klientskeCislo +
+                '}';
+    }
 }
