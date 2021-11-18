@@ -2,10 +2,6 @@ package cz.spsmb.b3i.w12.dedicnost;
 
 public class Kvadr extends Obdelnik {
     private int hloubka;
-
-    public int getHloubka() {
-        return hloubka;
-    }
     //pokud se konstruktor předka pomocí super() nezavolá,
     // doplní si překladač volání konstruktoru předka bez parametrů.
     // Ten však musí (klidně i implicitní) existovat
@@ -24,6 +20,9 @@ public class Kvadr extends Obdelnik {
                         this.hloubka*this.hloubka);
     }
 
+    public int getHloubka() {
+        return hloubka;
+    }
     public static void main(String[] args) {
         Kvadr kva = new Kvadr(6,8,10);
         System.out.println("uhlopricka = " + kva.delkaUhlopricky());
