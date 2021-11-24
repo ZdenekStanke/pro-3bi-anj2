@@ -10,11 +10,31 @@ import java.util.Random;
 // a vrátí počet těchto prvků
 public class Ukoly {
     public static void serad(int[] x, int[] y){
-
+        for (int i = 0; i < x.length; i++) {
+            y[i] = x[i];
+        }
+        int p = 0;
+        for(int i=0;i< y.length-1;i++)
+        {
+            for(int j=0;j< y.length-i-1;j++)
+            {
+                if (y[j]>y[j+1])
+                {
+                    p=y[j];
+                    y[j]=y[j+1];
+                    y[j+1]=p;
+                }
+            }
+        }
     }
     public  static int sude(int[] x, int[] y){
         int out = 0;
-
+        for (int i = 0; i < x.length; i++) {
+            if (x[i] % 2 == 0) {
+                y[i] = x[i];
+                out++;
+            }
+        }
         return out;
     }
 
