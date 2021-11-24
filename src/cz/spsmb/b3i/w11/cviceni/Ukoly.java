@@ -16,6 +16,9 @@ public class Ukoly {
         int p = 0;
         for(int i=0;i< y.length-1;i++)
         {
+            //někdo používal místo y.length-i-1 toto: y.length-1
+            //zbytečně řadil již seřazené položky. Srovnejte obě verze běhů
+            //pomocí měření doby běhu programu
             for(int j=0;j< y.length-i-1;j++)
             {
                 if (y[j]>y[j+1])
