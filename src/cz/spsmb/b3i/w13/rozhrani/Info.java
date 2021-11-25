@@ -10,4 +10,5 @@ package cz.spsmb.b3i.w13.rozhrani;
 // metody
 
 public interface Info {
+    public void kdoJsem();
 }
