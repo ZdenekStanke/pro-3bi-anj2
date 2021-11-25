@@ -10,6 +10,6 @@ public class Usecka implements Info {
     @Override
     public void kdoJsem() {
         System.out.println("Usecka");
-        System.out.println(this.getClass().getName());
+        //System.out.println(this.getClass().getName());
     }
 }

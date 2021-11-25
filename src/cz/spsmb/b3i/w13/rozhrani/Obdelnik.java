@@ -8,4 +8,8 @@ public class Obdelnik extends Usecka {
         this.sirka = sirka;
     }
 
+    @Override
+    public void kdoJsem() {
+        System.out.println("Obdelnik");
+    }
 }
