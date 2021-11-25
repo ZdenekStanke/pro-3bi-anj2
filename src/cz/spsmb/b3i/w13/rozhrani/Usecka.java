@@ -1,6 +1,6 @@
 package cz.spsmb.b3i.w13.rozhrani;
 
-public class Usecka implements Info{
+public class Usecka implements Info {
     private int delka;
 
     public Usecka(int delka) {
@@ -10,5 +10,6 @@ public class Usecka implements Info{
     @Override
     public void kdoJsem() {
         System.out.println("Usecka");
+        System.out.println(this.getClass().getName());
     }
 }
