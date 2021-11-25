@@ -6,5 +6,10 @@ public class Test {
         Koule k = new Koule(3);
         u.kdoJsem();
         k.kdoJsem();
+        Info i = new Usecka(5);
+        i.kdoJsem();
+        //změním referenci na kouli (úvod do polymorfismu)
+        i = k;
+        i.kdoJsem();
     }
 }
