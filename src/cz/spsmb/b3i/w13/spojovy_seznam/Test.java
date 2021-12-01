@@ -13,6 +13,11 @@ public class Test {
             System.out.println(n.getData()+' ');
             n=n.next;
         }
+        //Aby fungoval foreach typ cyklu, je potřeba implementovat rozhraní Iterable
+        for (Node n1:ll
+             ) {
+            System.out.println(n.getData());
+        }
     }
 
 

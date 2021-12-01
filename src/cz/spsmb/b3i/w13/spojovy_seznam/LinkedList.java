@@ -1,6 +1,8 @@
 package cz.spsmb.b3i.w13.spojovy_seznam;
 
-public class LinkedList {
+import java.util.Iterator;
+
+public class LinkedList implements Iterable {
     private Node head;
 
     public Node getHead() {
@@ -30,5 +32,26 @@ public class LinkedList {
 
         Node newNode = new Node(data);
         curr.next = newNode;
+    }
+
+    @Override
+    public Iterator iterator() {
+        return new Iterator() {
+            private Node currentNode = head;
+            @Override
+            public boolean hasNext() {
+                return currentNode.next != null;
+            }
+
+            @Override
+            public Object next() {
+                if(this.hasNext()){
+                    int data = this.currentNode.getData();
+                    this.currentNode = this.currentNode.next;
+                    return data;
+                }
+                return null;
+            }
+        };
     }
 }
