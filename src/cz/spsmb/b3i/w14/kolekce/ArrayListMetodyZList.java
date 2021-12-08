@@ -2,7 +2,7 @@ package cz.spsmb.b3i.w14.kolekce;
 
 import java.util.ArrayList;
 
-public class ArrazListMetodyZList {
+public class ArrayListMetodyZList {
     public static void tiskni(String jmeno, ArrayList<String> al) {
         int vel = al.size();
         System.out.println(jmeno + " (" + vel + ") : ");
