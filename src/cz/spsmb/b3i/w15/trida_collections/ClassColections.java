@@ -22,5 +22,25 @@ public class ClassColections {
         System.out.println(ar);
         Collections.fill(ar, "hodnota");
         System.out.println(ar);
+
+        //Řazení seznamu. Použit merge sort - stejný jako quick sort O(n log n),
+        // ale ponechává prvky se stejnou hodnotou v témže pořadí (tj. je stabilní):
+        //přirozené řazení (metoda compareTo())
+        //void sort(List<T> list)
+        //absolutní řazení (metoda compare())
+        //void sort(List<T> list, Comparator<? super T> c)
+
+        List<Osoba> sez = new ArrayList<Osoba>();
+        sez.add(new Osoba(186,96.5,"muz"));
+        sez.add(new Osoba(172,63.0,"zena"));
+        sez.add(new Osoba(105,26.1,"dite"));
+        sez.add(new Osoba(116,82.5,"obezni trpaslik"));
+        sez.add(new Osoba(210,94.2,"obr"));
+
+        //Přirozené řazení - využívá metody compareTo() v dané třídě,
+        //která by tak měla implementovat rozhraní Comparable
+        System.out.println(sez);
+        Collections.sort(sez);
+        System.out.println(sez);
     }
 }
