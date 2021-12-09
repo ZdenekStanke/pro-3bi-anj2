@@ -2,7 +2,9 @@ package cz.spsmb.b3i.w15.trida_collections;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+
 
 //Obdoba třídy Arrays, která obsahuje statické metody pro práci s poli. Třída Collections
 //obdobně funguje pro kolekce.
@@ -42,5 +44,16 @@ public class ClassColections {
         System.out.println(sez);
         Collections.sort(sez);
         System.out.println(sez);
+
+        //Absolutní řazení - Využíváme pomocných tříd implementující
+        //rozhraní Comparator
+        Collections.sort(sez, new KomparatorOsobyPodleVysky());
+        System.out.println(sez);
+        Collections.sort(sez, new KomparatorOsobyPodlePopisu());
+        System.out.println(sez);
+        Collections.sort(sez, new KomparatorOsobyPodleVahy());
+        System.out.println(sez);
+
+
     }
 }

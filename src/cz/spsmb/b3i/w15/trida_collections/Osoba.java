@@ -1,5 +1,31 @@
 package cz.spsmb.b3i.w15.trida_collections;
 
+import java.util.Comparator;
+
+// Komparátory pro absolutní řazení
+class KomparatorOsobyPodleVysky implements Comparator<Osoba> {
+    //pokud parametr v o1 je větší, než v o2, vrať kladnou hodnotu, 0, pokud jsou stejné,
+    //zápornou, pokud je parametr v 02 větší, než v o1
+    @Override
+    public int compare(Osoba o1, Osoba o2) {
+        return o1.getVyska()-o2.getVyska();
+    }
+}
+
+class KomparatorOsobyPodleVahy implements Comparator<Osoba>{
+    @Override
+    public int compare(Osoba o1, Osoba o2) {
+        return (int) (o1.getVaha()-o2.getVaha());
+    }
+}
+
+class KomparatorOsobyPodlePopisu implements Comparator<Osoba> {
+    @Override
+    public int compare(Osoba o1, Osoba o2) {
+        return o1.getPopis().compareTo(o2.getPopis());
+    }
+}
+
 public class Osoba implements Comparable<Osoba> {
     private int vyska;
     private double vaha;
