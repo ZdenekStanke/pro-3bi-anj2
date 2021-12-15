@@ -3,7 +3,7 @@ package cz.spsmb.b3i.w15;
 import java.util.*;
 
 class TypyTestu {
-    public static final int POCET_RADU = 3;
+    public static final int POCET_RADU = 5;
     public static final boolean DEBUG = false;
     public static int pocetPrvku = 1000;
 
@@ -214,5 +214,8 @@ public class RychlostList {
             TypyTestu.pocetPrvku *= 10;
         }
     }
-
+//Závěr: Linked list používat v případě, že:
+//    - potřebujeme vytvořit zásobník, či frontu,
+//    - budeme přidávat prvky na konec, či jen na začátek,
+//    - potřebujeme ze seznamu pouze ubírat.
 }
