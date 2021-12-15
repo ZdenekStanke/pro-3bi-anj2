@@ -1,4 +1,4 @@
-package cz.spsmb.b3i.w15.prioritni_fronta;
+package cz.spsmb.b3i.w15;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -35,6 +35,10 @@ public class IteratorZakladniPouziti {
         Iterator<Hruska> ih = kosHrusek.iterator();
         while(ih.hasNext()){
             ih.next().tisk();
+        }
+        //použití iterátoru pomocí for
+        for(Iterator<Hruska> ih1 = kosHrusek.iterator();ih1.hasNext();){
+            ih1.next().tisk();
         }
     }
 }
