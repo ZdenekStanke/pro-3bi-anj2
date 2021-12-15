@@ -13,10 +13,15 @@ public class TestListIterator {
         String[] tmp = {"1", "2", "3", "4", "5"};
         List<String> list = new ArrayList<>(Arrays.asList(tmp));
         System.out.println("Seznam:       " + list);
-        System.out.println("Seznam pozpatku: [");
+        System.out.print("Seznam pozpatku: [");
+        for (ListIterator<String> it = list.listIterator(list.size()); it.hasPrevious(); ) {
+            System.out.print(it.previous() + ", ");
+        }
+        System.out.println("]");
+       /*System.out.println("Seznam dopředu: [");
         for (ListIterator<String> it = list.listIterator(list.size()); it.hasPrevious(); ) {
             System.out.println(it.previous() + ", ");
         }
-        System.out.println();
+        System.out.println("]");*/
     }
 }
