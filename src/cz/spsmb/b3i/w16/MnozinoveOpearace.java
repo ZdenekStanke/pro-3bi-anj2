@@ -27,5 +27,13 @@ public class MnozinoveOpearace {
         System.out.println(prunik + " je prunikem " + m1 + " a " + m2);
         Set<String> rozdil = new HashSet<String>(m1);
         //rozdil m1-m2
+        rozdil.removeAll(m2);
+        System.out.println(rozdil + " je rozdilem " + m1 + " a " + m2);
+        //symetrický rozdíl -  výsledná množina obsahuje pouze prvky, které
+        //nejsou společné m1 a m2. Operace: sjednocení a rozdíl průniku
+        Set<String> symetrickyRozdil = new HashSet<>(m1);
+        symetrickyRozdil.addAll(m2);
+        symetrickyRozdil.removeAll(prunik);
+        System.out.println(symetrickyRozdil + " je symetrickym rozdilem " + m1 + " a " + m2);
     }
 }
