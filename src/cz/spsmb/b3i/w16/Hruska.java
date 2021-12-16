@@ -40,6 +40,6 @@ public class Hruska implements Comparable<Hruska>{
         if(obj instanceof Hruska == false) {
             return false;
         }
-        return (cena == ((Hruska) obj).cena);
+        return (this.cena == ((Hruska) obj).cena);
     }
 }
