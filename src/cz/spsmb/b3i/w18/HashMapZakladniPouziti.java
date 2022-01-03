@@ -1,8 +1,6 @@
 package cz.spsmb.b3i.w18;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
+import java.util.*;
 
 public class HashMapZakladniPouziti {
     public static void main(String[] args) {
@@ -45,6 +43,18 @@ public class HashMapZakladniPouziti {
         ArrayList<Vaha> alv = new ArrayList<>(hm.values());
         Collection<Vaha> col = hm.values();
         //použijte cyklus pro iteraci všech prvků v kolekci col:
+        Iterator<Vaha> it = col.iterator();
+        while (it.hasNext()){
+            System.out.println(it.next());
+        }
+        System.out.println("Vahy: " + col);
+        System.out.println("Mapa: " + hm);
+        //Převod hodnot z mapy na pole
+        Vaha[] vahy = hm.values().toArray(new Vaha[0]);
+        System.out.println("Pole vah: "+ Arrays.toString(vahy));
+        //Převod klíčů z mapy na pole
+        String[] keys = hm.keySet().toArray(new String[0]);
+        System.out.println("Pole klíčů: "+ Arrays.toString(keys));
 
 
     }
