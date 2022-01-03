@@ -10,7 +10,7 @@ public class HruskyVSerazeneMnozine {
             st.add(new Hruska(i));
         }
         System.out.println("Cely kosik: " + st);
-        System.out.println("Nejlevnejsi hruska: " + );
+        System.out.println("Nejlevnejsi hruska: " + st.first());
         ////System.out.println("Nejdrazsi hruska: " + );
         //SortedSet subSet(E dolniMez, E horniMez) - vrací podmnožinu prvků
         //v zadaných mezích
