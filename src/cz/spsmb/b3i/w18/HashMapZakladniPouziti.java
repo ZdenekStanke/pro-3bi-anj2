@@ -1,5 +1,7 @@
 package cz.spsmb.b3i.w18;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 public class HashMapZakladniPouziti {
@@ -27,7 +29,23 @@ public class HashMapZakladniPouziti {
         if (hm.containsKey("Pavel")){
             System.out.println("Pavel váží: " + hm.get("Pavel"));
         }
+        // přímé vrácení hodnoty dle neexistujícího klíče
+        System.out.println(hm.get("Franta")); //null
+        //zjištění, zda hodnota je v mapě:
+        if(hm.containsValue(new Vaha(105))) {
+            System.out.println("Nekdo vazi 105 kg");
+        }
+        hm.get("Pavel").vaha+=10; //Pavel ztloustnul
+        //Výpis všech klíčů:
+        System.out.println("Lidi: " + hm.keySet());
+        //transformace na jiný typ kolekce:
+        //nelze:
+        //ArrayList<Vaha> alv = (ArrayList<Vaha>) hm.values();
+        //toto ano
+        ArrayList<Vaha> alv = new ArrayList<>(hm.values());
+        Collection<Vaha> col = hm.values();
+        //použijte cyklus pro iteraci všech prvků v kolekci col:
 
-        System.out.println();
+
     }
 }
