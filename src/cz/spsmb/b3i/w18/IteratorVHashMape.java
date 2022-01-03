@@ -1,6 +1,8 @@
 package cz.spsmb.b3i.w18;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 //Mapy samotné neumožňují vytvořit iterátor. Děláme to přes klíče, či hodnoty.
 //třetí možnost je získat pomocí metody
@@ -19,5 +21,30 @@ public class IteratorVHashMape {
         hm.put("Karel", new Vaha(70));
         System.out.println("Mapa: " + hm);
         //iterátor přes klíče:
+        for (String key:hm.keySet()) {
+            System.out.println(key);
+        }
+        for(Iterator<String> it = hm.keySet().iterator(); it.hasNext();){
+            System.out.println(it.next());
+        }
+        //iterátor přes hodnoty
+        for (Vaha v:hm.values()) {
+            System.out.println(v);
+        }
+        for(Iterator<Vaha> it =hm.values().iterator(); it.hasNext();){
+            System.out.println(it.next());
+        }
+        //iterátor přes dvojice
+        //iterátor záznamu z mapy
+        for(Iterator<Map.Entry<String, Vaha>> it = hm.entrySet().iterator(); it.hasNext();) {
+            Map.Entry<String, Vaha> e = it.next();
+            System.out.print(e.getKey() + "=" + e.getValue() + (it.hasNext()?", ":""));
+        }
+        //for-each
+        System.out.println();
+        for (Map.Entry<String, Vaha> e: hm.entrySet()) {
+            System.out.print(e.getKey() + "=" + e.getValue() + ", ");
+        }
+        System.out.println();
     }
 }
