@@ -3,6 +3,7 @@ package cz.spsmb.b3i.w18;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 //Mapy samotné neumožňují vytvořit iterátor. Děláme to přes klíče, či hodnoty.
 //třetí možnost je získat pomocí metody
@@ -46,5 +47,13 @@ public class IteratorVHashMape {
             System.out.print(e.getKey() + "=" + e.getValue() + ", ");
         }
         System.out.println();
+        // další možnost (od JDK 1.8) - třída BiConsumer<String, Vaha>
+        hm.forEach(new BiConsumer<String, Vaha>() {
+            @Override
+            public void accept(String s, Vaha vaha) {
+                System.out.println(s + "=" + vaha);
+            }
+        });
+
     }
 }
