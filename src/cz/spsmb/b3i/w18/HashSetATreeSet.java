@@ -1,6 +1,7 @@
 package cz.spsmb.b3i.w18;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -15,7 +16,10 @@ public class HashSetATreeSet {
             System.out.println("prvek treti nevlozen");
         }
         System.out.println(st.size() + " " + st);
-        //proiterujte st
+        //proiterujte st přes iterátor
+        for(Iterator<String> it = st.iterator(); it.hasNext();){
+            System.out.println(it.next());
+        }
     }
     public static void main(String[] args) {
         System.out.println("HashSet:");
