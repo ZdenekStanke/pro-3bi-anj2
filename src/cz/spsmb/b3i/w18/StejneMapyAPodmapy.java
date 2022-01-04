@@ -24,6 +24,12 @@ public class StejneMapyAPodmapy {
         System.out.println("hmOrig:    " + hmOrig);
         boolean b1, b2, b3;
         //jsou mapy hmStejna a hmOrig stejné?
-        Map<String, Integer> tmp = hmOrig;
+        //Map<String, Integer> tmp = hmOrig;
+        Map<String, Integer> tmp = hmMensi;
+        //Map<String, Integer> tmp = hmVetsi;
+        b1 = hmStejna.entrySet().containsAll(tmp.entrySet());
+        b2 = hmStejna.entrySet().equals(tmp.entrySet());
+        b3 = hmStejna.equals(tmp);
+        System.out.format("b1: %b, b2: %b, b3:%b%n", b1, b2, b3);
     }
 }
