@@ -28,7 +28,12 @@ public class UbiraniZHashMapy {
         naplneniMapyATisk(hm);
         for(Iterator<Map.Entry<String, Vaha>>
             it = hm.entrySet().iterator(); it.hasNext(); ){
-            String key = it.next().getKey();
+            String s = (String) it.next().getKey();
+            char c = s.charAt(s.length() - 1);
+            int i = Character.digit(c, 10);
+            if(i % 2 == 0) {
+                it.remove();
+            }
         }
         System.out.println("Mapa bez sudých:" + hm);
     }
