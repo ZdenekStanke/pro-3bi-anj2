@@ -23,7 +23,7 @@ public class KontrolaAtributuVMape {
         System.out.println("Atributy navic:    " + navic);
 
         HashSet<String> shodne = new HashSet<>(nastaveni.keySet());
-
+        shodne.retainAll(atributy);
         System.out.println("Atributy shodne:    " + shodne);
     }
 }
