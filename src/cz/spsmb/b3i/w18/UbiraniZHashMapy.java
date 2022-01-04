@@ -1,5 +1,6 @@
 package cz.spsmb.b3i.w18;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -20,6 +21,12 @@ public class UbiraniZHashMapy {
         kl.remove("Robot1");
         kl.remove("Robot2");
         System.out.println("Mapa bez Robot1,2: " + hm);
-        //odstranění prvku z množiny hodnot a tím i z mapy:
+        //odstranění prvku z kolekce hodnot a tím i z mapy:
+        naplneniMapyATisk(hm);
+        Collection<Vaha> hod = hm.values();
+        hod.remove(new Vaha(51));
+        System.out.println("Mapa bez Váhy 51:" + hm);
+        //odstranění každého sudého Map.Entry a tím i prvku z množiny
+        naplneniMapyATisk(hm);
     }
 }
