@@ -1,8 +1,6 @@
 package cz.spsmb.b3i.w18;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Set;
+import java.util.*;
 
 public class UbiraniZHashMapy {
     static void naplneniMapyATisk(HashMap<String, Vaha> hm) {
@@ -28,5 +26,11 @@ public class UbiraniZHashMapy {
         System.out.println("Mapa bez Váhy 51:" + hm);
         //odstranění každého sudého Map.Entry a tím i prvku z množiny
         naplneniMapyATisk(hm);
+        for(Iterator<Map.Entry<String, Vaha>>
+            it = hm.entrySet().iterator(); it.hasNext(); ){
+            String key = it.next().getKey();
+        }
+        System.out.println("Mapa bez sudých:" + hm);
+        }
     }
 }
