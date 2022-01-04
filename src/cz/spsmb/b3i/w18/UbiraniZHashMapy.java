@@ -31,6 +31,5 @@ public class UbiraniZHashMapy {
             String key = it.next().getKey();
         }
         System.out.println("Mapa bez sudých:" + hm);
-        }
     }
 }
