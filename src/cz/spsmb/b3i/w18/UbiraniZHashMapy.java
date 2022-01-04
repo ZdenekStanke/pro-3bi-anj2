@@ -36,5 +36,15 @@ public class UbiraniZHashMapy {
             }
         }
         System.out.println("Mapa bez sudých:" + hm);
+        //totéž pomocí hodnoty
+        naplneniMapyATisk(hm);
+        for(Iterator<Map.Entry<String, Vaha>>
+            it = hm.entrySet().iterator(); it.hasNext(); ){
+            int i = (int) it.next().getValue().vaha;
+            if(i % 2 == 0) {
+                it.remove();
+            }
+        }
+        System.out.println("Mapa bez sudých:" + hm);
     }
 }
