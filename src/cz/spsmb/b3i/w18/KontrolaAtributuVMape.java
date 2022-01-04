@@ -15,8 +15,15 @@ public class KontrolaAtributuVMape {
         System.out.println("Seznam atributu:   " + atributy);
         System.out.println("Seznam nastaveni:  " + nastaveni);
         HashSet<String> chybi = new HashSet<>(atributy);
-
+        chybi.removeAll(nastaveni.keySet());
         System.out.println("Atributy chybi:    " + chybi);
 
+        HashSet<String> navic = new HashSet<>(nastaveni.keySet());
+        navic.removeAll(atributy);
+        System.out.println("Atributy navic:    " + navic);
+
+        HashSet<String> shodne = new HashSet<>(nastaveni.keySet());
+
+        System.out.println("Atributy shodne:    " + shodne);
     }
 }
