@@ -54,6 +54,8 @@ public class IteratorVHashMape {
                 System.out.println(s + "=" + vaha);
             }
         });
+        //totéž s lambda funkcí
+        hm.forEach((k, v) -> System.out.println(k + "=" + v));
 
     }
 }
