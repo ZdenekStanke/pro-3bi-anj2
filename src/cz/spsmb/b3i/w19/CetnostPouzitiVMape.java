@@ -24,7 +24,7 @@ public class CetnostPouzitiVMape {
         Random r = new Random();
         for (int i = 0; i < 20; i++) {
             String klic = "" + (char)(r.nextInt(6) + 'A');
-            System.out.println(klic + " ");
+            System.out.print(klic + " ");
             //ovlivňuji pořadí pomocí get()
             Integer hodnota = pristup.get(klic);
             //ovlivňuji pořadí pomocí put()
