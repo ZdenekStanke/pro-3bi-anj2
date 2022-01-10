@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.TreeSet;
 
-// Potřebujeme-li  zachovat pořadí prvků do množiny ckládaných, je možné použít právě třídu
+// Potřebujeme-li  zachovat pořadí prvků do množiny vkládaných, je možné použít právě třídu
 //LinkedHashSet, resp. LinkedHashMap.
 public class TridaLinkedHashSet {
     public static void main(String[] args) {
