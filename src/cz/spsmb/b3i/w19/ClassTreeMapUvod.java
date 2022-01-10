@@ -75,9 +75,9 @@ public class ClassTreeMapUvod {
         tm.put(new VahaKlic(105), "Venca");
         tm.put(new VahaKlic(74), "Karel");
         System.out.println("Mapa: " + tm);
-        VahaKlic v = ;
+        VahaKlic v = tm.lastKey();
         System.out.println("Nejvice Vazi: " + v + "=" +tm.get(v));
-        SortedMap<VahaKlic, String> pom = ;
+        SortedMap<VahaKlic, String> pom = tm.tailMap(new VahaKlic(85));
         System.out.println("Dva nejtezsi: " + pom + "\n");
     }
     public static void main(String[] args) {
