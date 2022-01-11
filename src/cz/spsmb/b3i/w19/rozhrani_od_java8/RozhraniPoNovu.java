@@ -1,6 +1,6 @@
 package cz.spsmb.b3i.w19.rozhrani_od_java8;
 // Od Java 8 je možné do rozhraní implementovat výchozí těla metod (default)
-// Od Java 9 je možné do rozhraní implementovat privátní fumkce použitetlné v default
+// Od Java 9 je možné do rozhraní implementovat privátní fumkce použitelné v default
 // metodách daného rozhraní
 public interface RozhraniPoNovu {
     //Toto rochraní demonstruje všechny možnosti Javy 9
