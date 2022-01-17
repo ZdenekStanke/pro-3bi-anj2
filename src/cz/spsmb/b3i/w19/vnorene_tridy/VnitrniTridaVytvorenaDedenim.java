@@ -30,11 +30,11 @@ class Obdelnik extends Usecka4 implements Info {
     }
     class VnitrniJmeno extends Jmeno {
         void kdoJsem() {
-
-            //Všiměte si rozdílu mezi Obdelnik.this a this
+            //Všiměte si rozdílu mezi Obdelnik.this (odkaz do vnější třídy)
+            // a this (odkaz do vnitřní třídy, tedy sem)
             kdoJeTo(Obdelnik.this);
             kdoJeTo(this);
-            System.out.println(" " + delka + "x" + sirka);
+            System.out.println(" " + Obdelnik.this.delka + "x" + Obdelnik.this.sirka);
         }
     }
 
