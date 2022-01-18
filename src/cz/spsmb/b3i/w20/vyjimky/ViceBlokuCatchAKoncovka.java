@@ -18,7 +18,8 @@ public class ViceBlokuCatchAKoncovka {
         try{
             multiThrow(level);
             zprava +="Test OK";
-        }
+        }//Seskupování výjimek. Pořadí jasně dáno (od shora dolů).Jakmile vyhozená výjimka vyhovuje tříděvýjimek uvedené
+        // v catch, nebo i její libovolné rodičovské třídě, provede se tento blok a ostatní bloky jsou přeskočeny.
         catch (ArithmeticException|NullPointerException e) {
             zprava += "Nastala výjimka typu " + e;
         }
@@ -27,7 +28,7 @@ public class ViceBlokuCatchAKoncovka {
         }
         catch (RuntimeException e) {
             zprava += "Někde se stala chyba typu " + e.getClass().getSimpleName();
-        }
+        }//zachytí jakoukoliv výjimku
         catch (Throwable e) {
             zprava += "Něco se stalo - " + e.getClass().getName()
                     + "\n příčina: " + e.getLocalizedMessage();
