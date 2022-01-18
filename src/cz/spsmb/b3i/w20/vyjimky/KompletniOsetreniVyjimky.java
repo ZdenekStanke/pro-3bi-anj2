@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 // Pokud nechceme propagovat výjimku do nadřazené úrovně, je možné jiv metodě ošetřit.
 // K této činnosti používáme jazykovou konstrukci try-catch. Do bloku try uzavřeme
-// celý kód ve kterém se může výjimka vyskytnout, tzv. chráněný úsek. Bloch catch, který
+// celý kód ve kterém se může výjimka vyskytnout, tzv. chráněný úsek. Blok catch, který
 // bezprostředně následuje, říká, na jakou výjimku a jak budeme reagovat.
 public class KompletniOsetreniVyjimky {
     public static int[] vytvorANactiPole() {
