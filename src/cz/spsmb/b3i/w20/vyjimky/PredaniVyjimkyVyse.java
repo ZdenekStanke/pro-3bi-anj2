@@ -1,6 +1,7 @@
 package cz.spsmb.b3i.w20.vyjimky;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -12,7 +13,7 @@ import java.util.Scanner;
 // výjimkou se tak odsouvá na později...
 // Z prvního pohledu se tak jedná o nejjednodušší řešení.
 public class PredaniVyjimkyVyse {
-    public static int[] vytvorANactiPole() throws IOException {
+    public static int[] vytvorANactiPole() throws FileNotFoundException {
         Scanner sc = new Scanner(new File("data.txt"));
         int n = sc.nextInt();
         int [] pole = new int[n];
@@ -22,7 +23,7 @@ public class PredaniVyjimkyVyse {
         return pole;
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws FileNotFoundException {
         int[] abc = vytvorANactiPole();
         System.out.println(Arrays.toString(abc));
     }
