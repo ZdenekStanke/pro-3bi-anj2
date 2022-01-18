@@ -10,7 +10,7 @@ public class IdiotskaReakceNaVyjimku {
     public static int[] vytvorANactiPole() throws FileNotFoundException {
         int[] pole = null;
         try {
-            Scanner sc = new Scanner(new File("data0.txt"));
+            Scanner sc = new Scanner(new File("dat0a.txt"));
             int n = sc.nextInt();
             pole = new int[n];
             for (int i = 0; i < n; i++) {
@@ -20,8 +20,14 @@ public class IdiotskaReakceNaVyjimku {
         }
         catch (Exception e) {
             // !!! Opravdu by zde mělo něco být !!!
+
+            //např. následující výpis zásobníku, případně chyby
+            //e.printStackTrace();
+            System.out.println(e.getMessage());
+
+            //nebo je možné převézt kontrolovanou výjimku na nekontrolovanou
+            throw new RuntimeException(e);
         }
-        return pole;
     }
 
     public static void main(String[] args) throws FileNotFoundException {
