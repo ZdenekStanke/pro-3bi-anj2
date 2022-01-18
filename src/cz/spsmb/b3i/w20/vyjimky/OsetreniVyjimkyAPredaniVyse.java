@@ -13,7 +13,7 @@ public class OsetreniVyjimkyAPredaniVyse {
     public static int[] vytvorANactiPole() throws IOException {
         int[] pole = null;
         try {
-            Scanner sc = new Scanner(new File("data.txt"));
+            Scanner sc = new Scanner(new File("data0.txt"));
             int n = sc.nextInt();
             pole = new int[n];
             for (int i = 0; i < n; i++) {
