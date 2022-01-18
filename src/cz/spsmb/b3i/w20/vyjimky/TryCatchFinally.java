@@ -35,4 +35,8 @@ public class TryCatchFinally {
                 fr.close();
         }
     }
+
+    public static void main(String[] args) throws IOException {
+        System.out.println(vypisSoubor("data.txt"));
+    }
 }
