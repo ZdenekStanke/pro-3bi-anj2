@@ -22,7 +22,22 @@ public class ViceBlokuCatchAKoncovka {
         catch (ArithmeticException|NullPointerException e) {
             zprava += "Nastala výjimka typu " + e;
         }
-
+        catch (IndexOutOfBoundsException e) {
+            zprava += "Index mimo meze";
+        }
+        catch (RuntimeException e) {
+            zprava += "Někde se stala chyba typu " + e.getClass().getSimpleName();
+        }
+        catch (Throwable e) {
+            zprava += "Něco se stalo - " + e.getClass().getName()
+                    + "\n příčina: " + e.getLocalizedMessage();
+            // a pošleme dále jako nekontrolovanou výjimku
+            throw new RuntimeException("Utíkám z h " + level);
+        } //blok finally se provede vždy (vhodné např. na uzavření otevřených souborů)
+        finally {
+            System.out.println(zprava);
+        }
+        System.out.println("konec akce v h="+level);
         catchTest(level-1);
     }
 
