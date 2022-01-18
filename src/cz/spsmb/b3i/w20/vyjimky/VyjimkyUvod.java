@@ -14,12 +14,10 @@ package cz.spsmb.b3i.w20.vyjimky;
 // "je mi to putna"
 
 //Možnosti ošetření výjimky:
-// 1. předání výjimky výše do nadřazené úrovně. Jedná se o tzv.
-// propagaci, resp. šíření výjimek. Metoda, kde se výjimka ocitla
-// se zříká odpovědnosti za její zpracování. Toto předání
-// odpovědnosti se deklaruje  již v hlavičce metody pomocí klíčového
-// slova throws. Viz případ dole. Řešení problému, co s vzniklou
-// výjimkou se tak odsouvá na později...
+// 1. předání výjimky výše do nadřazené úrovně,
+// 2. zachycení výjimky a kompletní ošetření v metodě, kde se vyskytla,
+// 3. částečné ošetření v metodě, kde se vyskytla a navíc poslání informace
+//    o jejím výskytu do nadřazené úrovně.
 
 import java.io.File;
 import java.util.Scanner;
