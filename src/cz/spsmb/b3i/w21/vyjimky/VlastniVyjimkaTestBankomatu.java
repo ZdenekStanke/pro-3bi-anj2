@@ -2,6 +2,9 @@ package cz.spsmb.b3i.w21.vyjimky;
 
 //vytvoření vlastní výjimky
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 class BankomatException extends Exception {
     public BankomatException() {
         super("Bankomat mimo provoz");
@@ -25,15 +28,21 @@ class Bankomat {
 }
 public class VlastniVyjimkaTestBankomatu {
     public static void main(String[] args) {
+        Scanner sc =new Scanner(System.in);
         Bankomat b = new Bankomat(1000);
         try{
-            System.out.println("Vydano: " + b.vydejPenize(200));
-            System.out.println("Vydano: " + b.vydejPenize(1000));
+            //System.out.println("Vydano: " + b.vydejPenize(200));
+            System.out.println("kolik?");
+            System.out.println("Vydano: " + b.vydejPenize(sc.nextInt()));
         }
         catch(BankomatException be) {
             System.out.println("Vyhledejte jiny bankomat");
             System.out.println(be.getMessage());
             be.printStackTrace();
+        }
+        catch(InputMismatchException ime){
+            System.out.println("Špatně zadaná částka");
+            throw new RuntimeException("Špatně zadaná částka", ime);
         }
     }
 }
