@@ -21,7 +21,7 @@ public class TryFin {
         }
         //finally se zavolá vždy - i v případě, že v bloku try je return.
         finally {
-            System.out.println("Soubor uzavřen.");
+            System.out.println("\nSoubor uzavřen.");
             fr.close();
         }
     }
