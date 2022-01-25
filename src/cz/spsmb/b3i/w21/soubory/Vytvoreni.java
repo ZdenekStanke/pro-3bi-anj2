@@ -8,7 +8,7 @@ public class Vytvoreni {
         String aktDir = System.getProperty("user.dir");
         File novySoub = new File("b.txt");
         File novyAdr = new File("TMP");
-        //test, zda nový soubor existuje
+        //test, zda nový soubor (nebo adresář) existuje
         if(novySoub.exists()) {
             System.out.println("b.txt existuje");
         } else {
@@ -22,6 +22,7 @@ public class Vytvoreni {
         if(novyAdr.exists()){
             System.out.println("TMP existuje");
         } else {
+            //vytvoření adresáře
             novyAdr.mkdir();
         }
         if(novyAdr.isDirectory()) {
