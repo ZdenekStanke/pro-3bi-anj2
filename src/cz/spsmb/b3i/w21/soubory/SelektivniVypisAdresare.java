@@ -46,6 +46,7 @@ public class SelektivniVypisAdresare {
         for (int i = 0; i < jmena.length; i++) {
             System.out.println(jmena[i]);
         }
+        System.out.println();
         File[] soubory;
         FiltrVelikosti filtrVelikosti = new FiltrVelikosti(1000);
         soubory = aktDir.listFiles(filtrVelikosti);
@@ -53,6 +54,17 @@ public class SelektivniVypisAdresare {
             System.out.println(soubory[i].getName() + "\t"
                     + soubory[i].length());
 
+        }
+        System.out.println();
+        //použití anonymní vnitřní třídy:
+        File[] soub2 = aktDir.listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return (new File(dir, name)).isDirectory();
+            }
+        });
+        for (int i = 0; i < soub2.length; i++) {
+            System.out.println(soub2[i].getName());
         }
     }
 }
