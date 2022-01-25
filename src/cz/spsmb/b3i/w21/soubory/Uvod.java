@@ -22,6 +22,8 @@ public class Uvod {
 
         System.out.println(soubAbs.getAbsolutePath());
         System.out.println(soubAbs.getName());
+        //pokud je instance třídy File vytvořena s absolutní cestou, absolutní cestu
+        // vrátí i metoda .getParent()
         System.out.println(soubAbs.getParent());
     }
 }
