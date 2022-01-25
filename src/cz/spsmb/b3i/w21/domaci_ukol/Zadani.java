@@ -16,7 +16,7 @@ package cz.spsmb.b3i.w21.domaci_ukol;
  */
 
 public class Zadani {
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         try{
             SpojovySeznam ss = new SpojovySeznam();
             ss.vloz("ahoj");
