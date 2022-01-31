@@ -16,7 +16,7 @@ package cz.spsmb.b3i.w22.soubory;
 // rw() - práce s jedním prvkem
 // rw(typ[] pole) - práce s celým polem prvků
 // rw(typ[] pole, int index, int pocet) - práce s částí pole
-// týká se to metdo read() a write() u všech tříd. Tyto metody vrací hodnotu -1,
+// týká se to metod read() a write() u všech tříd. Tyto metody vrací hodnotu -1,
 // pokud bylo dosaženo konce proudu (tj. už není co číst).
 // Třída Writer obsahuje navíc ještě tyto 2 metody:
 // void write(String retez)
