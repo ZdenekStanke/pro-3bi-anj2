@@ -12,14 +12,18 @@ public class BIoZnaky {
             FileWriter fw = new FileWriter(fwJm);
             int c;
             //čtení znak po znaku
+            /*
             while((c = fr.read()) != -1){
                 //zápis znaku do souboru b.txt
                 fw.write(c);
                 //výpis znaku ven
                 System.out.format("%c",c);
-            }
-            //další možnost je využít metody length instance třídy FileReader
+            }*/
+            //další možnost je využít metody length instance třídy File
             //standartní chování je proudy zavírat
+            for (int i = 0; i < frJm.length(); i++) {
+                fw.write(fr.read());
+            }
             fr.close();
             fw.close();
         }
