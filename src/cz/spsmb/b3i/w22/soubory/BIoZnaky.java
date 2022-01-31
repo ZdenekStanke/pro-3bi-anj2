@@ -11,9 +11,14 @@ public class BIoZnaky {
             FileReader fr = new FileReader(frJm);
             FileWriter fw = new FileWriter(fwJm);
             int c;
+            //čtení znak po znaku
             while((c = fr.read()) != -1){
+                //zápis znaku do souboru b.txt
                 fw.write(c);
+                //výpis znaku ven
+                System.out.format("%c",c);
             }
+            //další možnost je využít metody length instance třídy FileReader
             //standartní chování je proudy zavírat
             fr.close();
             fw.close();
