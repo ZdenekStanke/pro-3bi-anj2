@@ -45,6 +45,5 @@ public class EDalsiDovednostiSeSoubory {
         }
         fr.close();
         fw.close();
-
     }
 }
