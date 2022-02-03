@@ -22,6 +22,7 @@ public class GCteniPoRadcich {
         fr.close();
         //opravdu out.close(), pokud bychom použili fw.close(), bufferovaný
         // výstup by se neuložil a b.txt by byl prázdný.
+        //fw.close();
         out.close();
     }
 }
