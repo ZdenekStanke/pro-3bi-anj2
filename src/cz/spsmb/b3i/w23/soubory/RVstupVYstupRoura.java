@@ -1,7 +1,7 @@
 package cz.spsmb.b3i.w23.soubory;
-// Roury (pipes) známe z OS, např. příkazy spojené rourou
+// Roury (pipes) jsou paměti typu FIFO a známe z OS, např. příkazy spojené rourou
 // dir|more zajistí, že výpis adresáře bude čekat po zaplnění
-// obrazovky na stisk klávesy. Je možné komunikaovat přes rouru
+// obrazovky na stisk klávesy. Je možné komunikovat přes rouru
 // mezi metodami, či vlákny.
 
 import java.io.*;
@@ -35,9 +35,8 @@ public class RVstupVYstupRoura {
 
     public static void main(String[] args) throws IOException {
         FileWriter fw =new FileWriter("data120.txt");
-        for (int i = 0; i <= 120; i++) {
+        for (int i = 0; i <= 1100; i++) {
             fw.write(String.format("%d%n",i));
-
         }
         fw.close();
         FileReader fr = new FileReader("data120.txt");
