@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 //Bývá zvykem, že se výstup provede až po vytisknutí znaků konce řádky. Tzv.
-// řádkového bufferování dosáhneme púři použití konstruktoru
+// řádkového bufferování dosáhneme při použití konstruktoru
 // PrintWriter(Writer out, boolean autoFlush)
 // s parametrem autoFlush = false
 public class KFormatovaniVystupuSRadkovymBufferovanim {
@@ -15,9 +15,10 @@ public class KFormatovaniVystupuSRadkovymBufferovanim {
         // konce řádky
         PrintWriter form = new PrintWriter(fwForm, false);
         FileWriter fwNeForm = new FileWriter("neform.txt");
-        for (int i = 1; i < 75; i++) {
+        for (int i = 65; i < 75; i++) {
             System.out.println(i + " ");
-            form.format(" tohle je znak %d", i);
+            form.format(" tohle je znak %d ", i);
+            form.close();
             System.exit(0);
             form.println();
             fwNeForm.write(i);
