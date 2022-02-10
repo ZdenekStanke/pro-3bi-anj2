@@ -24,7 +24,7 @@ public class DBConnection {
             if (this.dbms.equals("mysql")) {
                 this.conn =
                         DriverManager.getConnection("jdbc:" + this.dbms + "://" + this.serverName +
-                                ":" + this.portNumber + "/" + this.dbName);
+                                ":" + this.portNumber + "/" + this.dbName, this.userName, this.password);
                 this.conn.setCatalog(this.dbName);
             }
             System.out.println("Connected to database");
