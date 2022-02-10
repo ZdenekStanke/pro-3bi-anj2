@@ -3,7 +3,7 @@ package cz.spsmb.b3i.w23;
 //Pro uložení konfiguračních parametrů programu slouží třída
 // java.util.Properties. Můžeme si vybrat mezi xml formátem:
         /*
-        <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
   <entry key="dbms">mysql</entry>
@@ -47,6 +47,7 @@ public class TridaProperties {
         }
         this.dbms = this.prop.getProperty("dbms");
         this.serverName = this.prop.getProperty("server_name");
+
         /*
         this.jarFile = this.prop.getProperty("jar_file");
         this.driver = this.prop.getProperty("driver");
@@ -58,6 +59,7 @@ public class TridaProperties {
         System.out.println("Set the following properties:");
         System.out.println("dbms: " + dbms);
         System.out.println("serverName: " + serverName);
+        System.out.println("mojeKonfigurace: " + this.prop.getProperty("mojeKonfigurace"));
         /*
         System.out.println("driver: " + driver);
         System.out.println("dbName: " + dbName);
