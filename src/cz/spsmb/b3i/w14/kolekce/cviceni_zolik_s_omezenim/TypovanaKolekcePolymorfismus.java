@@ -7,14 +7,14 @@ import java.util.ArrayList;
 // instance těchto tříd a nakonec pomocí statické metody tisk tento seznam
 // vytiskněte
 public class TypovanaKolekcePolymorfismus {
-    public static  void tisk(ArrayList<? extends Tisknutelny> ar){
+    public static <E extends  Tisknutelny> void tisk(ArrayList<E> ar){
     //public static  void tisk(ArrayList<Tisknutelny> ar){
-        for (Tisknutelny t:ar) {
+        for (E t:ar) {
             t.tisk();
         }
     }
     public static void main(String[] args) {
-        ArrayList<Tisknutelny> ar = new ArrayList<Tisknutelny>();
+        ArrayList<A> ar = new ArrayList<>();
         ar.add(new A("AS"));
         ar.add(new B("sada", 23));
         tisk(ar);
