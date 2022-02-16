@@ -14,8 +14,10 @@ import java.net.Socket;
 public class ASocketTimeClient {
     public static void main(String[] args) throws IOException {
 
-        var hostname = "3.se.pool.ntp.org";
-        int port = 13;
+        //var hostname = "3.se.pool.ntp.org";
+        var hostname = "localhost";
+        //int port = 13;
+        int port = 8081;
         try (var socket = new Socket(hostname, port)) {
             try (var reader = new InputStreamReader(socket.getInputStream())) {
                 int character;
