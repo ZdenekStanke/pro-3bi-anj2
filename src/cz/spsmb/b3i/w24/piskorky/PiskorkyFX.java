@@ -21,7 +21,7 @@ import java.util.LinkedList;
 
 //File->Project Structure->Libraries, Maven,  org.openjfx:javafx-maven-plugin:0.0.5
 //org.openjfx:javafx-archetype-fxml:0.0.5
-//add --module-path "C:\Users\stemb\Documents\javafx-sdk-17.0.2\lib" --add-modules javafx.controls,javafx.fxml
+//add --module-path "Y:\stemberk\verejne_zaci\javafx-sdk-17.0.1\lib" --add-modules javafx.controls,javafx.fxml
 public class PiskorkyFX extends Application {
     private final String VERSION = "1.0";
     private final String TITULEK = "Piškorky" + this.VERSION;
