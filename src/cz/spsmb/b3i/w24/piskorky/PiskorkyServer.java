@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.time.LocalDateTime;
 
-public class PiskorkyServer extends Application {
+public class PiskorkyServer {
     public static PiskorkyStatus ps;
 
     public static void main(String[] args) throws IOException {
@@ -50,8 +50,4 @@ public class PiskorkyServer extends Application {
         }
     }
 
-    @Override
-    public void start(Stage stage) throws Exception {
-
-    }
 }
