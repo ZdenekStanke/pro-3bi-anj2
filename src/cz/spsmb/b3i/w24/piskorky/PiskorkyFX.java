@@ -35,26 +35,25 @@ public class PiskorkyFX extends Application {
     public void start(Stage stage) throws Exception {
         try {
             GridPane gp = new GridPane();
-            BorderPane root = new BorderPane();
-            root.setTop(this.panelKdoHraje);
-            root.setCenter(gp);
             for (int i = 0; i < this.ps.rozmerHraciPlochy + 1; i++) {
                 for (int j = 0; j < this.ps.rozmerHraciPlochy + 1; j++) {
-                    Button b = new Button();
-                    b.setPrefSize(28,28);
-                    this.ps.herniTlacitka[i][j] = b;
-                    ObservableMap<Object, Object> om = b.getProperties();
-                    om.put("i", Integer.valueOf(i));
-                    om.put("j", Integer.valueOf(j));
-                    om.put("player", Integer.valueOf(-1));
+                    Button b = this.ps.herniTlacitka[i][j];
+                    //node, sloupec, řádek - ano je to obráceně oproti dosavaním principům
+                    gp.add(b, j, i);
                     //Aktivní budou tlačítka, která nejsou na okraji
                     if (i != 0 && j != 0) {
                         b.setOnAction(this::tlacitkoStisknuto);
+                    } else {
+                        //b.setStyle("-fx-border-width: 10.0; -fx-border-color: navy;");
+                       // b.setStyle(" -fx-background-color: navy;");
+                        b.setStyle("-fx-border-color: navy;");
+                        b.setText(i==0?String.valueOf(j):String.valueOf(i));
                     }
-                    //node, sloupec, řádek - ano je to obráceně oproti dosavaním principům
-                    gp.add(b, j, i);
                 }
             }
+            BorderPane root = new BorderPane();
+            root.setTop(this.panelKdoHraje);
+            root.setCenter(gp);
             Scene scene = new Scene(new Group(root));
             stage.setScene(scene);
             stage.show();
