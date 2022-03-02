@@ -8,8 +8,8 @@ public class NaplneniMilionare {
     private final String serverName = "vydb1.spsmb.cz";
     private final int portNumber = 3306;
     private final String dbName = "student_josef.matousek_milionar";
-    private final String userName="matousek";
-    private final String password="milion85";
+    private final String userName="";
+    private final String password="";
     private Connection conn;
     public void getConnectionToDatabase() throws SQLException {
         {
