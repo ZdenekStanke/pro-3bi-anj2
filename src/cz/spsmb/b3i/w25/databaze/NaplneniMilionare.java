@@ -1,11 +1,11 @@
-package cz.spsmb.b3i.w25;
+package cz.spsmb.b3i.w25.databaze;
 
 import java.sql.*;
 
 public class NaplneniMilionare {
 //File->Project Structure->Libraries, Maven,  mysql:mysql-connector-java:5.1.40
     private final String dbms="mysql";
-    private final String serverName = "elektrovit.cz";
+    private final String serverName = "vydb1.spsmb.cz";
     private final int portNumber = 3306;
     private final String dbName = "student_josef.matousek_milionar";
     private final String userName="matousek";

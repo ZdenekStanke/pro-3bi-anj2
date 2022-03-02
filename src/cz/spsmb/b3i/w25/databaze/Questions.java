@@ -1,4 +1,4 @@
-package cz.spsmb.b3i.w25;
+package cz.spsmb.b3i.w25.databaze;
 
 public class Questions {
 
