@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Arrays;
@@ -42,6 +43,26 @@ public class PiskorkyFX extends Application {
     private Label labelKdoTahne2 = new Label();
     private HBox panelKdoHraje = new HBox(labelKdoTahne, labelKdoTahne2);
 
+    public void sputPiskvorkyStatusToServer(){
+        try (var socket = new Socket(this.hostname, this.port)) {
+            try (var writer = socket.getOutputStream()) {
+                writer.write(30);
+            }
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try (var socket = new Socket(this.hostname, this.port)) {
+            try (var writer = new ObjectOutputStream(socket.getOutputStream())) {
+               writer.writeObject(this.ps);
+            }
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void setPiskvorkyStatusFromServer() {
         try (var socket = new Socket(this.hostname, this.port)) {
             try (var writer = socket.getOutputStream()) {
@@ -193,6 +214,7 @@ public class PiskorkyFX extends Application {
             System.out.println();
         }
         this.refreshPiskvorkyStatus();
+        this.sputPiskvorkyStatusToServer();
     }
 
     private boolean isVerticalWin(int radek, int sloupec, int n) {

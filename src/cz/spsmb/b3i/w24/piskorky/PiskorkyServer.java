@@ -3,10 +3,7 @@ package cz.spsmb.b3i.w24.piskorky;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ConnectException;
 import java.net.ServerSocket;
 import java.net.SocketException;
@@ -44,6 +41,15 @@ public class PiskorkyServer {
                                 try (var pw = new ObjectOutputStream(socket.getOutputStream())) {
                                     pw.writeObject(PiskorkyServer.ps);
                                     request = 0;
+                                }
+                                break;
+                            // set status
+                            case 30:
+                                try (var pi = new ObjectInputStream(socket.getInputStream())) {
+                                    PiskorkyServer.ps = (PiskorkyStatus) pi.readObject();
+                                    request = 0;
+                                } catch (ClassNotFoundException e) {
+                                    e.printStackTrace();
                                 }
                                 break;
                         }
