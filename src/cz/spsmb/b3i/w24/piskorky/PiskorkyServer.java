@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.ConnectException;
 import java.net.ServerSocket;
+import java.net.SocketException;
 import java.time.LocalDateTime;
 
 public class PiskorkyServer {
@@ -48,9 +49,14 @@ public class PiskorkyServer {
                         }
                     }
                 }
-            } catch (ConnectException e) {
-                System.out.println("connection reset ");
-            }catch (IOException e) {
+            }
+            catch (SocketException e){
+                System.out.println("SocketException");
+            }
+//            catch (ConnectException e) {
+//                System.out.println("connection reset ");
+//            }
+            catch (IOException e) {
                 e.printStackTrace();
             }
         }
