@@ -31,7 +31,17 @@ public class PiskorkyFX extends Application {
     private Label labelKdoTahne = new Label("Táhne: ");
     private Label labelKdoTahne2 = new Label();
     private HBox panelKdoHraje = new HBox(labelKdoTahne, labelKdoTahne2);
-
+    public void refreshPiskvorkyStatus(){
+        for (int i = 0; i < this.ps.rozmerHraciPlochy + 1; i++) {
+            for (int j = 0; j < this.ps.rozmerHraciPlochy + 1; j++) {
+                Button b = this.herniTlacitka[i][j];
+//                b.getProperties().clear();
+              b.getProperties().putAll(this.ps.herniTlacitka[i][j]);
+                int player = (int)this.ps.herniTlacitka[i][j].get("player");
+                b.setText(player < 0? "":this.ps.hraci.get(player).toString().substring(0, 1));
+            }
+        }
+    }
     @Override
     public void start(Stage stage) throws Exception {
         try {
@@ -41,7 +51,6 @@ public class PiskorkyFX extends Application {
                 for (int j = 0; j < this.ps.rozmerHraciPlochy + 1; j++) {
                     Button b = new Button();
                     b.setPrefSize(28,28);
-                    b.getProperties().putAll(this.ps.herniTlacitka[i][j]);
                     this.herniTlacitka[i][j] = b;
 
                     //node, sloupec, řádek - ano je to obráceně oproti dosavaním principům
@@ -63,7 +72,8 @@ public class PiskorkyFX extends Application {
             Scene scene = new Scene(new Group(root));
             stage.setScene(scene);
             stage.show();
-        } catch (Exception ex){
+            this.refreshPiskvorkyStatus();
+        }catch (Exception ex){
             ex.printStackTrace();
         }
 
@@ -76,7 +86,7 @@ public class PiskorkyFX extends Application {
         i=(int)stisknuteTlacitko.getProperties().get("i");
         j=(int)stisknuteTlacitko.getProperties().get("j");
         System.out.format("i:%d, j:%d%n", i, j);
-        stisknuteTlacitko.setText(this.ps.hraci.get(this.ps.aktivniHrac).toString().substring(0, 1));
+
         //this.ps.herniPlochaHracu[i][j] = this.ps.aktivniHrac;
         //stisknuteTlacitko.getProperties().put("player",Integer.valueOf(this.ps.aktivniHrac));
         this.ps.herniTlacitka[i][j].put("player",this.ps.aktivniHrac);
@@ -145,6 +155,7 @@ public class PiskorkyFX extends Application {
             }
             System.out.println();
         }
+        this.refreshPiskvorkyStatus();
     }
 
     private boolean isVerticalWin(int radek, int sloupec, int n) {

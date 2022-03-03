@@ -15,10 +15,11 @@ public class PiskorkyServer {
 
     public static void main(String[] args) throws IOException {
         PiskorkyServer.ps = new PiskorkyStatus(10);
-        int port = 8081;
+        int port = 80;
         int request = 0;
         try (var listener = new ServerSocket(port)) {
-            System.out.printf("The started on port %d%n", port);
+            System.out.printf("The started on port %d, address: %s%n", port, listener.getLocalSocketAddress());
+
             while (true) {
                 try (var socket = listener.accept()) {
                     switch(request){

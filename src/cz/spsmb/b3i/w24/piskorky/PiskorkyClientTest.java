@@ -9,7 +9,8 @@ public class PiskorkyClientTest {
     public static void main(String[] args) throws IOException {
 
         //var hostname = "3.se.pool.ntp.org";
-        var hostname = "localhost";
+        //var hostname = "localhost";
+        var hostname = "192.168.112.109";
         //int port = 13;
         int port = 8081;
         int state = 0;

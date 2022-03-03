@@ -8,6 +8,8 @@ package cz.spsmb.b3i.w24.piskorky;
 //    serializovatelné.
 // 2. určete si sami, kolik hráčů bude do hry připojeno. Pro jednoduchost uvažujme
 //    pevný počet hráčů. Modifikujte tak kód hry PiškorkyFX, aby se daný počet hráčů
-//    mohl střídat.
+//    mohl střídat. Další zjednodušení spočívá v běhu serveru a více klientů na
+//    jednom počítači.
+
 public class Ukol {
 }
