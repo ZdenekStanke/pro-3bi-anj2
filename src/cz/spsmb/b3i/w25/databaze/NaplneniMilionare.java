@@ -7,9 +7,9 @@ public class NaplneniMilionare {
     private final String dbms="mysql";
     private final String serverName = "vydb1.spsmb.cz";
     private final int portNumber = 3306;
-    private final String dbName = "student_josef.matousek_milionar";
-    private final String userName="";
-    private final String password="";
+    private final String dbName = "ucitelverejne_stemberk_milionar";
+    private final String userName="stemberk";
+    private final String password="...";
     private Connection conn;
     public void getConnectionToDatabase() throws SQLException {
         {
@@ -127,7 +127,6 @@ public class NaplneniMilionare {
                     answerId = dbConnection.insertAnswer(q[i][j]);
                     dbConnection.insertWrongAnswerMap(questionId, answerId);
                 }
-
             }
             //ResultSet rs = stmt.executeQuery("select * from vyrobky");
             //while (rs.next())

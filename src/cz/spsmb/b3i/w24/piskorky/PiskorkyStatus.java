@@ -29,12 +29,15 @@ public class PiskorkyStatus implements Serializable {
         // }
         this.herniTlacitka = new HashMap[this.rozmerHraciPlochy + 1][this.rozmerHraciPlochy + 1];
         this.hraci = new ArrayList<>();
-        this.hraci.add("Lojza");
-        this.hraci.add("Franta");
+        //this.hraci.add("Lojza");
+        //this.hraci.add("Franta");
         //this.hraci.add("Pepa");
         this.inicializaceTlacitek();
     }
 
+    public void pridatHrace(String jmeno){
+        this.hraci.add(jmeno);
+    }
 
     public void inicializaceTlacitek(){
         for (int i = 0; i < this.rozmerHraciPlochy + 1; i++) {

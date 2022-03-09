@@ -1,20 +1,26 @@
 package cz.spsmb.b3i.w24.piskorky;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.beans.Observable;
 import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -34,9 +40,19 @@ public class PiskorkyFX extends Application {
     private Button[][] herniTlacitka;
     private String hostname = "localhost";
     private int port = 8081;
+    private Timeline tl;
+    private Stage playerNameStage;
 
     public PiskorkyFX() {
         this.setPiskvorkyStatusFromServer();
+        this.tl = new Timeline(new KeyFrame(Duration.millis(3000), this::animationHandler));
+        tl.setCycleCount(Timeline.INDEFINITE);
+        tl.play();
+    }
+
+    private void animationHandler(ActionEvent actionEvent) {
+        this.setPiskvorkyStatusFromServer();
+        this.refreshPiskvorkyStatus();
     }
 
     private Label labelKdoTahne = new Label("Táhne: ");
@@ -129,12 +145,29 @@ public class PiskorkyFX extends Application {
             root.setCenter(gp);
             Scene scene = new Scene(new Group(root));
             stage.setScene(scene);
+            this.playerNameStage = new Stage();
+            Label playerNameLabel = new Label("jmeno hráče: ");
+            TextField playerNameTextField = new TextField();
+            playerNameTextField.setOnKeyTyped(e -> handle(e));
+            HBox playerNameRoot = new HBox(playerNameLabel,playerNameTextField);
+            Scene playerName = new Scene(playerNameRoot);
+            this.playerNameStage.setScene(playerName);
+            this.playerNameStage.showAndWait();
             stage.show();
+
             this.refreshPiskvorkyStatus();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
+    }
+
+    private void handle(KeyEvent e) {
+        String hrac = e.getCharacter();
+        System.out.println(hrac);
+        this.ps.pridatHrace(hrac);
+        this.sputPiskvorkyStatusToServer();
+        this.playerNameStage.close();
     }
 
     public void tlacitkoStisknuto(ActionEvent actionEvent) {
