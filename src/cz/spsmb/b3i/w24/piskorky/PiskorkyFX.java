@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -42,6 +43,7 @@ public class PiskorkyFX extends Application {
     private int port = 8081;
     private Timeline tl;
     private Stage playerNameStage;
+    private TextField playerNameTextField;
 
     public PiskorkyFX() {
         this.setPiskvorkyStatusFromServer();
@@ -147,8 +149,8 @@ public class PiskorkyFX extends Application {
             stage.setScene(scene);
             this.playerNameStage = new Stage();
             Label playerNameLabel = new Label("jmeno hráče: ");
-            TextField playerNameTextField = new TextField();
-            playerNameTextField.setOnKeyTyped(e -> handle(e));
+            this.playerNameTextField = new TextField();
+            playerNameTextField.setOnKeyPressed(e -> handle(e));
             HBox playerNameRoot = new HBox(playerNameLabel,playerNameTextField);
             Scene playerName = new Scene(playerNameRoot);
             this.playerNameStage.setScene(playerName);
@@ -163,11 +165,13 @@ public class PiskorkyFX extends Application {
     }
 
     private void handle(KeyEvent e) {
-        String hrac = e.getCharacter();
-        System.out.println(hrac);
-        this.ps.pridatHrace(hrac);
-        this.sputPiskvorkyStatusToServer();
-        this.playerNameStage.close();
+        if(e.getCode() == KeyCode.ENTER){
+            String hrac = this.playerNameTextField.getText();
+            System.out.println(hrac);
+            this.ps.pridatHrace(hrac);
+            this.sputPiskvorkyStatusToServer();
+            this.playerNameStage.close();
+        }
     }
 
     public void tlacitkoStisknuto(ActionEvent actionEvent) {
