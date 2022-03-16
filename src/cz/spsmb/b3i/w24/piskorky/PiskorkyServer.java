@@ -3,13 +3,12 @@ package cz.spsmb.b3i.w24.piskorky;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
+import java.io.*;
+import java.net.ConnectException;
 import java.net.ServerSocket;
+import java.net.SocketException;
 import java.time.LocalDateTime;
-
+//add --module-path "Y:\stemberk\verejne_zaci\javafx-sdk-17.0.1\lib" --add-modules javafx.controls,javafx.fxml
 public class PiskorkyServer {
     public static PiskorkyStatus ps;
 
@@ -17,36 +16,55 @@ public class PiskorkyServer {
         PiskorkyServer.ps = new PiskorkyStatus(10);
         int port = 8081;
         int request = 0;
-        try (var listener = new ServerSocket(port)) {
-            System.out.printf("The started on port %d%n", port);
-            while (true) {
-                try (var socket = listener.accept()) {
-                    switch(request){
-                        case 0:
-                            try( var is = socket.getInputStream()) {
-                                request = is.read();
-                                System.out.println(request);
-                            }
-                            break;
+        while (true) {
+            try (var listener = new ServerSocket(port)) {
+                System.out.printf("The started on port %d, address: %s%n", port, listener.getLocalSocketAddress());
+
+                while (true) {
+                    try (var socket = listener.accept()) {
+                        switch (request) {
+                            case 0:
+                                try (var is = socket.getInputStream()) {
+                                    request = is.read();
+                                    System.out.println(request);
+                                }
+                                break;
                             // get local date
-                        case 10:
-                            try (var pw = new PrintWriter(socket.getOutputStream(), true)) {
-                                pw.println(LocalDateTime.now());
-                                request = 0;
-                            }
-                            break;
+                            case 10:
+                                try (var pw = new PrintWriter(socket.getOutputStream(), true)) {
+                                    pw.println(LocalDateTime.now());
+                                    request = 0;
+                                }
+                                break;
                             // get status
-                        case 20:
-                            try (var pw = new ObjectOutputStream(socket.getOutputStream())) {
-                                pw.writeObject(PiskorkyServer.ps);
-                                request = 0;
-                            }
-                            break;
+                            case 20:
+                                try (var pw = new ObjectOutputStream(socket.getOutputStream())) {
+                                    pw.writeObject(PiskorkyServer.ps);
+                                    request = 0;
+                                }
+                                break;
+                            // set status
+                            case 30:
+                                try (var pi = new ObjectInputStream(socket.getInputStream())) {
+                                    PiskorkyServer.ps = (PiskorkyStatus) pi.readObject();
+                                    request = 0;
+                                } catch (ClassNotFoundException e) {
+                                    e.printStackTrace();
+                                }
+                                break;
+                        }
                     }
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+            catch (SocketException e){
+                System.out.println("SocketException");
+            }
+//            catch (ConnectException e) {
+//                System.out.println("connection reset ");
+//            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
