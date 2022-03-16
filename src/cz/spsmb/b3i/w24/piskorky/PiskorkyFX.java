@@ -119,6 +119,8 @@ public class PiskorkyFX extends Application {
     public void refreshPiskvorkyStatus() {
         System.out.println(this.ps.hraci.get(ps.aktivniHrac) + " "+ this.playerName+"<");
         System.out.println(!this.ps.hraci.get(ps.aktivniHrac).equals(this.playerName));
+        //aktualizace panelu kdo táhne
+        this.labelKdoTahne2.setText(this.ps.hraci.get(this.ps.aktivniHrac).toString());
         for (int i = 0; i < this.ps.rozmerHraciPlochy + 1; i++) {
             for (int j = 0; j < this.ps.rozmerHraciPlochy + 1; j++) {
                 Button b = this.herniTlacitka[i][j];
@@ -208,8 +210,6 @@ public class PiskorkyFX extends Application {
             this.ps.aktivniHrac = 0;
         }
         stisknuteTlacitko.getProperties().put("player", this.ps.aktivniHrac);
-        //aktualizace panelu kdo táhne
-        this.labelKdoTahne2.setText(this.ps.hraci.get(this.ps.aktivniHrac).toString());
         System.out.println();
         int N = 3;
         System.out.format("verticalWin:%b, horizontalWin:%b, diagonalwin:%b, isReverseDiagonalWin:%b%n",
