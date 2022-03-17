@@ -40,7 +40,7 @@ public class PiskorkyFX extends Application {
     private final String TITULEK = "Piškorky" + this.VERSION;
     private PiskorkyStatus ps;
     private Button[][] herniTlacitka;
-    private String hostname = "localhost";
+    private String hostname = "192.168.2.106";
     private int port = 8081;
     private Timeline tl;
     private Stage playerNameStage;
@@ -127,7 +127,11 @@ public class PiskorkyFX extends Application {
 //                b.getProperties().clear();
                 b.getProperties().putAll(this.ps.herniTlacitka[i][j]);
                 int player = (int) this.ps.herniTlacitka[i][j].get("player");
-                b.setText(player < 0 ? "" : this.ps.hraci.get(player).toString().substring(0, 1));
+                if(player >=0){
+                    b.setOnAction(null);
+                    b.setText(this.ps.hraci.get(player).toString().substring(0, 1));
+                }
+
                 b.setMouseTransparent(!this.ps.hraci.get(ps.aktivniHrac).equals(this.playerName));
             }
         }
@@ -211,7 +215,7 @@ public class PiskorkyFX extends Application {
         }
         stisknuteTlacitko.getProperties().put("player", this.ps.aktivniHrac);
         System.out.println();
-        int N = 3;
+        int N = 5;
         System.out.format("verticalWin:%b, horizontalWin:%b, diagonalwin:%b, isReverseDiagonalWin:%b%n",
                 this.isVerticalWin(i, j, N),
                 this.isHorizontalWin(i, j, N),
@@ -261,7 +265,7 @@ public class PiskorkyFX extends Application {
                 }
             }
         }
-        stisknuteTlacitko.setOnAction(null);
+
         System.out.println("Vypis");
         //vypis
         for (i = 0; i < this.ps.rozmerHraciPlochy; i++) {
