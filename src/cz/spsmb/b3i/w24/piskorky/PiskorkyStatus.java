@@ -42,4 +42,7 @@ public class PiskorkyStatus implements Serializable {
             }
         }
     }
+    public ArrayList<String> getHraci(){
+        return this.hraci;
+    }
 }
