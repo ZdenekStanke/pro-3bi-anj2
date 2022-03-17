@@ -11,7 +11,7 @@ public class PiskorkyServer {
     public static PiskorkyStatus ps;
 
     public static void main(String[] args) throws IOException {
-        PiskorkyServer.ps = new PiskorkyStatus(10);
+        PiskorkyServer.ps = new PiskorkyStatus(25);
         int port = 8081;
         int request = 0;
         while (true) {
@@ -40,6 +40,7 @@ public class PiskorkyServer {
                                     pw.writeObject(PiskorkyServer.ps);
                                     request = 0;
                                 }
+                                System.out.println(PiskorkyServer.ps.getHraci());
                                 break;
                             // set status
                             case 30:
