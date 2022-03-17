@@ -56,7 +56,8 @@ public class PiskorkyServer {
                 }
             }
             catch (SocketException e){
-                System.out.println("SocketException");
+                System.out.println(e.getMessage());
+                e.printStackTrace();
             }
 //            catch (ConnectException e) {
 //                System.out.println("connection reset ");
