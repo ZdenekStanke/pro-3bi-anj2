@@ -1,7 +1,5 @@
 package cz.spsmb.b3i.w24.piskorky;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.ConnectException;
