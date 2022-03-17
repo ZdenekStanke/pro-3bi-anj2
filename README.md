@@ -3,9 +3,12 @@
 ```
 wget https://github.com/SPSMB/pro-3bi-anj2/raw/main/src/cz/spsmb/b3i/w24/piskorky/PiskorkyServer.java
 wget https://github.com/SPSMB/pro-3bi-anj2/raw/main/src/cz/spsmb/b3i/w24/piskorky/PiskorkyStatus.java
-echo "Main-Class: PiskorkyServer.class" > MANIFEST.MF
+#echo "Main-Class: cz/spsmb/b3i/w24/piskorky/PiskorkyServer.class" > MANIFEST.MF
 mkdir -p cz/spsmb/b3i/w24/piskorky
 javac PiskorkyStatus.java PiskorkyServer.java
+rm  *.java
 mv *.class cz/spsmb/b3i/w24/piskorky/
-java cz.spsmb.b3i.w24.piskorky.PiskorkyServer
+jar -c -e cz.spsmb.b3i.w24.piskorky.PiskorkyServer -f PiskorkyServer.jar cz
+#java cz.spsmb.b3i.w24.piskorky.PiskorkyServer
+java -jar PiskorkyServer.jar
 ```
