@@ -1,5 +1,7 @@
 package cz.spsmb.b3i.w27.vlakna;
-
+// Metoda Thread.yeld() ukončí běh vlákna a převede
+// vlákno do stavu běhuschpné. JVM ho tak může kdykoliv
+// opět spustit.
 public class Vlakno2 extends  Thread {
     @Override
     public void run() {
