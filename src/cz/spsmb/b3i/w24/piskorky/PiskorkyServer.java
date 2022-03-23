@@ -20,38 +20,8 @@ public class PiskorkyServer {
 
                 while (true) {
                     try (var socket = listener.accept()) {
-                        switch (request) {
-                            case 0:
-                                try (var is = socket.getInputStream()) {
-                                    request = is.read();
-                                    System.out.println(request);
-                                }
-                                break;
-                            // get local date
-                            case 10:
-                                try (var pw = new PrintWriter(socket.getOutputStream(), true)) {
-                                    pw.println(LocalDateTime.now());
-                                    request = 0;
-                                }
-                                break;
-                            // get status
-                            case 20:
-                                try (var pw = new ObjectOutputStream(socket.getOutputStream())) {
-                                    pw.writeObject(PiskorkyServer.ps);
-                                    request = 0;
-                                }
-                                System.out.println(PiskorkyServer.ps.getHraci());
-                                break;
-                            // set status
-                            case 30:
-                                try (var pi = new ObjectInputStream(socket.getInputStream())) {
-                                    PiskorkyServer.ps = (PiskorkyStatus) pi.readObject();
-                                    request = 0;
-                                } catch (ClassNotFoundException e) {
-                                    e.printStackTrace();
-                                }
-                                break;
-                        }
+                        ServerThread st = new ServerThread(socket);
+                        st.start();
                     }
                 }
             }
