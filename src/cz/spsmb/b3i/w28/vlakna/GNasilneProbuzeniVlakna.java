@@ -2,16 +2,19 @@ package cz.spsmb.b3i.w28.vlakna;
 
 import cz.spsmb.b3i.w27.vlakna.ReadVl;
 import cz.spsmb.b3i.w27.vlakna.Vlakno3;
-// Přerušení vlákna je možné docílit metodou interrupt(). Metoda iterrupted()
-// pak vrací true, pokud bylo vlákno touto metodou ukončeno (může být ukončeno)
-// i z jiného vlákna.
-public class FPředčasnéUkončeníVlákna extends Thread {
+// Pokud vlákno uspíme metodou sleep(), musíme ošetřit výjimku InterruptedException, která
+// je vyhozena v případě, že je vlákno násilně vzbuzeno před uplynutím plánované doby spánku.
+// volání metody interrupt() na vlákno je jedna z možností, jak vlákno násilně probudit
+// (a ukončit).
+public class GNasilneProbuzeniVlakna extends Thread {
     public void run() {
         while(ReadVl.hotovo == false) {
             System.out.println(ReadVl.suma + "\r");
-            this.yield();
-            if(this.interrupted()) {
-                return;
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                System.out.println("Předčasně vzbuzeno.");
+                break;
             }
         }
         System.out.println(ReadVl.suma);
