@@ -23,7 +23,7 @@ package cz.spsmb.b3i.w28.vlakna;
 // Chování plánovače vláken:
 // - Ze všech běhuschopných vláken běží vždy to, které má nejvyšší
 //   prioritu ze všech běhuschopných vláken.
-// - Pokud se do běhuschopného stavu dostane vlákno s vyššé prioritou,
+// - Pokud se do běhuschopného stavu dostane vlákno s vyšší prioritou,
 //   než má vlákno běžící, je běžící vlákno okamžitě donuceno k předání
 //   řízení ve prospěch vlákna s vyšší prioritou (tzv. preemptivní
 //   plánování).
@@ -31,7 +31,7 @@ package cz.spsmb.b3i.w28.vlakna;
 //   plánovač je volí postupně tak, aby na každé vlákno pokud možno došlo.
 // - Běžící vlákno pomocí metody yeld() dobrovolně předá řízení některému
 //   běhuschopnému vláknu se stejnou prioritou.
-// - Vlákno s nižší prioritou může záískat řízení jen tehdy, když vlákna
+// - Vlákno s nižší prioritou může získat řízení jen tehdy, když vlákna
 //   s vyšší prioritou přejdou do neběhuschopného stavu.
 
 public class AStavyVlaknaAPriorita {
