@@ -14,6 +14,7 @@ public class GNasilneProbuzeniVlakna extends Thread {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 System.out.println("Předčasně vzbuzeno.");
+                System.out.flush();
                 break;
             }
         }
