@@ -21,7 +21,7 @@ public class FPředčasnéUkončeníVlákna extends Thread {
         long zac = System.currentTimeMillis();
         ReadVl vlCteni = new ReadVl("data.txt");
         vlCteni.start();
-        Vlakno3 vlVypis = new Vlakno3();
+        FPředčasnéUkončeníVlákna vlVypis = new FPředčasnéUkončeníVlákna();
         vlVypis.start();
         //zkusíme počkat 1 vteřinu, zda se vlákno neukončí do té doby samo
         vlVypis.join(1000);
