@@ -5,7 +5,7 @@ package cz.spsmb.b3i.w28.vlakna;
 // zajistit místo paralelního běhu běh sériový.
 
 // K tomuto se používá klíčové slovo synchronized. Při vstupu do synchronizované kritické sekce vlákno získá
-// tzv. monitor (uzamkne data) a po jejím opuštění monitor uvolní (odemkne data). Po yáskání monitoru jedním
+// tzv. monitor (uzamkne data) a po jejím opuštění monitor uvolní (odemkne data). Po získání monitoru jedním
 // vláknem nemůže jiné vlákno zahájit kritické sekce patřící k témuž objektu.
 
 class Bod {

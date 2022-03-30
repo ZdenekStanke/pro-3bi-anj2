@@ -10,7 +10,9 @@ public class FPředčasnéUkončeníVlákna extends Thread {
         while(ReadVl.hotovo == false) {
             System.out.println(ReadVl.suma + "\r");
             this.yield();
+            //Chceme-li, aby přerušené vlákno skončilo, tato podmínka je nutností.
             if(this.interrupted()) {
+                System.out.println("jsem interrupted!");
                 return;
             }
         }

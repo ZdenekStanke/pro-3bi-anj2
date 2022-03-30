@@ -8,7 +8,7 @@ import cz.spsmb.b3i.w27.vlakna.Vlakno3;
 // (a ukončit).
 public class GNasilneProbuzeniVlakna extends Thread {
     public void run() {
-        while(ReadVl.hotovo == false) {
+        while(!ReadVl.hotovo) {
             System.out.println(ReadVl.suma + "\r");
             try {
                 Thread.sleep(100);
@@ -25,7 +25,7 @@ public class GNasilneProbuzeniVlakna extends Thread {
         long zac = System.currentTimeMillis();
         ReadVl vlCteni = new ReadVl("data.txt");
         vlCteni.start();
-        Vlakno3 vlVypis = new Vlakno3();
+        GNasilneProbuzeniVlakna vlVypis = new GNasilneProbuzeniVlakna();
         vlVypis.start();
         //zkusíme počkat 1 vteřinu, zda se vlákno neukončí do té doby samo
         vlVypis.join(1000);
