@@ -18,6 +18,7 @@ public class ServerThread extends Thread {
 
     @Override
     public void run() {
+        System.out.println("Running,request:"+this.request);
         switch (request) {
             case 0:
                 try (var is = socket.getInputStream()) {

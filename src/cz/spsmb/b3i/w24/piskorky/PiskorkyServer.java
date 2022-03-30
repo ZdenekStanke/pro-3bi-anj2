@@ -4,6 +4,7 @@ package cz.spsmb.b3i.w24.piskorky;
 import java.io.*;
 import java.net.ConnectException;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.net.SocketException;
 import java.time.LocalDateTime;
 //add --module-path "Y:\stemberk\verejne_zaci\javafx-sdk-17.0.1\lib" --add-modules javafx.controls,javafx.fxml
@@ -14,15 +15,17 @@ public class PiskorkyServer {
         PiskorkyServer.ps = new PiskorkyStatus(25);
         int port = 8081;
         int request = 0;
+        Socket socket = null;
         while (true) {
             try (var listener = new ServerSocket(port)) {
                 System.out.printf("The started on port %d, address: %s%n", port, listener.getLocalSocketAddress());
-
                 while (true) {
-                    try (var socket = listener.accept()) {
-                        ServerThread st = new ServerThread(socket);
-                        st.start();
+                    try {
+                        socket = listener.accept();
+                    }   catch (IOException e) {
+                        System.out.println("I/O error: " + e);
                     }
+                    new ServerThread(socket).start();
                 }
             }
             catch (SocketException e){
