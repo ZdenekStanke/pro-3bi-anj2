@@ -1,6 +1,6 @@
 package cz.spsmb.b3i.w29.vlakna_producent_konzument;
 // V předchozích příkladech kritických sekcí není nijak zaručeno, že z tzv.
-// "překladiště dat" budou odepírány právě ty souřadnice, které byly předhozím
+// "překladiště dat" budou odepírány právě ty souřadnice, které byly předchozím
 // nastavením uloženy. Klidně se může stát, že budou přečteny tytéž souřadnice
 // nechtěně vícekrát, nebo vůbec, protože budou dříve přepsány jinými.
 
@@ -42,5 +42,11 @@ public class SynchronizaceCasovePosloupnostiVlaken {
         Konzument vlKon1 = new Konzument(ct1);
         vlKon1.start();
         vlPr1.start(); //schválně později po konzumentu
+
+        Cteni ct2 = new Cteni("data2.txt");
+        Producent vlPr2 = new Producent(ct2);
+        Konzument vlKon2 = new Konzument(ct2);
+        vlKon2.start();
+        vlPr2.start();
     }
 }
