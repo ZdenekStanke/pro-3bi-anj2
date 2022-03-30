@@ -33,6 +33,7 @@ public class Cteni {
                 System.out.println(this.jmenoSouboru + " precteno: " + this.hodnota + " ");
             } else {
                 this.konecSouboru = true;
+                //Zakomentováním tohoto řádku dojde k hladovění vlákna:
                 Thread.currentThread().interrupt();
             }
         } catch (IOException e ){
