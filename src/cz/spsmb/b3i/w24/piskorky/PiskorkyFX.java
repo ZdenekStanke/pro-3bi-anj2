@@ -28,6 +28,7 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Arrays;
@@ -41,7 +42,8 @@ public class PiskorkyFX extends Application {
     private final String TITULEK = "Piškorky" + this.VERSION;
     private PiskorkyStatus ps;
     private Button[][] herniTlacitka;
-    private String hostname = "192.168.9.43";
+    //private String hostname = "192.168.9.43";
+    private String hostname = "localhost";
     private int port = 8081;
     private Timeline tl;
     private Stage playerNameStage;
@@ -75,19 +77,12 @@ public class PiskorkyFX extends Application {
     private HBox panelKdoHraje = new HBox(startBtn,labelKdoTahne, labelKdoTahne2,labelSeznamHracu);
 
     public void sputPiskvorkyStatusToServer(){
-        try (var socket = new Socket(this.hostname, this.port)) {
-            try (var writer = socket.getOutputStream()) {
-                writer.write(30);
-            }
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try (var socket = new Socket(this.hostname, this.port)) {
-            try (var writer = new ObjectOutputStream(socket.getOutputStream())) {
-               writer.writeObject(this.ps);
-            }
+        try {
+            Socket socket = new Socket(this.hostname, this.port);
+            OutputStream writer = socket.getOutputStream();
+            writer.write(30);
+            ObjectOutputStream oos = new ObjectOutputStream(writer);
+            oos.writeObject(this.ps);
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -95,26 +90,15 @@ public class PiskorkyFX extends Application {
         }
     }
     public void setPiskvorkyStatusFromServer() {
-        try (var socket = new Socket(this.hostname, this.port)) {
-            try (var writer = socket.getOutputStream()) {
-                writer.write(20);
-            }
+        try {
+            Socket socket = new Socket(this.hostname, this.port);
+            OutputStream writer = socket.getOutputStream();
+            writer.write(20);
+            ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+            this.ps = (PiskorkyStatus) ois.readObject();
         } catch (UnknownHostException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try (var socket = new Socket(this.hostname, this.port)) {
-
-
-            try (var reader = new ObjectInputStream(socket.getInputStream())) {
-                this.ps = (PiskorkyStatus) reader.readObject();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

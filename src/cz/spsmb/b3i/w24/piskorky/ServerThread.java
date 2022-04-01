@@ -43,6 +43,7 @@ public class ServerThread extends Thread {
                     pw.writeObject(PiskorkyServer.ps);
                     request = 0;
                 } catch (IOException e) {
+                    System.out.println("messsage:" + e.getMessage());
                     e.printStackTrace();
                 }
                 System.out.println(PiskorkyServer.ps.getHraci());
