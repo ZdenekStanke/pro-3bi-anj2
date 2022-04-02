@@ -45,8 +45,8 @@ public class PiskorkyFX extends Application {
     private PiskorkyStatus ps;
     private Button[][] herniTlacitka;
     //private String hostname = "192.168.9.43";
-    //private String hostname = "192.168.31.162";
-    private String hostname = "localhost";
+    private String hostname = "192.168.31.162";
+    //private String hostname = "localhost";
     private int port = 8081;
     private Timeline tl;
     private Stage playerNameStage;
@@ -218,11 +218,7 @@ public class PiskorkyFX extends Application {
         //stisknuteTlacitko.getProperties().put("player",Integer.valueOf(this.ps.aktivniHrac));
         this.ps.herniTlacitka[i][j].put("player", this.ps.aktivniHrac);
 
-        //přepnutí hráče
-        if (++this.ps.aktivniHrac >= this.ps.hraci.size()) {
-            this.ps.aktivniHrac = 0;
-        }
-        stisknuteTlacitko.getProperties().put("player", this.ps.aktivniHrac);
+
         System.out.println();
         int N = 5;
         System.out.format("verticalWin:%b, horizontalWin:%b, diagonalwin:%b, isReverseDiagonalWin:%b%n",
@@ -265,7 +261,11 @@ public class PiskorkyFX extends Application {
 
             }
         }
-
+        //přepnutí hráče
+        if (++this.ps.aktivniHrac >= this.ps.hraci.size()) {
+            this.ps.aktivniHrac = 0;
+        }
+        //stisknuteTlacitko.getProperties().put("player", this.ps.aktivniHrac);
         System.out.println("Vypis");
         //vypis
         for (i = 0; i < this.ps.rozmerHraciPlochy; i++) {
