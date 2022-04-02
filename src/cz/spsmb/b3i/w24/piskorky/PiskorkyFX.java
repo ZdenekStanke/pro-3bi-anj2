@@ -257,15 +257,17 @@ public class PiskorkyFX extends Application {
                     System.out.println("Win");
                     this.ps.isEnded = true;
                     this.sputPiskvorkyStatusToServer();
+                } else {
+                    //přepnutí hráče
+                    if (++this.ps.aktivniHrac >= this.ps.hraci.size()) {
+                        this.ps.aktivniHrac = 0;
+                    }
+                    //stisknuteTlacitko.getProperties().put("player", this.ps.aktivniHrac);
                 }
 
             }
         }
-        //přepnutí hráče
-        if (++this.ps.aktivniHrac >= this.ps.hraci.size()) {
-            this.ps.aktivniHrac = 0;
-        }
-        //stisknuteTlacitko.getProperties().put("player", this.ps.aktivniHrac);
+
         System.out.println("Vypis");
         //vypis
         for (i = 0; i < this.ps.rozmerHraciPlochy; i++) {
