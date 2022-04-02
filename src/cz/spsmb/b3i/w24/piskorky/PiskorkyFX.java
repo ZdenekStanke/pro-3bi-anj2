@@ -249,6 +249,7 @@ public class PiskorkyFX extends Application {
                 break;
             }
         }
+        lab_for1:
         for (int radek1 = 0; radek1 < this.ps.rozmerHraciPlochy; radek1++) {
             for (int sloupec1 = 0; sloupec1 < this.ps.rozmerHraciPlochy; sloupec1++) {
                 if (this.isVerticalWin(radek1, sloupec1, N) || this.isHorizontalWin(radek1, sloupec1, N) ||
@@ -257,15 +258,16 @@ public class PiskorkyFX extends Application {
                     System.out.println("Win");
                     this.ps.isEnded = true;
                     this.sputPiskvorkyStatusToServer();
-                } else {
-                    //přepnutí hráče
-                    if (++this.ps.aktivniHrac >= this.ps.hraci.size()) {
-                        this.ps.aktivniHrac = 0;
-                    }
-                    //stisknuteTlacitko.getProperties().put("player", this.ps.aktivniHrac);
+                    break lab_for1;
                 }
-
             }
+        }
+        if(!this.ps.isEnded){
+            //přepnutí hráče
+            if (++this.ps.aktivniHrac >= this.ps.hraci.size()) {
+                this.ps.aktivniHrac = 0;
+            }
+            //stisknuteTlacitko.getProperties().put("player", this.ps.aktivniHrac);
         }
 
         System.out.println("Vypis");
