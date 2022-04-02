@@ -53,7 +53,10 @@ public class ServerThread extends Thread {
                 try  {
                     inp = this.socket.getInputStream();
                     ois = new ObjectInputStream(inp);
-                    PiskorkyServer.ps = (PiskorkyStatus) ois.readObject();
+                    PiskorkyStatus ps  = (PiskorkyStatus) ois.readObject();
+                    if(!PiskorkyServer.ps.isEnded) {
+                        PiskorkyServer.ps = ps;
+                    }
                     System.out.println(PiskorkyServer.ps.getHraci());
                 } catch (ClassNotFoundException | IOException e) {
                     e.printStackTrace();

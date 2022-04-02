@@ -22,7 +22,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -43,6 +45,7 @@ public class PiskorkyFX extends Application {
     private PiskorkyStatus ps;
     private Button[][] herniTlacitka;
     //private String hostname = "192.168.9.43";
+    //private String hostname = "192.168.31.162";
     private String hostname = "localhost";
     private int port = 8081;
     private Timeline tl;
@@ -60,7 +63,7 @@ public class PiskorkyFX extends Application {
         Scene playerName = new Scene(playerNameRoot);
         this.playerNameStage.setScene(playerName);
         this.playerNameStage.showAndWait();
-        this.tl = new Timeline(new KeyFrame(Duration.millis(3000), this::animationHandler));
+        this.tl = new Timeline(new KeyFrame(Duration.millis(300), this::animationHandler));
         tl.setCycleCount(Timeline.INDEFINITE);
         tl.play();
     }
@@ -104,6 +107,12 @@ public class PiskorkyFX extends Application {
     }
 
     public void refreshPiskvorkyStatus() {
+        if(this.ps.isEnded) {
+            this.winScreen(this.ps.hraci.get(this.ps.aktivniHrac).toString());
+        } else if (this.ps.isStarted) {
+            this.startBtn.setText("Started...");
+            this.startBtn.setDisable(true);
+        }
         System.out.println(this.ps.hraci.get(ps.aktivniHrac) + " "+ this.playerName+"<");
         System.out.println(!this.ps.hraci.get(ps.aktivniHrac).equals(this.playerName));
         //aktualizace panelu kdo táhne
@@ -176,10 +185,15 @@ public class PiskorkyFX extends Application {
         Scene sc = new Scene(hb);
         Stage st = new Stage();
         st.setScene(sc);
-        st.showAndWait();
-        Platform.exit();
-
-
+        st.initModality(Modality.APPLICATION_MODAL);
+        st.onCloseRequestProperty().set(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                Platform.exit();
+            }
+        });
+        this.tl.stop();
+        st.show();
     }
 
     private void handle(KeyEvent e) {
@@ -241,23 +255,14 @@ public class PiskorkyFX extends Application {
         }
         for (int radek1 = 0; radek1 < this.ps.rozmerHraciPlochy; radek1++) {
             for (int sloupec1 = 0; sloupec1 < this.ps.rozmerHraciPlochy; sloupec1++) {
-                if (this.isVerticalWin(radek1, sloupec1, N)) {
-                    System.out.println("Win vertical");
-                    this.winScreen(this.playerName);
-                }
-                if (this.isHorizontalWin(radek1, sloupec1, N)) {
-                    System.out.println("Win horizontal");
-                    this.winScreen(this.playerName);
-                }
-                if (this.isDiagonalWin(radek1, sloupec1, N)) {
-                    System.out.println("Win diagonal");
-                    this.winScreen(this.playerName);
+                if (this.isVerticalWin(radek1, sloupec1, N) || this.isHorizontalWin(radek1, sloupec1, N) ||
+                        this.isDiagonalWin(radek1, sloupec1, N) || this.isReverseDiagonalWin(radek1, sloupec1, N))  {
 
+                    System.out.println("Win");
+                    this.ps.isEnded = true;
+                    this.sputPiskvorkyStatusToServer();
                 }
-                if (this.isReverseDiagonalWin(radek1, sloupec1, N)) {
-                    System.out.println("Win reverseDiagonal");
-                    this.winScreen(this.playerName);
-                }
+
             }
         }
 

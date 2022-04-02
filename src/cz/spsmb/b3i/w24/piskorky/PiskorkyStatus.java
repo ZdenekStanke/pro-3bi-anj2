@@ -13,6 +13,7 @@ public class PiskorkyStatus implements Serializable {
     //aktivni Hráč se zde automaticky inicializuje na 0 (LOJZA), netřeba inicializovat
     int aktivniHrac;
     boolean isStarted;
+    boolean isEnded;
 
     public PiskorkyStatus(int rozmerHraciPlochy) {
         this.rozmerHraciPlochy = rozmerHraciPlochy;
