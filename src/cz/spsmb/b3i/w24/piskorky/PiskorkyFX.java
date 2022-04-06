@@ -55,6 +55,17 @@ public class PiskorkyFX extends Application {
     private String playerName;
 
     public PiskorkyFX() {
+        this.setPiskvorkyStatusFromServer();
+        if (!this.ps.VERSION.equals(this.VERSION)){
+            Stage kick = new Stage();
+            Label lkick = new Label("Spatna verze!");
+            HBox hkick = new HBox(lkick);
+            Scene skick = new Scene(hkick);
+            kick.setScene(skick);
+            kick.showAndWait();
+            Platform.exit();
+
+        }
 
         this.playerNameStage = new Stage();
         Label playerNameLabel = new Label("jmeno hráče: ");
