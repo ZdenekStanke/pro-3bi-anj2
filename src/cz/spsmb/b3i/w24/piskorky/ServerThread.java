@@ -56,8 +56,8 @@ public class ServerThread extends Thread {
                     inp = this.socket.getInputStream();
                     ois = new ObjectInputStream(inp);
                     PiskorkyStatus ps  = (PiskorkyStatus) ois.readObject();
-                    if(!PiskorkyServer.ps.isEnded) {
-                        synchronized (PiskorkyServer.ps){
+                    synchronized (PiskorkyServer.ps){
+                        if(!PiskorkyServer.ps.isEnded) {
                             PiskorkyServer.ps = ps;
                         }
                     }
