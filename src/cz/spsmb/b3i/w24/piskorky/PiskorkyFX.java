@@ -55,7 +55,7 @@ public class PiskorkyFX extends Application {
     private String playerName;
 
     public PiskorkyFX() {
-        this.setPiskvorkyStatusFromServer();
+
         this.playerNameStage = new Stage();
         Label playerNameLabel = new Label("jmeno hráče: ");
         this.playerNameTextField = new TextField();
@@ -204,7 +204,7 @@ public class PiskorkyFX extends Application {
                 e.consume();
                 return;
             }
-            System.out.println(this.playerName);
+            this.setPiskvorkyStatusFromServer();
             this.ps.pridatHrace(this.playerName);
             this.sputPiskvorkyStatusToServer();
             this.playerNameStage.close();
