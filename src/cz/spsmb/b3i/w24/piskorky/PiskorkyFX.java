@@ -225,7 +225,7 @@ public class PiskorkyFX extends Application {
 
 
         System.out.println();
-        int N = 4;
+        int N = 3;
         System.out.format("verticalWin:%b, horizontalWin:%b, diagonalwin:%b, isReverseDiagonalWin:%b%n",
                 this.isVerticalWin(i, j, N),
                 this.isHorizontalWin(i, j, N),
