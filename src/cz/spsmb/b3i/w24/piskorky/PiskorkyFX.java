@@ -44,8 +44,8 @@ public class PiskorkyFX extends Application {
     private final String TITULEK = "Piškorky" + this.VERSION;
     private PiskorkyStatus ps;
     private Button[][] herniTlacitka;
-    //private String hostname = "192.168.9.43";
-    private String hostname = "192.168.31.162";
+    private String hostname = "192.168.9.43";
+    //private String hostname = "192.168.31.162";
     //private String hostname = "localhost";
     private int port = 8081;
     private Timeline tl;
@@ -63,7 +63,7 @@ public class PiskorkyFX extends Application {
         Scene playerName = new Scene(playerNameRoot);
         this.playerNameStage.setScene(playerName);
         this.playerNameStage.showAndWait();
-        this.tl = new Timeline(new KeyFrame(Duration.millis(300), this::animationHandler));
+        this.tl = new Timeline(new KeyFrame(Duration.millis(1000), this::animationHandler));
         tl.setCycleCount(Timeline.INDEFINITE);
         tl.play();
     }
@@ -220,7 +220,7 @@ public class PiskorkyFX extends Application {
 
 
         System.out.println();
-        int N = 5;
+        int N = 4;
         System.out.format("verticalWin:%b, horizontalWin:%b, diagonalwin:%b, isReverseDiagonalWin:%b%n",
                 this.isVerticalWin(i, j, N),
                 this.isHorizontalWin(i, j, N),

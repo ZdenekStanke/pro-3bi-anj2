@@ -12,7 +12,7 @@ public class PiskorkyServer {
     public static PiskorkyStatus ps;
 
     public static void main(String[] args) throws IOException {
-        PiskorkyServer.ps = new PiskorkyStatus(25);
+        PiskorkyServer.ps = new PiskorkyStatus(15);
         int port = 8081;
         int request = 0;
         Socket socket = null;
