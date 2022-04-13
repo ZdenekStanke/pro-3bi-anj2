@@ -40,7 +40,7 @@ import java.util.LinkedList;
 //org.openjfx:javafx-archetype-fxml:0.0.5
 //add --module-path "Y:\stemberk\verejne_zaci\javafx-sdk-17.0.1\lib" --add-modules javafx.controls,javafx.fxml
 public class PiskorkyFX extends Application {
-    private final String VERSION = "1.4";
+    private final String VERSION = "1.5";
     private final int MAX_PLAYER_LENGHT = 8;
     private final int MIN_PLAYER_LENGHT = 3;
     private final String TITULEK = "Piškorky" + this.VERSION;
@@ -229,6 +229,7 @@ public class PiskorkyFX extends Application {
     }
 
     public void tlacitkoStisknuto(ActionEvent actionEvent) {
+        this.tl.stop();
         //aktuální souřadnice tlačítka
         int i = 0, j = 0;
         Button stisknuteTlacitko = ((Button) actionEvent.getSource());
@@ -239,24 +240,21 @@ public class PiskorkyFX extends Application {
         //this.ps.herniPlochaHracu[i][j] = this.ps.aktivniHrac;
         //stisknuteTlacitko.getProperties().put("player",Integer.valueOf(this.ps.aktivniHrac));
         this.ps.herniTlacitka[i][j].put("player", this.ps.aktivniHrac);
-
-
-        System.out.println();
-
-
-
-        System.out.println("Vypis");
-        //vypis
-        for (i = 0; i < this.ps.rozmerHraciPlochy; i++) {
-            for (j = 0; j < this.ps.rozmerHraciPlochy; j++) {
-                //System.out.format(" %02d ",this.ps.herniPlochaHracu[i][j]);
-                int player = (int) this.ps.herniTlacitka[i][j].get("player");
-                System.out.format("%02d ", player);
-            }
-            System.out.println();
-        }
+//        System.out.println();
+//        System.out.println("Vypis");
+//        //vypis
+//        for (i = 0; i < this.ps.rozmerHraciPlochy; i++) {
+//            for (j = 0; j < this.ps.rozmerHraciPlochy; j++) {
+//                //System.out.format(" %02d ",this.ps.herniPlochaHracu[i][j]);
+//                int player = (int) this.ps.herniTlacitka[i][j].get("player");
+//                System.out.format("%02d ", player);
+//            }
+//            System.out.println();
+//        }
         this.refreshPiskvorkyStatus();
         this.sputPiskvorkyStatusToServer();
+        this.tl.play();
+
     }
 
 
