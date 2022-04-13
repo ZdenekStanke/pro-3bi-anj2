@@ -40,8 +40,9 @@ import java.util.LinkedList;
 //org.openjfx:javafx-archetype-fxml:0.0.5
 //add --module-path "Y:\stemberk\verejne_zaci\javafx-sdk-17.0.1\lib" --add-modules javafx.controls,javafx.fxml
 public class PiskorkyFX extends Application {
-    private final String VERSION = "1.0";
+    private final String VERSION = "1.1";
     private final int MAX_PLAYER_LENGHT = 8;
+    private final int MIN_PLAYER_LENGHT = 3;
     private final String TITULEK = "Piškorky" + this.VERSION;
     private PiskorkyStatus ps;
     private Button[][] herniTlacitka;
@@ -211,7 +212,7 @@ public class PiskorkyFX extends Application {
     private void handle(KeyEvent e) {
         if(e.getCode() == KeyCode.ENTER){
             this.playerName = this.playerNameTextField.getText().trim();
-            if(this.playerName.length() > MAX_PLAYER_LENGHT){
+            if(this.playerName.length() > MAX_PLAYER_LENGHT || this.playerName.length() < MIN_PLAYER_LENGHT){
                 e.consume();
                 return;
             }
