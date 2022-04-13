@@ -237,48 +237,7 @@ public class PiskorkyFX extends Application {
 
 
         System.out.println();
-        int N = 4;
-        System.out.format("verticalWin:%b, horizontalWin:%b, diagonalwin:%b, isReverseDiagonalWin:%b%n",
-                this.isVerticalWin(i, j, N),
-                this.isHorizontalWin(i, j, N),
-                this.isDiagonalWin(i, j, N),
-                this.isReverseDiagonalWin(i, j, N));
-        int y = i;
-        int x = j;
-        //pozor, potřeba použít operátor úplného vyhodnocení
-        while (--y > 0 & --x > 0) ;
-        //System.out.format("x:%d, y:%d%n", x,y);
-        for (; y < this.ps.rozmerHraciPlochy && x < this.ps.rozmerHraciPlochy; y++, x++) {
-            if (this.isReverseDiagonalWin(y, x, N)) {
-                System.out.println("ReverseDiagonal");
-                break;
-            }
-        }
-        y = i;
-        x = j;
-        if (y != this.ps.rozmerHraciPlochy) {
-            while (++y < this.ps.rozmerHraciPlochy & --x > 0) ;
-        }
-        System.out.format("x:%d, y:%d%n", x, y);
-        for (; y > 0 && x < this.ps.rozmerHraciPlochy; y--, x++) {
-            if (this.isDiagonalWin(y, x, N)) {
-                System.out.println("Diagonal");
-                break;
-            }
-        }
-        lab_for1:
-        for (int radek1 = 0; radek1 < this.ps.rozmerHraciPlochy; radek1++) {
-            for (int sloupec1 = 0; sloupec1 < this.ps.rozmerHraciPlochy; sloupec1++) {
-                if (this.isVerticalWin(radek1, sloupec1, N) || this.isHorizontalWin(radek1, sloupec1, N) ||
-                        this.isDiagonalWin(radek1, sloupec1, N) || this.isReverseDiagonalWin(radek1, sloupec1, N))  {
 
-                    System.out.println("Win");
-                    this.ps.isEnded = true;
-                    this.sputPiskvorkyStatusToServer();
-                    break lab_for1;
-                }
-            }
-        }
         if(!this.ps.isEnded){
             //přepnutí hráče
             if (++this.ps.aktivniHrac >= this.ps.hraci.size()) {
@@ -301,76 +260,5 @@ public class PiskorkyFX extends Application {
         this.sputPiskvorkyStatusToServer();
     }
 
-    private boolean isVerticalWin(int radek, int sloupec, int n) {
-        int aktualniHrac = (int) this.ps.herniTlacitka[radek][sloupec].get("player");
-        if (aktualniHrac < 0) {
-            return false;
-        }
-        for (int i = radek; i < radek + n; i++) {
-            if (this.ps.rozmerHraciPlochy < i) {
-                return false;
-            }
-            if (aktualniHrac != (int) this.ps.herniTlacitka[i][sloupec].get("player")) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean isHorizontalWin(int radek, int sloupec, int n) {
-        int aktualniHrac = (int) this.ps.herniTlacitka[radek][sloupec].get("player");
-        if (aktualniHrac < 0) {
-            return false;
-        }
-        for (int j = sloupec; j < sloupec + n; j++) {
-            if (this.ps.rozmerHraciPlochy < j) {
-                return false;
-            }
-            if (aktualniHrac != (int) this.ps.herniTlacitka[radek][j].get("player")) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean isDiagonalWin(int radek, int sloupec, int n) {
-        int aktualniHrac = (int) this.ps.herniTlacitka[radek][sloupec].get("player");
-        if (aktualniHrac < 0) {
-            return false;
-        }
-        int j = sloupec;
-        for (int i = radek; i > radek - n; i--, j++) {
-            if (i <= 0) {
-                return false;
-            }
-            if (j > this.ps.rozmerHraciPlochy) {
-                return false;
-            }
-            if (aktualniHrac != (int) this.ps.herniTlacitka[i][j].get("player")) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean isReverseDiagonalWin(int radek, int sloupec, int n) {
-        int aktualniHrac = (int) this.ps.herniTlacitka[radek][sloupec].get("player");
-        if (aktualniHrac < 0) {
-            return false;
-        }
-        int j = sloupec;
-        for (int i = radek; i < radek + n; i++, j++) {
-            if (i > this.ps.rozmerHraciPlochy) {
-                return false;
-            }
-            if (j > this.ps.rozmerHraciPlochy) {
-                return false;
-            }
-            if (aktualniHrac != (int) this.ps.herniTlacitka[i][j].get("player")) {
-                return false;
-            }
-        }
-        return true;
-    }
 
 }
