@@ -40,7 +40,7 @@ import java.util.LinkedList;
 //org.openjfx:javafx-archetype-fxml:0.0.5
 //add --module-path "Y:\stemberk\verejne_zaci\javafx-sdk-17.0.1\lib" --add-modules javafx.controls,javafx.fxml
 public class PiskorkyFX extends Application {
-    private final String VERSION = "1.1";
+    private final String VERSION = "1.2";
     private final int MAX_PLAYER_LENGHT = 8;
     private final int MIN_PLAYER_LENGHT = 3;
     private final String TITULEK = "Piškorky" + this.VERSION;
@@ -237,7 +237,7 @@ public class PiskorkyFX extends Application {
 
 
         System.out.println();
-        int N = 3;
+        int N = 4;
         System.out.format("verticalWin:%b, horizontalWin:%b, diagonalwin:%b, isReverseDiagonalWin:%b%n",
                 this.isVerticalWin(i, j, N),
                 this.isHorizontalWin(i, j, N),
