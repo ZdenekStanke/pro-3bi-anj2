@@ -12,7 +12,77 @@ public class ServerThread extends Thread {
     public ServerThread(Socket clientSocket) {
         this.socket = clientSocket;
     }
+    private boolean isVerticalWin(int radek, int sloupec, int n) {
+        int aktualniHrac = (int) PiskorkyServer.ps.herniTlacitka[radek][sloupec].get("player");
+        if (aktualniHrac < 0) {
+            return false;
+        }
+        for (int i = radek; i < radek + n; i++) {
+            if (PiskorkyServer.ps.rozmerHraciPlochy < i) {
+                return false;
+            }
+            if (aktualniHrac != (int) PiskorkyServer.ps.herniTlacitka[i][sloupec].get("player")) {
+                return false;
+            }
+        }
+        return true;
+    }
 
+    private boolean isHorizontalWin(int radek, int sloupec, int n) {
+        int aktualniHrac = (int) PiskorkyServer.ps.herniTlacitka[radek][sloupec].get("player");
+        if (aktualniHrac < 0) {
+            return false;
+        }
+        for (int j = sloupec; j < sloupec + n; j++) {
+            if (PiskorkyServer.ps.rozmerHraciPlochy < j) {
+                return false;
+            }
+            if (aktualniHrac != (int) PiskorkyServer.ps.herniTlacitka[radek][j].get("player")) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isDiagonalWin(int radek, int sloupec, int n) {
+        int aktualniHrac = (int) PiskorkyServer.ps.herniTlacitka[radek][sloupec].get("player");
+        if (aktualniHrac < 0) {
+            return false;
+        }
+        int j = sloupec;
+        for (int i = radek; i > radek - n; i--, j++) {
+            if (i <= 0) {
+                return false;
+            }
+            if (j > PiskorkyServer.ps.rozmerHraciPlochy) {
+                return false;
+            }
+            if (aktualniHrac != (int) PiskorkyServer.ps.herniTlacitka[i][j].get("player")) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isReverseDiagonalWin(int radek, int sloupec, int n) {
+        int aktualniHrac = (int) PiskorkyServer.ps.herniTlacitka[radek][sloupec].get("player");
+        if (aktualniHrac < 0) {
+            return false;
+        }
+        int j = sloupec;
+        for (int i = radek; i < radek + n; i++, j++) {
+            if (i > PiskorkyServer.ps.rozmerHraciPlochy) {
+                return false;
+            }
+            if (j > PiskorkyServer.ps.rozmerHraciPlochy) {
+                return false;
+            }
+            if (aktualniHrac != (int) PiskorkyServer.ps.herniTlacitka[i][j].get("player")) {
+                return false;
+            }
+        }
+        return true;
+    }
     @Override
     public void run() {
         InputStream inp = null;
@@ -59,6 +129,18 @@ public class ServerThread extends Thread {
                     synchronized (PiskorkyServer.ps){
                         if(!PiskorkyServer.ps.isEnded) {
                             PiskorkyServer.ps = ps;
+                        }
+                    }
+                    lab_for1:
+                    for (int radek1 = 0; radek1 < PiskorkyServer.ps.rozmerHraciPlochy; radek1++) {
+                        for (int sloupec1 = 0; sloupec1 < PiskorkyServer.ps.rozmerHraciPlochy; sloupec1++) {
+                            if (this.isVerticalWin(radek1, sloupec1, PiskorkyServer.ps.nViteznych) || this.isHorizontalWin(radek1, sloupec1, PiskorkyServer.ps.nViteznych) ||
+                                    this.isDiagonalWin(radek1, sloupec1, PiskorkyServer.ps.nViteznych) || this.isReverseDiagonalWin(radek1, sloupec1, PiskorkyServer.ps.nViteznych))  {
+
+                                System.out.println("Win");
+                                PiskorkyServer.ps.isEnded = true;
+                                break lab_for1;
+                            }
                         }
                     }
                     System.out.println(PiskorkyServer.ps.getHraci());
