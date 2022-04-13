@@ -143,6 +143,13 @@ public class ServerThread extends Thread {
                             }
                         }
                     }
+                    if(!PiskorkyServer.ps.isEnded){
+                        //přepnutí hráče
+                        if (++PiskorkyServer.ps.aktivniHrac >= PiskorkyServer.ps.hraci.size()) {
+                            PiskorkyServer.ps.aktivniHrac = 0;
+                        }
+                        //stisknuteTlacitko.getProperties().put("player", this.ps.aktivniHrac);
+                    }
                     System.out.println(PiskorkyServer.ps.getHraci());
                 } catch (ClassNotFoundException | IOException e) {
                     e.printStackTrace();
