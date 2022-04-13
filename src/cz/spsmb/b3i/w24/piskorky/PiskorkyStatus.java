@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PiskorkyStatus implements Serializable {
+    public final String VERSION = "1.0";
     int rozmerHraciPlochy;
     int nTah = 1;
     //int[][] herniPlochaHracu;
@@ -13,6 +14,7 @@ public class PiskorkyStatus implements Serializable {
     //aktivni Hráč se zde automaticky inicializuje na 0 (LOJZA), netřeba inicializovat
     int aktivniHrac;
     boolean isStarted;
+    boolean isEnded;
 
     public PiskorkyStatus(int rozmerHraciPlochy) {
         this.rozmerHraciPlochy = rozmerHraciPlochy;

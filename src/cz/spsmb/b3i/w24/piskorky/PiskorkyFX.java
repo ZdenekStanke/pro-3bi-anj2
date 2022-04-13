@@ -22,12 +22,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Arrays;
@@ -38,10 +41,13 @@ import java.util.LinkedList;
 //add --module-path "Y:\stemberk\verejne_zaci\javafx-sdk-17.0.1\lib" --add-modules javafx.controls,javafx.fxml
 public class PiskorkyFX extends Application {
     private final String VERSION = "1.0";
+    private final int MAX_PLAYER_LENGHT = 8;
     private final String TITULEK = "Piškorky" + this.VERSION;
     private PiskorkyStatus ps;
     private Button[][] herniTlacitka;
     private String hostname = "192.168.9.43";
+    //private String hostname = "192.168.31.162";
+    //private String hostname = "localhost";
     private int port = 8081;
     private Timeline tl;
     private Stage playerNameStage;
@@ -50,6 +56,17 @@ public class PiskorkyFX extends Application {
 
     public PiskorkyFX() {
         this.setPiskvorkyStatusFromServer();
+        if (!this.ps.VERSION.equals(this.VERSION)){
+            Stage kick = new Stage();
+            Label lkick = new Label("Spatna verze!");
+            HBox hkick = new HBox(lkick);
+            Scene skick = new Scene(hkick);
+            kick.setScene(skick);
+            kick.showAndWait();
+            Platform.exit();
+
+        }
+
         this.playerNameStage = new Stage();
         Label playerNameLabel = new Label("jmeno hráče: ");
         this.playerNameTextField = new TextField();
@@ -58,7 +75,7 @@ public class PiskorkyFX extends Application {
         Scene playerName = new Scene(playerNameRoot);
         this.playerNameStage.setScene(playerName);
         this.playerNameStage.showAndWait();
-        this.tl = new Timeline(new KeyFrame(Duration.millis(3000), this::animationHandler));
+        this.tl = new Timeline(new KeyFrame(Duration.millis(1000), this::animationHandler));
         tl.setCycleCount(Timeline.INDEFINITE);
         tl.play();
     }
@@ -75,19 +92,12 @@ public class PiskorkyFX extends Application {
     private HBox panelKdoHraje = new HBox(startBtn,labelKdoTahne, labelKdoTahne2,labelSeznamHracu);
 
     public void sputPiskvorkyStatusToServer(){
-        try (var socket = new Socket(this.hostname, this.port)) {
-            try (var writer = socket.getOutputStream()) {
-                writer.write(30);
-            }
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try (var socket = new Socket(this.hostname, this.port)) {
-            try (var writer = new ObjectOutputStream(socket.getOutputStream())) {
-               writer.writeObject(this.ps);
-            }
+        try {
+            Socket socket = new Socket(this.hostname, this.port);
+            OutputStream writer = socket.getOutputStream();
+            writer.write(30);
+            ObjectOutputStream oos = new ObjectOutputStream(writer);
+            oos.writeObject(this.ps);
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -95,31 +105,26 @@ public class PiskorkyFX extends Application {
         }
     }
     public void setPiskvorkyStatusFromServer() {
-        try (var socket = new Socket(this.hostname, this.port)) {
-            try (var writer = socket.getOutputStream()) {
-                writer.write(20);
-            }
+        try {
+            Socket socket = new Socket(this.hostname, this.port);
+            OutputStream writer = socket.getOutputStream();
+            writer.write(20);
+            ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+            this.ps = (PiskorkyStatus) ois.readObject();
         } catch (UnknownHostException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try (var socket = new Socket(this.hostname, this.port)) {
-
-
-            try (var reader = new ObjectInputStream(socket.getInputStream())) {
-                this.ps = (PiskorkyStatus) reader.readObject();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
     public void refreshPiskvorkyStatus() {
+        if(this.ps.isEnded) {
+            this.winScreen(this.ps.hraci.get(this.ps.aktivniHrac).toString());
+        } else if (this.ps.isStarted) {
+            this.startBtn.setText("Started...");
+            this.startBtn.setDisable(true);
+        }
         System.out.println(this.ps.hraci.get(ps.aktivniHrac) + " "+ this.playerName+"<");
         System.out.println(!this.ps.hraci.get(ps.aktivniHrac).equals(this.playerName));
         //aktualizace panelu kdo táhne
@@ -192,16 +197,25 @@ public class PiskorkyFX extends Application {
         Scene sc = new Scene(hb);
         Stage st = new Stage();
         st.setScene(sc);
-        st.showAndWait();
-        Platform.exit();
-
-
+        st.initModality(Modality.APPLICATION_MODAL);
+        st.onCloseRequestProperty().set(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                Platform.exit();
+            }
+        });
+        this.tl.stop();
+        st.show();
     }
 
     private void handle(KeyEvent e) {
         if(e.getCode() == KeyCode.ENTER){
-            this.playerName = this.playerNameTextField.getText();
-            System.out.println(this.playerName);
+            this.playerName = this.playerNameTextField.getText().trim();
+            if(this.playerName.length() > MAX_PLAYER_LENGHT){
+                e.consume();
+                return;
+            }
+            this.setPiskvorkyStatusFromServer();
             this.ps.pridatHrace(this.playerName);
             this.sputPiskvorkyStatusToServer();
             this.playerNameStage.close();
@@ -220,13 +234,9 @@ public class PiskorkyFX extends Application {
         //stisknuteTlacitko.getProperties().put("player",Integer.valueOf(this.ps.aktivniHrac));
         this.ps.herniTlacitka[i][j].put("player", this.ps.aktivniHrac);
 
-        //přepnutí hráče
-        if (++this.ps.aktivniHrac >= this.ps.hraci.size()) {
-            this.ps.aktivniHrac = 0;
-        }
-        stisknuteTlacitko.getProperties().put("player", this.ps.aktivniHrac);
+
         System.out.println();
-        int N = 5;
+        int N = 3;
         System.out.format("verticalWin:%b, horizontalWin:%b, diagonalwin:%b, isReverseDiagonalWin:%b%n",
                 this.isVerticalWin(i, j, N),
                 this.isHorizontalWin(i, j, N),
@@ -255,26 +265,25 @@ public class PiskorkyFX extends Application {
                 break;
             }
         }
+        lab_for1:
         for (int radek1 = 0; radek1 < this.ps.rozmerHraciPlochy; radek1++) {
             for (int sloupec1 = 0; sloupec1 < this.ps.rozmerHraciPlochy; sloupec1++) {
-                if (this.isVerticalWin(radek1, sloupec1, N)) {
-                    System.out.println("Win vertical");
-                    this.winScreen(this.playerName);
-                }
-                if (this.isHorizontalWin(radek1, sloupec1, N)) {
-                    System.out.println("Win horizontal");
-                    this.winScreen(this.playerName);
-                }
-                if (this.isDiagonalWin(radek1, sloupec1, N)) {
-                    System.out.println("Win diagonal");
-                    this.winScreen(this.playerName);
+                if (this.isVerticalWin(radek1, sloupec1, N) || this.isHorizontalWin(radek1, sloupec1, N) ||
+                        this.isDiagonalWin(radek1, sloupec1, N) || this.isReverseDiagonalWin(radek1, sloupec1, N))  {
 
-                }
-                if (this.isReverseDiagonalWin(radek1, sloupec1, N)) {
-                    System.out.println("Win reverseDiagonal");
-                    this.winScreen(this.playerName);
+                    System.out.println("Win");
+                    this.ps.isEnded = true;
+                    this.sputPiskvorkyStatusToServer();
+                    break lab_for1;
                 }
             }
+        }
+        if(!this.ps.isEnded){
+            //přepnutí hráče
+            if (++this.ps.aktivniHrac >= this.ps.hraci.size()) {
+                this.ps.aktivniHrac = 0;
+            }
+            //stisknuteTlacitko.getProperties().put("player", this.ps.aktivniHrac);
         }
 
         System.out.println("Vypis");
