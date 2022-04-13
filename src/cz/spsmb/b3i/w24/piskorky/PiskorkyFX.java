@@ -217,7 +217,10 @@ public class PiskorkyFX extends Application {
                 return;
             }
             this.setPiskvorkyStatusFromServer();
-            this.ps.pridatHrace(this.playerName);
+            if(this.ps.pridatHrace(this.playerName)){
+                e.consume();
+                return;
+            }
             this.sputPiskvorkyStatusToServer();
             this.playerNameStage.close();
         }
