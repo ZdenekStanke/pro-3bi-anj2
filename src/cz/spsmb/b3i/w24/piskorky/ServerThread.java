@@ -156,13 +156,7 @@ public class ServerThread extends Thread {
                             }
                         }
                     }
-                    if(!PiskorkyServer.ps.isEnded){
-                        //přepnutí hráče
-                        if (++PiskorkyServer.ps.aktivniHrac >= PiskorkyServer.ps.hraci.size()) {
-                            PiskorkyServer.ps.aktivniHrac = 0;
-                        }
-                        //stisknuteTlacitko.getProperties().put("player", this.ps.aktivniHrac);
-                    }
+                  PiskorkyServer.ps.prepnutiHrace();
                     System.out.println(PiskorkyServer.ps.getHraci());
                     //        //vypis
                     for (int i = 0; i < PiskorkyServer.ps.rozmerHraciPlochy; i++) {

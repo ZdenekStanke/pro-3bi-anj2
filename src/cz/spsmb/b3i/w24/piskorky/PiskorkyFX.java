@@ -176,7 +176,7 @@ public class PiskorkyFX extends Application {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
                     if(PiskorkyFX.this.ps.getHraci().size() >= 2){
-                        PiskorkyFX.this.ps.isStarted = true;
+                        PiskorkyFX.this.ps.start();
                         PiskorkyFX.this.sputPiskvorkyStatusToServer();
                     }
                 }
