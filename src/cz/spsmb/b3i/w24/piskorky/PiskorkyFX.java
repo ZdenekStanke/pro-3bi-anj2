@@ -40,7 +40,7 @@ import java.util.LinkedList;
 //org.openjfx:javafx-archetype-fxml:0.0.5
 //add --module-path "Y:\stemberk\verejne_zaci\javafx-sdk-17.0.1\lib" --add-modules javafx.controls,javafx.fxml
 public class PiskorkyFX extends Application {
-    private final String VERSION = "1.5";
+    private final String VERSION = "1.10";
     private final int MAX_PLAYER_LENGHT = 8;
     private final int MIN_PLAYER_LENGHT = 3;
     private final String TITULEK = "Piškorky" + this.VERSION;
@@ -141,10 +141,10 @@ public class PiskorkyFX extends Application {
                     b.setOnAction(null);
                     b.setText(this.ps.hraci.get(player).toString().substring(0, 1));
                 }
-
                 b.setMouseTransparent(!(this.ps.hraci.get(ps.aktivniHrac).equals(this.playerName) && this.ps.isStarted));
             }
         }
+        System.out.println("Transparency SET");
     }
 
     @Override
@@ -240,21 +240,22 @@ public class PiskorkyFX extends Application {
         //this.ps.herniPlochaHracu[i][j] = this.ps.aktivniHrac;
         //stisknuteTlacitko.getProperties().put("player",Integer.valueOf(this.ps.aktivniHrac));
         this.ps.herniTlacitka[i][j].put("player", this.ps.aktivniHrac);
-//        System.out.println();
-//        System.out.println("Vypis");
+        System.out.println();
+        System.out.println("Vypis");
 //        //vypis
-//        for (i = 0; i < this.ps.rozmerHraciPlochy; i++) {
-//            for (j = 0; j < this.ps.rozmerHraciPlochy; j++) {
-//                //System.out.format(" %02d ",this.ps.herniPlochaHracu[i][j]);
-//                int player = (int) this.ps.herniTlacitka[i][j].get("player");
-//                System.out.format("%02d ", player);
-//            }
-//            System.out.println();
-//        }
+        for (i = 0; i < this.ps.rozmerHraciPlochy; i++) {
+            for (j = 0; j < this.ps.rozmerHraciPlochy; j++) {
+                //System.out.format(" %02d ",this.ps.herniPlochaHracu[i][j]);
+                int player = (int) this.ps.herniTlacitka[i][j].get("player");
+                System.out.format("%02d ", player);
+            }
+            System.out.println();
+        }
         this.refreshPiskvorkyStatus();
         this.sputPiskvorkyStatusToServer();
+        //zabránění stisku více políček mezi stisknutím prvního a refreshem pomocí timeru
+        this.setPiskvorkyStatusFromServer();
         this.tl.play();
-
     }
 
 
