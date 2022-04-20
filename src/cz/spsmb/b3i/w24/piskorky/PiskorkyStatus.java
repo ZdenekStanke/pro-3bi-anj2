@@ -31,6 +31,14 @@ public class PiskorkyStatus implements Serializable {
         this.inicializaceTlacitek();
     }
 
+    public void clean(){
+        this.inicializaceTlacitek();
+        this.hraci.clear();
+        this.aktivniHrac = 0;
+        this.isStarted = false;
+        this.isEnded = false;
+    }
+
     public boolean pridatHrace(String jmeno){
         for (String hrac : this.hraci) {
             if(hrac.charAt(0) == jmeno.charAt(0)){
