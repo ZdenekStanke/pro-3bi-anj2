@@ -40,7 +40,7 @@ import java.util.LinkedList;
 //org.openjfx:javafx-archetype-fxml:0.0.5
 //add --module-path "Y:\stemberk\verejne_zaci\javafx-sdk-17.0.1\lib" --add-modules javafx.controls,javafx.fxml
 public class PiskorkyFX extends Application {
-    private final String VERSION = "1.11";
+    private final String VERSION = "1.12";
     private final int MAX_PLAYER_LENGHT = 8;
     private final int MIN_PLAYER_LENGHT = 3;
     private final String TITULEK = "Piškorky" + this.VERSION;
@@ -251,17 +251,18 @@ public class PiskorkyFX extends Application {
             }
             System.out.println();
         }
-        this.refreshPiskvorkyStatus();
+
         this.sputPiskvorkyStatusToServer();
         //zabránění stisku více políček mezi stisknutím prvního a refreshem pomocí timeru
-        if(!this.ps.isEnded){
-            //přepnutí hráče
-            if (++this.ps.aktivniHrac >= this.ps.hraci.size()) {
-                this.ps.aktivniHrac = 0;
-            }
-            //stisknuteTlacitko.getProperties().put("player", this.ps.aktivniHrac);
-        }
-        //this.ps.aktivniHrac = -1;
+//        if(!this.ps.isEnded){
+//            //přepnutí hráče
+//            if (++this.ps.aktivniHrac >= this.ps.hraci.size()) {
+//                this.ps.aktivniHrac = 0;
+//            }
+//            //stisknuteTlacitko.getProperties().put("player", this.ps.aktivniHrac);
+//        }
+        this.ps.aktivniHrac = -1;
+        this.refreshPiskvorkyStatus();
         this.setPiskvorkyStatusFromServer();
         this.tl.play();
     }
