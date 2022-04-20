@@ -1,7 +1,5 @@
 package cz.spsmb.b3i.w24.piskorky;
 
-import com.mysql.jdbc.SocketMetadata;
-
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
