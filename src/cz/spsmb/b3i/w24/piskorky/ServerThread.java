@@ -4,9 +4,11 @@ import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
 import java.time.LocalDateTime;
+import java.util.Timer;
 
 public class ServerThread extends Thread {
     protected Socket socket;
+    //java.util.Timer timer = new Timer();
     int request = 0;
 
     public ServerThread(Socket clientSocket) {
@@ -139,6 +141,7 @@ public class ServerThread extends Thread {
 
                                 System.out.println("Win");
                                 PiskorkyServer.ps.isEnded = true;
+
                                 break lab_for1;
                             }
                         }
@@ -151,6 +154,15 @@ public class ServerThread extends Thread {
                         //stisknuteTlacitko.getProperties().put("player", this.ps.aktivniHrac);
                     }
                     System.out.println(PiskorkyServer.ps.getHraci());
+                    //        //vypis
+                    for (int i = 0; i < PiskorkyServer.ps.rozmerHraciPlochy; i++) {
+                        for (int j = 0; j < PiskorkyServer.ps.rozmerHraciPlochy; j++) {
+                            //System.out.format(" %02d ",this.ps.herniPlochaHracu[i][j]);
+                            int player = (int) PiskorkyServer.ps.herniTlacitka[i][j].get("player");
+                            System.out.format("%02d ", player);
+                        }
+                        System.out.println();
+                    }
                 } catch (ClassNotFoundException | IOException e) {
                     e.printStackTrace();
                     System.out.println("Tadik " + e.getMessage());
