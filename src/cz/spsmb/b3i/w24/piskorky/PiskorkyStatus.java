@@ -3,7 +3,7 @@ import java.io.Serializable;
 import java.util.*;
 
 public class PiskorkyStatus implements Serializable {
-    private class Helper extends TimerTask {
+    private class Helper extends TimerTask implements Serializable {
         @Override
         public void run() {
             PiskorkyStatus.this.hraci.remove(PiskorkyStatus.this.aktivniHrac);
