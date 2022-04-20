@@ -254,14 +254,14 @@ public class PiskorkyFX extends Application {
         this.refreshPiskvorkyStatus();
         this.sputPiskvorkyStatusToServer();
         //zabránění stisku více políček mezi stisknutím prvního a refreshem pomocí timeru
-//        if(!this.ps.isEnded){
-//            //přepnutí hráče
-//            if (++this.ps.aktivniHrac >= this.ps.hraci.size()) {
-//                this.ps.aktivniHrac = 0;
-//            }
-//            //stisknuteTlacitko.getProperties().put("player", this.ps.aktivniHrac);
-//        }
-        this.ps.aktivniHrac = -1;
+        if(!this.ps.isEnded){
+            //přepnutí hráče
+            if (++this.ps.aktivniHrac >= this.ps.hraci.size()) {
+                this.ps.aktivniHrac = 0;
+            }
+            //stisknuteTlacitko.getProperties().put("player", this.ps.aktivniHrac);
+        }
+        //this.ps.aktivniHrac = -1;
         this.setPiskvorkyStatusFromServer();
         this.tl.play();
     }
