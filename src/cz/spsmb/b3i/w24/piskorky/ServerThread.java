@@ -1,5 +1,7 @@
 package cz.spsmb.b3i.w24.piskorky;
 
+import com.mysql.jdbc.SocketMetadata;
+
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
@@ -8,6 +10,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class ServerThread extends Thread {
+    private class Helper extends TimerTask implements Serializable {
+        @Override
+        public void run() {
+            PiskorkyServer.ps.hraci.remove(PiskorkyServer.ps.aktivniHrac);
+        }
+    }
+
     protected Socket socket;
     java.util.Timer timer = new Timer();
     int request = 0;
@@ -157,6 +166,10 @@ public class ServerThread extends Thread {
                         }
                     }
                   PiskorkyServer.ps.prepnutiHrace();
+                    if (ps.isStarted ) {
+                        this.timer.cancel();
+                        this.timer.schedule(new Helper(), PiskorkyServer.ps.TIMEOUT);
+                    }
                     System.out.println(PiskorkyServer.ps.getHraci());
                     //        //vypis
                     for (int i = 0; i < PiskorkyServer.ps.rozmerHraciPlochy; i++) {
@@ -167,6 +180,7 @@ public class ServerThread extends Thread {
                         }
                         System.out.println();
                     }
+
                 } catch (ClassNotFoundException | IOException e) {
                     e.printStackTrace();
                     System.out.println("Tadik " + e.getMessage());

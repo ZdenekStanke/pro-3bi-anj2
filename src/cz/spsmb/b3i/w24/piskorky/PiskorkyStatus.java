@@ -3,12 +3,7 @@ import java.io.Serializable;
 import java.util.*;
 
 public class PiskorkyStatus implements Serializable {
-    private class Helper extends TimerTask implements Serializable {
-        @Override
-        public void run() {
-            PiskorkyStatus.this.hraci.remove(PiskorkyStatus.this.aktivniHrac);
-        }
-    }
+
     public final String VERSION = "1.12";
     public final int nViteznych = 4;
     public final int TIMEOUT = 10000;
@@ -21,8 +16,8 @@ public class PiskorkyStatus implements Serializable {
     int aktivniHrac;
      boolean isStarted;
     boolean isEnded;
-    java.util.Timer timer = new Timer();
-    Helper helper = new Helper();
+
+
 
     public PiskorkyStatus(int rozmerHraciPlochy) {
         this.rozmerHraciPlochy = rozmerHraciPlochy;
@@ -57,7 +52,7 @@ public class PiskorkyStatus implements Serializable {
     }
      public void start(){
         this.isStarted = true;
-        this.timer.schedule(helper, PiskorkyStatus.this.TIMEOUT);
+
 
      }
      public void prepnutiHrace(){
@@ -68,9 +63,9 @@ public class PiskorkyStatus implements Serializable {
              }
              //stisknuteTlacitko.getProperties().put("player", this.ps.aktivniHrac);
          }
-         this.timer.cancel();
 
-         this.timer.schedule(helper, this.TIMEOUT);
+
+
      }
 
 
