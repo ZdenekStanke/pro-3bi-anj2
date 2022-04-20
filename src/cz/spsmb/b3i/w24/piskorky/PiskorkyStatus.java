@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PiskorkyStatus implements Serializable {
-    public final String VERSION = "1.10";
+    public final String VERSION = "1.11";
     public final int nViteznych = 4;
     int rozmerHraciPlochy;
     int nTah = 1;
