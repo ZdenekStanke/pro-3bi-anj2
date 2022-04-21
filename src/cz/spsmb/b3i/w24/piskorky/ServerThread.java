@@ -105,85 +105,87 @@ public class ServerThread extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Running,request:"+this.request);
-        switch (request) {
-            case 0:
-                break;
-            // get local date
-            case 10:
-                try (var pw = new PrintWriter(socket.getOutputStream(), true)) {
-                    pw.println(LocalDateTime.now());
-                    request = 0;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                break;
-            // get status
-            case 20:
-                try (var pw = new ObjectOutputStream(socket.getOutputStream())) {
-                    synchronized (PiskorkyServer.ps){
-                        pw.writeObject(PiskorkyServer.ps);
+        System.out.println("Running,request:" + this.request);
+        while (true) {
+            switch (request) {
+                case 0:
+                    break;
+                // get local date
+                case 10:
+                    try (var pw = new PrintWriter(socket.getOutputStream(), true)) {
+                        pw.println(LocalDateTime.now());
+                        request = 0;
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                    request = 0;
-                } catch (IOException e) {
-                    System.out.println("messsage:" + e.getMessage());
-                    e.printStackTrace();
-                }
-                System.out.println(PiskorkyServer.ps.getHraci());
-                break;
-            // set status
-            case 30:
-                try  {
-                    inp = this.socket.getInputStream();
-                    ois = new ObjectInputStream(inp);
-                    PiskorkyStatus ps  = (PiskorkyStatus) ois.readObject();
-                    synchronized (PiskorkyServer.ps){
-                        if(!PiskorkyServer.ps.isEnded) {
-                            PiskorkyServer.ps = ps;
+                    break;
+                // get status
+                case 20:
+                    try (var pw = new ObjectOutputStream(socket.getOutputStream())) {
+                        synchronized (PiskorkyServer.ps) {
+                            pw.writeObject(PiskorkyServer.ps);
                         }
-                    }
-                    lab_for1:
-                    for (int radek1 = 0; radek1 < PiskorkyServer.ps.rozmerHraciPlochy; radek1++) {
-                        for (int sloupec1 = 0; sloupec1 < PiskorkyServer.ps.rozmerHraciPlochy; sloupec1++) {
-                            if (this.isVerticalWin(radek1, sloupec1, PiskorkyServer.ps.nViteznych) || this.isHorizontalWin(radek1, sloupec1, PiskorkyServer.ps.nViteznych) ||
-                                    this.isDiagonalWin(radek1, sloupec1, PiskorkyServer.ps.nViteznych) || this.isReverseDiagonalWin(radek1, sloupec1, PiskorkyServer.ps.nViteznych))  {
-
-                                System.out.println("Win");
-                                PiskorkyServer.ps.isEnded = true;
-//reset piskvorek po skonceni 3s
-                                timer.schedule(new TimerTask() {
-                                                   @Override
-                                                   public void run() {
-                                                       PiskorkyServer.ps.clean();
-                                                   }
-                                               },3000
-                                );
-
-                                break lab_for1;
-                            }
-                        }
-                    }
-                  PiskorkyServer.ps.prepnutiHrace();
-                    if (ps.isStarted ) {
-                        this.timer.cancel();
-                        this.timer.schedule(new Helper(), PiskorkyServer.ps.TIMEOUT);
+                        request = 0;
+                    } catch (IOException e) {
+                        System.out.println("messsage:" + e.getMessage());
+                        e.printStackTrace();
                     }
                     System.out.println(PiskorkyServer.ps.getHraci());
-                    //        //vypis
-                    for (int i = 0; i < PiskorkyServer.ps.rozmerHraciPlochy; i++) {
-                        for (int j = 0; j < PiskorkyServer.ps.rozmerHraciPlochy; j++) {
-                            //System.out.format(" %02d ",this.ps.herniPlochaHracu[i][j]);
-                            int player = (int) PiskorkyServer.ps.herniTlacitka[i][j].get("player");
-                            System.out.format("%02d ", player);
+                    break;
+                // set status
+                case 30:
+                    try {
+                        inp = this.socket.getInputStream();
+                        ois = new ObjectInputStream(inp);
+                        PiskorkyStatus ps = (PiskorkyStatus) ois.readObject();
+                        synchronized (PiskorkyServer.ps) {
+                            if (!PiskorkyServer.ps.isEnded) {
+                                PiskorkyServer.ps = ps;
+                            }
                         }
-                        System.out.println();
-                    }
+                        lab_for1:
+                        for (int radek1 = 0; radek1 < PiskorkyServer.ps.rozmerHraciPlochy; radek1++) {
+                            for (int sloupec1 = 0; sloupec1 < PiskorkyServer.ps.rozmerHraciPlochy; sloupec1++) {
+                                if (this.isVerticalWin(radek1, sloupec1, PiskorkyServer.ps.nViteznych) || this.isHorizontalWin(radek1, sloupec1, PiskorkyServer.ps.nViteznych) ||
+                                        this.isDiagonalWin(radek1, sloupec1, PiskorkyServer.ps.nViteznych) || this.isReverseDiagonalWin(radek1, sloupec1, PiskorkyServer.ps.nViteznych)) {
 
-                } catch (ClassNotFoundException | IOException e) {
-                    e.printStackTrace();
-                    System.out.println("Tadik " + e.getMessage());
-                }
-                break;
+                                    System.out.println("Win");
+                                    PiskorkyServer.ps.isEnded = true;
+//reset piskvorek po skonceni 3s
+                                    timer.schedule(new TimerTask() {
+                                                       @Override
+                                                       public void run() {
+                                                           PiskorkyServer.ps.clean();
+                                                       }
+                                                   }, 3000
+                                    );
+
+                                    break lab_for1;
+                                }
+                            }
+                        }
+                        PiskorkyServer.ps.prepnutiHrace();
+                        if (ps.isStarted) {
+                            this.timer.cancel();
+                            this.timer.schedule(new Helper(), PiskorkyServer.ps.TIMEOUT);
+                        }
+                        System.out.println(PiskorkyServer.ps.getHraci());
+                        //        //vypis
+                        for (int i = 0; i < PiskorkyServer.ps.rozmerHraciPlochy; i++) {
+                            for (int j = 0; j < PiskorkyServer.ps.rozmerHraciPlochy; j++) {
+                                //System.out.format(" %02d ",this.ps.herniPlochaHracu[i][j]);
+                                int player = (int) PiskorkyServer.ps.herniTlacitka[i][j].get("player");
+                                System.out.format("%02d ", player);
+                            }
+                            System.out.println();
+                        }
+
+                    } catch (ClassNotFoundException | IOException e) {
+                        e.printStackTrace();
+                        System.out.println("Tadik " + e.getMessage());
+                    }
+                    break;
+            }
         }
     }
 }
