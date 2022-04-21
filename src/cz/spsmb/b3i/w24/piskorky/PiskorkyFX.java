@@ -96,7 +96,7 @@ public class PiskorkyFX extends Application {
 
     public void initSocket(){
         try {
-            Socket socket = new Socket(this.hostname, this.port);
+            this.socket = new Socket(this.hostname, this.port);
         } catch (IOException e) {
             e.printStackTrace();
         }
