@@ -55,8 +55,10 @@ public class PiskorkyFX extends Application {
     private Stage playerNameStage;
     private TextField playerNameTextField;
     private String playerName;
+    private Socket socket;
 
     public PiskorkyFX() {
+        this.initSocket();
         this.setPiskvorkyStatusFromServer();
         if (!this.ps.VERSION.equals(this.VERSION)){
             Stage kick = new Stage();
@@ -66,7 +68,6 @@ public class PiskorkyFX extends Application {
             kick.setScene(skick);
             kick.showAndWait();
             Platform.exit();
-
         }
 
         this.playerNameStage = new Stage();
@@ -93,9 +94,16 @@ public class PiskorkyFX extends Application {
     private Button startBtn = new Button("start");
     private HBox panelKdoHraje = new HBox(startBtn,labelKdoTahne, labelKdoTahne2,labelSeznamHracu);
 
-    public void sputPiskvorkyStatusToServer(){
+    public void initSocket(){
         try {
             Socket socket = new Socket(this.hostname, this.port);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sputPiskvorkyStatusToServer(){
+        try {
             OutputStream writer = socket.getOutputStream();
             writer.write(30);
             ObjectOutputStream oos = new ObjectOutputStream(writer);
@@ -108,7 +116,6 @@ public class PiskorkyFX extends Application {
     }
     public void setPiskvorkyStatusFromServer() {
         try {
-            Socket socket = new Socket(this.hostname, this.port);
             OutputStream writer = socket.getOutputStream();
             writer.write(20);
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());

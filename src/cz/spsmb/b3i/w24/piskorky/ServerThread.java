@@ -21,8 +21,13 @@ public class ServerThread extends Thread {
 
     public ServerThread(Socket clientSocket) {
         this.socket = clientSocket;
-
+        try {
+            this.socket.setKeepAlive(true);
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
     }
+
     private boolean isVerticalWin(int radek, int sloupec, int n) {
         int aktualniHrac = (int) PiskorkyServer.ps.herniTlacitka[radek][sloupec].get("player");
         if (aktualniHrac < 0) {
@@ -94,19 +99,30 @@ public class ServerThread extends Thread {
         }
         return true;
     }
+
     @Override
     public void run() {
         InputStream inp = null;
         ObjectInputStream ois = null;
-        try {
-            inp = this.socket.getInputStream();
-            request = inp.read();
-            System.out.println(request);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Running,request:" + this.request);
+        ObjectOutputStream oos = null;
         while (true) {
+            try {
+
+                inp = this.socket.getInputStream();
+                int attempts = 0;
+                while(inp.available() == 0 && attempts < 1000)
+                {
+                    attempts++;
+                    Thread.sleep(10);
+                }
+
+                request = inp.read();
+                System.out.println(request);
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Running,request:" + this.request);
+
             switch (request) {
                 case 0:
                     break;
@@ -121,9 +137,11 @@ public class ServerThread extends Thread {
                     break;
                 // get status
                 case 20:
-                    try (var pw = new ObjectOutputStream(socket.getOutputStream())) {
+
+                    try {
+                        oos = new ObjectOutputStream(socket.getOutputStream());
                         synchronized (PiskorkyServer.ps) {
-                            pw.writeObject(PiskorkyServer.ps);
+                            oos.writeObject(PiskorkyServer.ps);
                         }
                         request = 0;
                     } catch (IOException e) {
@@ -135,7 +153,7 @@ public class ServerThread extends Thread {
                 // set status
                 case 30:
                     try {
-                        inp = this.socket.getInputStream();
+                      //  inp = this.socket.getInputStream();
                         ois = new ObjectInputStream(inp);
                         PiskorkyStatus ps = (PiskorkyStatus) ois.readObject();
                         synchronized (PiskorkyServer.ps) {

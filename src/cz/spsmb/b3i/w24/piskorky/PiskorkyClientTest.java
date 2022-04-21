@@ -12,8 +12,10 @@ public class PiskorkyClientTest {
         //int port = 13;
         int port = 8081;
         int state = 20;
-        while (state < 100) {
-            try (var socket = new Socket(hostname, port)) {
+
+        try (var socket = new Socket(hostname, port)) {
+            while (state < 100) {
+                socket.getKeepAlive();
                 switch (state) {
                     case 0:
                         try (var writer = socket.getOutputStream()) {
