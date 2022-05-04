@@ -100,7 +100,9 @@ package cz.spsmb.b3i.w33.lambda;
 // Comparator<T>                boolean equals(T o)
 // Observer                     void update(Observable o, Object arg)
 
-import java.util.function.IntBinaryOperator;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.function.*;
 
 // Překladač definuje  lambda výraz jako instanci funkčního rozhraní,
 // jehož metoda má odpovídající parametry a vrací hodnotu odpovídajícího typu. Obecný zápis
@@ -116,6 +118,7 @@ import java.util.function.IntBinaryOperator;
 // parametr -> výraz
 public class AUvod {
     public static void main(String[] args) {
+        //Použití binárního operátoru
         IntBinaryOperator ibo;
         int result;
         ibo = (a, b) -> a + b;
@@ -124,5 +127,21 @@ public class AUvod {
         ibo = (a, b) -> a - b;
         result = ibo.applyAsInt(5,6);
         System.out.println(result);
+        //iterace seznamu pomocí třídy Consumer
+        ArrayList<String> als = new ArrayList<>();
+        als.add("ahoj"); als.add("cau"); als.add("nazdar");
+        als.forEach(s -> System.out.println(s));
+        //Supplier pro získání aktuálního času
+        Supplier<LocalDateTime> s = () -> LocalDateTime.now();
+        System.out.println(s.get());
+        //Funkce pro vrácení stringu s velkými písmeny
+        Function<String, String> capitalize = val -> val.toUpperCase();
+        System.out.println(capitalize.apply("sji"));
+        //Použití unárního operátoru
+        UnaryOperator<Integer> xor = a -> a ^ 1;
+        System.out.println(xor.apply(2));
+        //Použití predikátoru
+        Predicate<Integer> pr = a -> (a > 18);
+        System.out.println(pr.test(18));
     }
 }

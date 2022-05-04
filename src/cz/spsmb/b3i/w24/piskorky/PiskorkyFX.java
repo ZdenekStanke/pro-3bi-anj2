@@ -73,7 +73,7 @@ public class PiskorkyFX extends Application {
         this.playerNameStage = new Stage();
         Label playerNameLabel = new Label("jmeno hráče: ");
         this.playerNameTextField = new TextField();
-        playerNameTextField.setOnKeyPressed(e -> handle(e));
+        playerNameTextField.setOnKeyPressed(PiskorkyFX.this::handle);
         HBox playerNameRoot = new HBox(playerNameLabel,playerNameTextField);
         Scene playerName = new Scene(playerNameRoot);
         this.playerNameStage.setScene(playerName);
