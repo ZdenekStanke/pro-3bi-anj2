@@ -7,9 +7,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.time.LocalDateTime;
+import java.util.TimerTask;
+
 //add --module-path "Y:\stemberk\verejne_zaci\javafx-sdk-17.0.1\lib" --add-modules javafx.controls,javafx.fxml
 public class PiskorkyServer {
     public static PiskorkyStatus ps;
+
 
     public static void main(String[] args) throws IOException {
         PiskorkyServer.ps = new PiskorkyStatus(15);
