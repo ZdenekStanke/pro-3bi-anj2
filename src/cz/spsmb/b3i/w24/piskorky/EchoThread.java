@@ -3,8 +3,12 @@ package cz.spsmb.b3i.w24.piskorky;
 import java.io.*;
 import java.net.Socket;
 
+/**
+ *
+ */
 public class EchoThread extends Thread {
     protected Socket socket;
+
 
     public EchoThread(Socket clientSocket) {
         this.socket = clientSocket;
