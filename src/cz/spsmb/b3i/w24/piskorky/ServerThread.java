@@ -19,6 +19,9 @@ public class ServerThread extends Thread {
     java.util.Timer timer = new Timer();
     int request = 0;
 
+    /**
+     * @param clientSocket instance socketu získaného pomocí metody accept() instance třídy ServerSocket
+     */
     public ServerThread(Socket clientSocket) {
         this.socket = clientSocket;
         try {
