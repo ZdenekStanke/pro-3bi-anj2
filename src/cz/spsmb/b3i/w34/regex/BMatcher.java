@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 // \D               - cokoliv jiného, než číslice
 // \s               - bílý znak (cokoliv, co není vidět)
 // \b               - začátek slova (\bWORD), nebo konec slova (WORD\b)
-// \uxxxx           - nalezení unicode znaku, specifikovaného pomocí hexadecimálního čísla
+// \\uxxxx           - nalezení unicode znaku, specifikovaného pomocí hexadecimálního čísla
 
 // kvantifikátory - určují počet opakování
 // n+               - jedno nebo více n
