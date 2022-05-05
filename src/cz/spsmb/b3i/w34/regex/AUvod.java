@@ -5,6 +5,8 @@ import java.util.Arrays;
 public class AUvod {
     // S regulárními výrazy jsme se setkali v cz.spsmb.b3i.w07.excercise02.Strings_. Jejich účel je vybrat, či označit
 // část řetězce.
+    // tutoriál:
+    //https://www.logicbig.com/tutorials/core-java-tutorial/java-regular-expressions/java-regex-basic.html#regex-grouping
 
         public static void main(String[] args) {
             //Rozdělení řetězce na podřetězce (parsování) metoda .split()
