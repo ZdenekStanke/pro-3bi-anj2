@@ -16,8 +16,5 @@ public class CVyhledavaniObsahu {
                 //System.out.printf("Capture Group Number: %s, Captured Text: '%s'%n", i, mt.group(i));
             }
         }
-
-
-
     }
 }
