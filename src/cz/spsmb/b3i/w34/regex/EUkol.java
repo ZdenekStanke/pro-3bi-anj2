@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 
 public class EUkol {
     public static void main(String[] args) {
-        String regex = "";
+        String regex = "([0-9A-Fa-f]{4}):([0-9A-Fa-f]{4}):([0-9A-Fa-f]{4}):([0-9A-Fa-f]{4}):([0-9A-Fa-f]{4}):([0-9A-Fa-f]{4}):([0-9A-Fa-f]{4}):([0-9A-Fa-f]{4})";
         String input = "This is the list: 2345:0425:2CA1:0000:0000:0567:5673:23b5";
 
         Pattern pattern = Pattern.compile(regex);
