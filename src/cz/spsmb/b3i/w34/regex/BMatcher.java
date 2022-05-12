@@ -50,7 +50,12 @@ import java.util.regex.Pattern;
 // logické spojky
 // XY	            - X ihned za Y
 // X|Y	            - X neboY
-// (X)              - párování logických spojek slouží také k zapamatování při nahrazování pomocí \1 až \\n/p>
+
+// seskupování:
+// (X)                - skupina, slouží k zapamatování při nahrazování pomocí \1 až \\n/p>
+// (?'jmeno_skupiny') - pojmenování skupiny
+// (?:X)              - seskupí, ale nezapamatuje
+
 
 // příklady:
 // .*1
