@@ -187,7 +187,7 @@ public class ServerThread extends Thread {
                         }
                         PiskorkyServer.ps.prepnutiHrace();
                         if (ps.isStarted) {
-                            this.timer.cancel();
+                            //this.timer.cancel();
                             this.timer.schedule(new Helper(), PiskorkyServer.ps.TIMEOUT);
                         }
                         System.out.println(PiskorkyServer.ps.getHraci());
