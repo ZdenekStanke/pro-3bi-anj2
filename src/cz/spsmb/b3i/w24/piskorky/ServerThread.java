@@ -8,12 +8,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class ServerThread extends Thread {
-//    private class Helper extends TimerTask implements Serializable {
-//        @Override
-//        public void run() {
-//            PiskorkyServer.ps.hraci.remove(PiskorkyServer.ps.aktivniHrac);
-//        }
-//    }
+    private class Helper extends TimerTask implements Serializable {
+        @Override
+        public void run() {
+         //   PiskorkyServer.ps.hraci.remove(PiskorkyServer.ps.aktivniHrac);
+            System.out.format("Hrac %s dlouho nehral.%n", PiskorkyServer.ps.hraci.get(PiskorkyServer.ps.aktivniHrac));
+        }
+    }
 
     protected Socket socket;
     java.util.Timer timer = new Timer();
@@ -186,10 +187,10 @@ public class ServerThread extends Thread {
                             }
                         }
                         PiskorkyServer.ps.prepnutiHrace();
-//                        if (ps.isStarted) {
-//                            //this.timer.cancel();
-//                            this.timer.schedule(new Helper(), PiskorkyServer.ps.TIMEOUT);
-//                        }
+                        if (ps.isStarted) {
+                            //this.timer.cancel();
+                            this.timer.schedule(new Helper(), PiskorkyServer.ps.TIMEOUT);
+                        }
                         System.out.println(PiskorkyServer.ps.getHraci());
                         //        //vypis
                         for (int i = 0; i < PiskorkyServer.ps.rozmerHraciPlochy; i++) {
