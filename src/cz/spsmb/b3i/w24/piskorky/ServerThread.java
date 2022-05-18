@@ -19,11 +19,13 @@ public class ServerThread extends Thread {
     protected Socket socket;
     java.util.Timer timer = new Timer();
     int request = 0;
+    int hrac ;
 
     /**
      * @param clientSocket instance socketu získaného pomocí metody accept() instance třídy ServerSocket
      */
     public ServerThread(Socket clientSocket) {
+        this.hrac = PiskorkyServer.ps.hraci.size() - 1;
         this.socket = clientSocket;
         try {
             this.socket.setKeepAlive(true);
@@ -116,6 +118,12 @@ public class ServerThread extends Thread {
                 int attempts = 0;
                 while(inp.available() == 0 && attempts < 1000)
                 {
+                    if (this.hrac == PiskorkyServer.ps.aktivniHrac){
+                        this.timer.schedule(new Helper(), PiskorkyServer.ps.TIMEOUT);
+                    }else{
+                        this.timer.cancel();
+                    }
+
                     attempts++;
                     Thread.sleep(10);
                 }
@@ -187,10 +195,10 @@ public class ServerThread extends Thread {
                             }
                         }
                         PiskorkyServer.ps.prepnutiHrace();
-                        if (ps.isStarted) {
+                       /* if (ps.isStarted) {
                             //this.timer.cancel();
                             this.timer.schedule(new Helper(), PiskorkyServer.ps.TIMEOUT);
-                        }
+                        }*/
                         System.out.println(PiskorkyServer.ps.getHraci());
                         //        //vypis
                         for (int i = 0; i < PiskorkyServer.ps.rozmerHraciPlochy; i++) {
