@@ -8,12 +8,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class ServerThread extends Thread {
-    private class Helper extends TimerTask implements Serializable {
-        @Override
-        public void run() {
-            PiskorkyServer.ps.hraci.remove(PiskorkyServer.ps.aktivniHrac);
-        }
-    }
+//    private class Helper extends TimerTask implements Serializable {
+//        @Override
+//        public void run() {
+//            PiskorkyServer.ps.hraci.remove(PiskorkyServer.ps.aktivniHrac);
+//        }
+//    }
 
     protected Socket socket;
     java.util.Timer timer = new Timer();

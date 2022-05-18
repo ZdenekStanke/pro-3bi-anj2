@@ -4,7 +4,7 @@ import java.util.*;
 
 public class PiskorkyStatus implements Serializable {
 
-    public final String VERSION = "1.13";
+    public final String VERSION = "1.14";
     public final int nViteznych = 4;
     public final int TIMEOUT = 10000;
     int rozmerHraciPlochy;
