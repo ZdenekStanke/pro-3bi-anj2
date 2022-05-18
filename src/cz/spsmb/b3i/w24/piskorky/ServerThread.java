@@ -186,10 +186,10 @@ public class ServerThread extends Thread {
                             }
                         }
                         PiskorkyServer.ps.prepnutiHrace();
-                        if (ps.isStarted) {
-                            //this.timer.cancel();
-                            this.timer.schedule(new Helper(), PiskorkyServer.ps.TIMEOUT);
-                        }
+//                        if (ps.isStarted) {
+//                            //this.timer.cancel();
+//                            this.timer.schedule(new Helper(), PiskorkyServer.ps.TIMEOUT);
+//                        }
                         System.out.println(PiskorkyServer.ps.getHraci());
                         //        //vypis
                         for (int i = 0; i < PiskorkyServer.ps.rozmerHraciPlochy; i++) {
