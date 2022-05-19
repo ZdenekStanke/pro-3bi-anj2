@@ -121,26 +121,12 @@ public class ServerThread extends Thread {
                 int attempts = 0;
                 while(inp.available() == 0 && attempts < 1000)
                 {
-                    if (this.hrac == PiskorkyServer.ps.aktivniHrac){
-                        if (this.isTimerScheduled == false) {
-                            this.timer.schedule(new Helper(), PiskorkyServer.ps.TIMEOUT);
-                            this.isTimerScheduled = true;
-                            System.out.format("(%s ) timerScheduled%n", PiskorkyServer.ps.hraci.get(this.hrac));
-                        }
 
-
-                    }else{
-                        if (this.isTimerScheduled){
-                            this.timer.cancel();
-                            this.isTimerScheduled = false;
-                            System.out.format("(%s ) timerCanceled%n", PiskorkyServer.ps.hraci.get(this.hrac));
-                        }
-
-                    }
 
                     attempts++;
                     Thread.sleep(10);
                 }
+
 
                 request = inp.read();
                 System.out.println(request);
@@ -229,6 +215,20 @@ public class ServerThread extends Thread {
                         System.out.println("Tadik " + e.getMessage());
                     }
                     break;
+            }
+            if (this.hrac == PiskorkyServer.ps.aktivniHrac){
+                if (this.isTimerScheduled == false) {
+                    this.timer.schedule(new Helper(), PiskorkyServer.ps.TIMEOUT);
+                    this.isTimerScheduled = true;
+                    System.out.format("(%s ) timerScheduled%n", PiskorkyServer.ps.hraci.get(this.hrac));
+                }
+            }else{
+                if (this.isTimerScheduled){
+                    this.timer.cancel();
+                    this.isTimerScheduled = false;
+                    System.out.format("(%s ) timerCanceled%n", PiskorkyServer.ps.hraci.get(this.hrac));
+                }
+
             }
         }
     }
