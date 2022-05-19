@@ -41,13 +41,13 @@ import java.util.LinkedList;
 //org.openjfx:javafx-archetype-fxml:0.0.5
 //add --module-path "Y:\stemberk\verejne_zaci\javafx-sdk-17.0.1\lib" --add-modules javafx.controls,javafx.fxml
 public class PiskorkyFX extends Application {
-    private final String VERSION = "1.13";
+    private final String VERSION = "1.14";
     private final int MAX_PLAYER_LENGHT = 8;
     private final int MIN_PLAYER_LENGHT = 3;
     private final String TITULEK = "Piškorky" + this.VERSION;
     private PiskorkyStatus ps;
     private Button[][] herniTlacitka;
-    private String hostname = "192.168.2.106";
+    private String hostname = "192.168.9.43";
     //private String hostname = "192.168.31.162";
     // private String hostname = "localhost";
     private int port = 8081;
@@ -183,7 +183,7 @@ public class PiskorkyFX extends Application {
             this.startBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    if(PiskorkyFX.this.ps.getHraci().size() >= 2){
+                    if(PiskorkyFX.this.ps.getHraci().size() >= 1){
                         PiskorkyFX.this.ps.start();
                         PiskorkyFX.this.sputPiskvorkyStatusToServer();
                     }

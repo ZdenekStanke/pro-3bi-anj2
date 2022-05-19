@@ -42,15 +42,20 @@ import java.util.regex.Pattern;
 // n{x,y}           - x až y n za sebou
 // n{x,}            - x a více n za sebou
 
-// greedy vs non-greedy
+// greedy (chamtivý) vs non-greedy (líný) kvantifikátor
 // greedy           - standartní chování (např.: .*), označí nejdelší možný řetězec
 // non greedy       - po přidání otazníku (např.: .*?), označí nejkratší možný řetězec
-
 
 // logické spojky
 // XY	            - X ihned za Y
 // X|Y	            - X neboY
-// (X)              - párování logických spojek slouží také k zapamatování při nahrazování pomocí \1 až \\n/p>
+
+// seskupování:
+// (X)                - skupina, slouží k zapamatování při nahrazování pomocí \1 až \\n/p>
+//                      reference při nahrazování pomocí $n
+// (?'jmeno_skupiny') - pojmenování skupiny. V Javě potřeba použít (?<jmeno_skupiny>)
+//                      reference pak pomocí \k<name>, resp. ${name}
+// (?:X)              - seskupí, ale nezapamatuje
 
 // příklady:
 // .*1
@@ -61,6 +66,7 @@ import java.util.regex.Pattern;
 // http://[a-zA-Z_.]+
 //  (http://)?w{3}[a-zA-Z_.]+\.cz
 // [a-zA-Z_.]+@[a-zA-Z_.]+
+//  <p>.*<\/p>      pro greedy/lazy <p>Hello</p><span>Awesome</span><p>World</p>
 
 
 
