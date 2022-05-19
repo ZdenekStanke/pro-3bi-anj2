@@ -125,6 +125,7 @@ public class ServerThread extends Thread {
                         if (this.isTimerScheduled == false) {
                             this.timer.schedule(new Helper(), PiskorkyServer.ps.TIMEOUT);
                             this.isTimerScheduled = true;
+                            System.out.format("(%s ) timerScheduled%n", PiskorkyServer.ps.hraci.get(this.hrac));
                         }
 
 
@@ -132,6 +133,7 @@ public class ServerThread extends Thread {
                         if (this.isTimerScheduled){
                             this.timer.cancel();
                             this.isTimerScheduled = false;
+                            System.out.format("(%s ) timerCanceled%n", PiskorkyServer.ps.hraci.get(this.hrac));
                         }
 
                     }
