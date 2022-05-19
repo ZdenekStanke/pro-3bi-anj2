@@ -20,7 +20,7 @@ public class ServerThread extends Thread {
      protected Socket socket;
     private java.util.Timer timer = new Timer();
     private int request = 0;
-    private int hrac ;
+    private int hrac = -1;
     private boolean isTimerScheduled;
 
 
@@ -172,7 +172,8 @@ public class ServerThread extends Thread {
                             if (!PiskorkyServer.ps.isEnded) {
                                 PiskorkyServer.ps = ps;
                                 if (this.hrac== -1){
-                                    this.hrac = PiskorkyServer.ps.hraci.size() - 1;
+                                    this.hrac = PiskorkyServer.ps.hraci.size() -1;
+                                    System.out.format("%s%n", PiskorkyServer.ps.hraci.toString() );
                                 }
                             }
                         }
