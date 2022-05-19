@@ -47,9 +47,9 @@ public class PiskorkyFX extends Application {
     private final String TITULEK = "Piškorky" + this.VERSION;
     private PiskorkyStatus ps;
     private Button[][] herniTlacitka;
-   // private String hostname = "192.168.2.106";
+    private String hostname = "192.168.2.106";
     //private String hostname = "192.168.31.162";
-     private String hostname = "localhost";
+    // private String hostname = "localhost";
     private int port = 8081;
     private Timeline tl;
     private Stage playerNameStage;
