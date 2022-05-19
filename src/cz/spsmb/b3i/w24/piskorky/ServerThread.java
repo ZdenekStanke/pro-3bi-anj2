@@ -11,15 +11,18 @@ public class ServerThread extends Thread {
     private class Helper extends TimerTask implements Serializable {
         @Override
         public void run() {
-         //   PiskorkyServer.ps.hraci.remove(PiskorkyServer.ps.aktivniHrac);
+            ServerThread.this.isTimerScheduled = false;
+         //   PiskorkySci.remove(PiskorkyServer.ps.aktivniHrac);erver.ps.hra
             System.out.format("Hrac %s dlouho nehral.%n", PiskorkyServer.ps.hraci.get(PiskorkyServer.ps.aktivniHrac));
         }
     }
 
-    protected Socket socket;
-    java.util.Timer timer = new Timer();
-    int request = 0;
-    int hrac ;
+     protected Socket socket;
+    private java.util.Timer timer = new Timer();
+    private int request = 0;
+    private int hrac ;
+    private boolean isTimerScheduled;
+
 
     /**
      * @param clientSocket instance socketu získaného pomocí metody accept() instance třídy ServerSocket
@@ -119,9 +122,18 @@ public class ServerThread extends Thread {
                 while(inp.available() == 0 && attempts < 1000)
                 {
                     if (this.hrac == PiskorkyServer.ps.aktivniHrac){
-                        this.timer.schedule(new Helper(), PiskorkyServer.ps.TIMEOUT);
+                        if (this.isTimerScheduled == false) {
+                            this.timer.schedule(new Helper(), PiskorkyServer.ps.TIMEOUT);
+                            this.isTimerScheduled = true;
+                        }
+
+
                     }else{
-                        this.timer.cancel();
+                        if (this.isTimerScheduled){
+                            this.timer.cancel();
+                            this.isTimerScheduled = false;
+                        }
+
                     }
 
                     attempts++;
