@@ -28,7 +28,7 @@ public class ServerThread extends Thread {
      * @param clientSocket instance socketu získaného pomocí metody accept() instance třídy ServerSocket
      */
     public ServerThread(Socket clientSocket) {
-        this.hrac = PiskorkyServer.ps.hraci.size() - 1;
+
         this.socket = clientSocket;
         try {
             this.socket.setKeepAlive(true);
@@ -171,6 +171,9 @@ public class ServerThread extends Thread {
                         synchronized (PiskorkyServer.ps) {
                             if (!PiskorkyServer.ps.isEnded) {
                                 PiskorkyServer.ps = ps;
+                                if (this.hrac== -1){
+                                    this.hrac = PiskorkyServer.ps.hraci.size() - 1;
+                                }
                             }
                         }
                         lab_for1:
