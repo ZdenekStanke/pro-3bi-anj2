@@ -216,6 +216,7 @@ public class ServerThread extends Thread {
                     }
                     break;
             }
+            System.out.println(this.hrac);
             if (this.hrac>=0){
                 System.out.format("(%s )%n", PiskorkyServer.ps.hraci.get(this.hrac));
             }
