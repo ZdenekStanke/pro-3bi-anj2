@@ -216,6 +216,7 @@ public class ServerThread extends Thread {
                     }
                     break;
             }
+            System.out.format("(%s )%n", PiskorkyServer.ps.hraci.get(this.hrac));
             if (this.hrac == PiskorkyServer.ps.aktivniHrac){
                 if (this.isTimerScheduled == false) {
                     this.timer.schedule(new Helper(), PiskorkyServer.ps.TIMEOUT);
