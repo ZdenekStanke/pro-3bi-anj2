@@ -121,13 +121,9 @@ public class ServerThread extends Thread {
                 int attempts = 0;
                 while(inp.available() == 0 && attempts < 1000)
                 {
-
-
                     attempts++;
                     Thread.sleep(10);
                 }
-
-
                 request = inp.read();
                 System.out.println(request);
             } catch (IOException | InterruptedException e) {
@@ -186,6 +182,7 @@ public class ServerThread extends Thread {
                                     System.out.println("Win");
                                     PiskorkyServer.ps.isEnded = true;
 //reset piskvorek po skonceni 3s
+/*
                                     timer.schedule(new TimerTask() {
                                                        @Override
                                                        public void run() {
@@ -193,7 +190,7 @@ public class ServerThread extends Thread {
                                                        }
                                                    }, 3000
                                     );
-
+*/
                                     break lab_for1;
                                 }
                             }
