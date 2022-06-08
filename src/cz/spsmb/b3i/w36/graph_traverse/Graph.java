@@ -8,7 +8,7 @@ public class Graph {
     private Node head;
 
     public Graph() {
-        this.head = new Node(0);
+        this.head = new Node(-1);
     }
 
     public Node getHead() {
@@ -38,6 +38,10 @@ public class Graph {
             if (!visited.contains(tmp)) {
                 visited.add(tmp);
                 out.add(tmp);
+                /*
+                if (tmp.isFinal) {
+                   return out;
+                }*/
                 for (Node currentN : tmp.nextNodeList) {
                     if (!visited.contains(currentN)) {
                         stack.push(currentN);
